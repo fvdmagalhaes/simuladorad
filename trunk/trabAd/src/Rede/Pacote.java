@@ -1,6 +1,5 @@
 package Rede;
 
-import java.util.List;
 
 
 public class Pacote {
