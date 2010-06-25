@@ -4,6 +4,7 @@ import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
 import Rede.Hub;
+import Rede.TipoEvento;
 
 /*
  * Trabalho de AD 2010-1
@@ -114,7 +115,7 @@ public class main {
 		}
 		//Caso contrario apenas retorna o evento como ultimo
 		
-		
+
 		return evento;
 		
 	}
@@ -131,6 +132,24 @@ public class main {
 	//Metodo que manipula os eventos. Deve verificar o tipo do evento e manipula-lo de acordo com a especificaçao
 	public static void trataEventos(Evento evento)
 	{
+		Evento evento2;
+		if(evento.getTipo()==TipoEvento.SENTE_MEIO){
+			//obtem a estacao que esta senindo o meio
+			Estacao estacao=evento.getQuadro().getPacote().getEstacao();
+			if(estacao.getTx().getOcioso()){
+				//se tx esta ocioso,cria um evento de transmitir quasdro apos o evento de sentir o meio
+				evento2=new Evento();
+				evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
+				evento2.setTempo(evento.getTempo()+100);
+			}else{
+				evento2=new Evento();
+				evento2.setTipo(TipoEvento.SENTE_MEIO);
+				evento2.setTempo(evento.getTempo()+1);
+			}
+			evento2.setEventoAnterior(evento);
+			evento.setProximoEvento(evento2);
+			main.insereEvento(evento2,evento);
+		}
 	}
 	
 
