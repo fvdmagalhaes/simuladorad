@@ -134,16 +134,19 @@ public class main {
 	{
 		Evento evento2;
 		if(evento.getTipo()==TipoEvento.SENTE_MEIO){
-			//obtem a estacao que esta senindo o meio
+			//obtém a estação que está sentindo o meio
 			Estacao estacao=evento.getQuadro().getPacote().getEstacao();
 			if(estacao.getTx().getOcioso()){
-				//se tx esta ocioso,cria um evento de transmitir quasdro apos o evento de sentir o meio
+				//se tx esta ocioso,cria um evento de transmitir quadro após o evento de sentir o meio
 				evento2=new Evento();
 				evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
+				//100 é o tempo provisorio entre sentir o meio ocioso e a transmissao do quadro
 				evento2.setTempo(evento.getTempo()+100);
 			}else{
+				//caso tx esteja ocupado,cria um novo evento sentindo o meio
 				evento2=new Evento();
 				evento2.setTipo(TipoEvento.SENTE_MEIO);
+				//1 é o instante provisório após a primeira inspeção do meio
 				evento2.setTempo(evento.getTempo()+1);
 			}
 			evento2.setEventoAnterior(evento);
