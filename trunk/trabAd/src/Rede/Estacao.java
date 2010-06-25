@@ -8,8 +8,7 @@ public class Estacao {
 	Canal tx;
 	Canal rx;
 	int taxaDeChegada;
-
-		
+	
 	public int getId() {
 		return id;
 	}
