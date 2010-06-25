@@ -1,7 +1,5 @@
 package Rede;
 
-import java.util.List;
-
 import Controle.main;
 
 
