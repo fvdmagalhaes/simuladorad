@@ -38,4 +38,6 @@ public class Evento {
 	public void setQuadro(Quadro quadro) {
 		this.quadro = quadro;
 	}	
+
+	
 }
