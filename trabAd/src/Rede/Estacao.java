@@ -1,5 +1,6 @@
 package Rede;
 
+import Controle.Controle;
 import Controle.main;
 
 
@@ -45,14 +46,14 @@ public class Estacao {
 			//proximoEvento.setQuadro()
 			//proximoEvento.setTempo()
 			proximoEvento.setTipo(TipoEvento.TRANSMITE_QUADRO);
-			main.insereEvento(proximoEvento, ultimoEvento);
+			Controle.insereEvento(proximoEvento, ultimoEvento);
 			
 		}else{
 			//espera um tempo e tenta enviar dinovo
 			Evento eventoSenteMeio = new Evento();
 			eventoSenteMeio.setTipo(TipoEvento.SENTE_MEIO);
 			//eventoSenteMeio.setTempo()
-			main.insereEvento(eventoSenteMeio, ultimoEvento);
+			Controle.insereEvento(eventoSenteMeio, ultimoEvento);
 		}
 		
 	}

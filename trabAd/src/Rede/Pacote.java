@@ -5,7 +5,6 @@ package Rede;
 public class Pacote {
 	int id;
 	int tamanho;
-	int numeroQuadros;
 	Estacao estacao;
 	
 	public Estacao getEstacao() {
@@ -26,14 +25,5 @@ public class Pacote {
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
 	}
-	public int getNumeroQuadros() {
-		return numeroQuadros;
-	}
-	public void setNumeroQuadros(int numeroQuadros) {
-		this.numeroQuadros = numeroQuadros;
-	}
-	
-	
-	
 	
 }
