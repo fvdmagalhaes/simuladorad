@@ -9,7 +9,14 @@ public class Estacao {
 	Canal tx;
 	Canal rx;
 	int taxaDeChegada;
+	int pmf;
 	
+	public int getPmf() {
+		return pmf;
+	}
+	public void setPmf(int pmf) {
+		this.pmf = pmf;
+	}
 	public int getId() {
 		return id;
 	}
@@ -34,7 +41,7 @@ public class Estacao {
 	public void setRx(Canal rx) {
 		this.rx = rx;
 	}
-	public void enviaPacote (Pacote pacote, Evento ultimoEvento){
+	/*public void enviaPacote (Pacote pacote, Evento ultimoEvento){
 		
 		//Antes de enviar o pacote a estacao sente o meio e "seta" o proximo evento como o evento de enviar
 		if(tx.getOcioso())
@@ -56,8 +63,20 @@ public class Estacao {
 			Controle.insereEvento(eventoSenteMeio, ultimoEvento);
 		}
 		
-	}
-	public void recebePacote (Pacote pacote){
+	}*/
+	
+	//estacao recebe pacote no tempo x
+	public void recebePacote (Pacote pacote, Double tempo){
+		/*
+		 * Algoritmo:
+		 * Estacao recebe pacote
+		 * pega o numero de quadros pela pmf
+		 * vai gerando os quadros e enviando
+		 * 
+		 */
+		Quadro quadro = new Quadro();
+		quadro.setNumeroSequencia(0);
+		quadro.setPacote(pacote);
 		
 	}
 }
