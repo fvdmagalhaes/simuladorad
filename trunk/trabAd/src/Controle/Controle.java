@@ -38,24 +38,38 @@ public class Controle {
 		}
 		return tempoMaior;
 	}
-	//Metodo que manipula os eventos. Deve verificar o tipo do evento e manipula-lo de acordo com a especificaçao
-	public static void trataEventos(Evento evento)
+	//Metodo que manipula os eventos. Deve verificar o tipo do evento e manipula-lo de acordo com a especificaçao.
+	//Ele recebe e retorna o ultimo evento executado
+	public static Evento trataEventos(Evento evento, Evento ultimaTransmissao)
 	{
-		Evento evento2;
+		Evento evento2 = null;
 		if(evento.getTipo()==TipoEvento.SENTE_MEIO){
 			//obtém a estação que está sentindo o meio
 			Estacao estacao=evento.getQuadro().getPacote().getEstacao();
 			if(estacao.getTx().getOcioso()){
-				//se tx esta ocioso,cria um evento de transmitir quadro após o evento de sentir o meio
-				evento2=new Evento();
-				evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
-				//100 é o tempo provisorio entre sentir o meio ocioso e a transmissao do quadro
-				evento2.setTempo(evento.getTempo()+100);
+				//se tx esta ocioso, verifica se já foram passados os 9,6 us = 9,6 x10^-6 s
+				if(evento.getTempo() >= (ultimaTransmissao.getTempo()+0.0000096))
+				{
+					//caso já tenha passado cria um evento de transmissao
+					evento2=new Evento();
+					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
+					evento2.setQuadro(evento.getQuadro());
+					//tempo de transmissao, inicia imediatamente
+					//evento2.setTempo();
+				}else{
+					//espera a contagem do tempo restante para passar os 9,6us e transmite imediatamente.
+					//Entao vou criar um evento com o tempo atual + restante
+					evento2=new Evento();
+					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
+					evento2.setQuadro(evento.getQuadro());
+					//evento2.setTempo(tempoAtual + (evento.getTempo()-(ultimaTransmissao.getTempo()+0.0000096)));
+				}
 			}else{
 				//caso tx esteja ocupado,cria um novo evento sentindo o meio
 				evento2=new Evento();
 				evento2.setTipo(TipoEvento.SENTE_MEIO);
-				//1 é o instante provisório após a primeira inspeção do meio
+				//1 é o instante provisório após a primeira inspeção do meio * ele persiste sentindo o meio até a transmissao acabar. Nao sei se 
+				//criamos um evento com o msm tempo ou esperamos algum tempo para sentir o meio novamente mesmo.
 				evento2.setTempo(evento.getTempo()+1);
 			}
 			evento2.setEventoAnterior(evento);
@@ -71,6 +85,7 @@ public class Controle {
 			 * de envio de quadro. 
 			 */
 		}
+		return evento2;
 	}
 	
 }
