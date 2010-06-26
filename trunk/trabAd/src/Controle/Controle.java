@@ -61,6 +61,15 @@ public class Controle {
 			evento2.setEventoAnterior(evento);
 			evento.setProximoEvento(evento2);
 			insereEvento(evento2,evento);
+		}else if(evento.getTipo() == TipoEvento.RECEBE_QUADRO){
+			//pega a estação que está recebendo o quadro
+			Estacao estacao = evento.getQuadro().getPacote().getEstacao();
+			
+			/*
+			 * 
+			 * tem que verificar se essa estacao está pendente de confirmacao 
+			 * de envio de quadro. 
+			 */
 		}
 	}
 	
