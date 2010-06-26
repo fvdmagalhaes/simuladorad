@@ -68,6 +68,7 @@ public class main {
 		rx4.setTamanho(40.0);		
 
 		//adiciona as informacoes das estacoes
+		
 		e1.setId(1);
 		e1.setRx(rx1);
 		e1.setTx(tx1);
@@ -98,9 +99,23 @@ public class main {
 		pacote1.setEstacao(e1);
 		//tamanho sempre em MB
 		pacote1.setTamanho(40);
+		
 		//Estacao 2 recebe 1 pacote de 40mb
+		Pacote pacote2 = new Pacote();
+		pacote2.setEstacao(e2);
+		pacote2.setTamanho(40);
 		
+		//para o cenario 1 A1 = A2 = 40ms determistico p1=p2=40
+		e1.setTaxaDeChegada(40);
+		e1.setPmf(40);
+		e1.setPmf(40);
 		
+		e2.setTaxaDeChegada(40);
+		
+		e1.recebePacote(pacote1, 0.0);
+		e2.recebePacote(pacote2, 0.0);
+		
+		//aqui acaba a funcao main
 		
 	}
 	
