@@ -3,6 +3,7 @@ package Controle;
 import Rede.Estacao;
 import Rede.Evento;
 import Rede.TipoEvento;
+import Rede.Quadro;
 
 public class Controle {
 	//Insere o evento na posicao correta, retorna o ultimo evento
@@ -81,24 +82,35 @@ public class Controle {
 		}else 	if(evento.getTipo() == TipoEvento.RECEBE_QUADRO){
 			//pega a estação que está recebendo o quadro
 			Estacao estacao = evento.getQuadro().getPacote().getEstacao();
+			Evento recebeQuadro = new Evento();
+			recebeQuadro.setTipo(TipoEvento.RECEBE_QUADRO);
 			
-			
+			//Verifica qual estação está recebendo o pacote para calcular o tempo
+			if(estacao.getId() == '1'){
+
+			}else if(estacao.getId() == '2'){
+				
+			}else if(estacao.getId() == '3'){
+				
+			}else if(estacao.getId() == '4'){
+				
+			}
 			
 			/*
 			 * 
 			 * tem que verificar se essa estacao está pendente de confirmacao 
 			 * de envio de quadro. 
 			 */
-				 }else if(evento.getTipo()==TipoEvento.RECEBE_PACOTE){
-							Estacao estacao=evento.getQuadro().getPacote().getEstacao();
-							
-							Evento receber=new Evento();
-							receber.setTipo(TipoEvento.RECEBE_PACOTE);
-							receber.setTempo(evento.getTempo()+estacao.getTaxaDeChegada());
-							
-							//adicionar na lista de eventos
-							Controle.insereEvento(evento2, evento);
-					  }
+		 }else if(evento.getTipo()==TipoEvento.RECEBE_PACOTE){
+			Estacao estacao=evento.getQuadro().getPacote().getEstacao();
+			
+			Evento receber=new Evento();
+			receber.setTipo(TipoEvento.RECEBE_PACOTE);
+			receber.setTempo(evento.getTempo()+estacao.getTaxaDeChegada());
+			
+			//adicionar na lista de eventos
+			Controle.insereEvento(evento2, evento);
+		 }
 		return evento2;
 	}
 	
