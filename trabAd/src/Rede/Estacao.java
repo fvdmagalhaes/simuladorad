@@ -11,33 +11,15 @@ public class Estacao {
 	int idUltimoQuadro;
 	boolean RecebeuConfirmacaoUltimoQuadro;
 	
-
-	public boolean getRecebeuConfirmacaoUltimoQuadro(){
-		return RecebeuConfirmacaoUltimoQuadro;
-	}
 	
-	public void setRecebeuConfirmacaoUltimoQuadro(boolean RecebeuConfirmacaoUltimoQuadro){
-		this.RecebeuConfirmacaoUltimoQuadro = RecebeuConfirmacaoUltimoQuadro;		
-	}
 	
-	public int getPmf() {
-		return pmf;
-	}
-	public void setPmf(int pmf) {
-		this.pmf = pmf;
-	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getTaxaDeChegada() {
-		return taxaDeChegada;
-	}
-	public void setTaxaDeChegada(int taxaDeChegada) {
-		this.taxaDeChegada = taxaDeChegada;
-	}
+	
 	public Canal getTx() {
 		return tx;
 	}
@@ -49,6 +31,36 @@ public class Estacao {
 	}
 	public void setRx(Canal rx) {
 		this.rx = rx;
+	}
+
+	public int getTaxaDeChegada() {
+		return taxaDeChegada;
+	}
+	public void setTaxaDeChegada(int taxaDeChegada) {
+		this.taxaDeChegada = taxaDeChegada;
+	}
+		
+	public int getPmf() {
+		return pmf;
+	}
+	public void setPmf(int pmf) {
+		this.pmf = pmf;
+	}
+	
+	public int getIdUltimoQuadro(){
+		return idUltimoQuadro;
+	}
+	
+	public void setIdUltimoQuadro(int idUltimoQuadro){
+		this.idUltimoQuadro = idUltimoQuadro;		
+	}
+	
+	public boolean getRecebeuConfirmacaoUltimoQuadro(){
+		return RecebeuConfirmacaoUltimoQuadro;
+	}
+	
+	public void setRecebeuConfirmacaoUltimoQuadro(boolean RecebeuConfirmacaoUltimoQuadro){
+		this.RecebeuConfirmacaoUltimoQuadro = RecebeuConfirmacaoUltimoQuadro;		
 	}
 	
 	/*public void enviaPacote (Pacote pacote, Evento ultimoEvento){
