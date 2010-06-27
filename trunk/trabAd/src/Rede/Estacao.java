@@ -39,6 +39,7 @@ public class Estacao {
 	public void setRx(Canal rx) {
 		this.rx = rx;
 	}
+	
 	/*public void enviaPacote (Pacote pacote, Evento ultimoEvento){
 		
 		//Antes de enviar o pacote a estacao sente o meio e "seta" o proximo evento como o evento de enviar
