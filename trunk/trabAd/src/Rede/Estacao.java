@@ -8,8 +8,17 @@ public class Estacao {
 	Canal rx;
 	int taxaDeChegada;
 	int pmf;
-	Quadro idUltimoQuadro;
+	int idUltimoQuadro;
 	boolean RecebeuConfirmacaoUltimoQuadro;
+	
+
+	public boolean getRecebeuConfirmacaoUltimoQuadro(){
+		return RecebeuConfirmacaoUltimoQuadro;
+	}
+	
+	public void setRecebeuConfirmacaoUltimoQuadro(boolean RecebeuConfirmacaoUltimoQuadro){
+		this.RecebeuConfirmacaoUltimoQuadro = RecebeuConfirmacaoUltimoQuadro;		
+	}
 	
 	public int getPmf() {
 		return pmf;
