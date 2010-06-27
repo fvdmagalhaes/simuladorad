@@ -103,6 +103,7 @@ public class Controle {
 							receber.setTempo(evento.getTempo()+estacao.getTaxaDeChegada());
 							
 							//adicionar na lista de eventos
+							Controle.insereEvento(evento2, evento);
 					  }
 		return evento2;
 	}
