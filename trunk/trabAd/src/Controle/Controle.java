@@ -55,13 +55,16 @@ public class Controle {
 					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
 					evento2.setQuadro(evento.getQuadro());
 					//tempo de transmissao, inicia imediatamente
-					//evento2.setTempo();
+					//tempo do evento de transmissao e igual ao de sentir o meio
+					evento2.setTempo(evento.getTempo());
 				}else{
 					//espera a contagem do tempo restante para passar os 9,6us e transmite imediatamente.
 					//Entao vou criar um evento com o tempo atual + restante
 					evento2=new Evento();
 					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
 					evento2.setQuadro(evento.getQuadro());
+					//evento de transmissao vai ocorrer 0,0000096 instante após a ultima transmissão
+					evento2.setTempo(ultimaTransmissao.getTempo()+0.0000096);
 					//evento2.setTempo(tempoAtual + (evento.getTempo()-(ultimaTransmissao.getTempo()+0.0000096)));
 				}
 			}else{
