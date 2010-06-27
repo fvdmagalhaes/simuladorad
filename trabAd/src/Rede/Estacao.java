@@ -1,7 +1,5 @@
 package Rede;
 
-import Controle.Controle;
-import Controle.main;
 
 
 public class Estacao {
