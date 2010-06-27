@@ -8,6 +8,8 @@ public class Estacao {
 	Canal rx;
 	int taxaDeChegada;
 	int pmf;
+	Quadro idUltimoQuadro;
+	boolean RecebeuConfirmacaoUltimoQuadro;
 	
 	public int getPmf() {
 		return pmf;
