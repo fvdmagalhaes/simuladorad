@@ -95,6 +95,14 @@ public class Controle {
 							Evento receber=new Evento();
 							receber.setTipo(TipoEvento.RECEBE_PACOTE);
 							
+					  }else if(evento.getTipo()==TipoEvento.RECEBE_PACOTE){
+							Estacao estacao=evento.getQuadro().getPacote().getEstacao();
+							
+							Evento receber=new Evento();
+							receber.setTipo(TipoEvento.RECEBE_PACOTE);
+							receber.setTempo(evento.getTempo()+estacao.getTaxaDeChegada());
+							
+							//adicionar na lista de eventos
 					  }
 		return evento2;
 	}
