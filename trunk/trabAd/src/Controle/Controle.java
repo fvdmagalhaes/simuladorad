@@ -87,6 +87,16 @@ public class Controle {
 			
 			//Verifica qual estação está recebendo o pacote para calcular o tempo
 			if(estacao.getId() == '1'){
+				
+				/*
+				 * TAMANHOQUADRO/CANAL + DISTANCIA/VELOCIDADE_PROPAGACAO
+
+					Por exemplo, pra calcular o tempo que o Hub transmite alguma coisa pra estação 1:
+					TamQuadro = 1000 bytes = 8000 bits
+					Distancia = 80m = 0,008km
+
+					tempo = 8000bits/10.000bps + 0,008km/ (5km/10^-6 segundos)
+				 * */
 
 			}else if(estacao.getId() == '2'){
 				
