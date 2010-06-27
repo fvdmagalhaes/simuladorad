@@ -1,7 +1,5 @@
 package Rede;
 
-
-
 public class Estacao {
 	int id;
 	Canal tx;
@@ -11,7 +9,7 @@ public class Estacao {
 	Quadro ultimoQuadroEnviado;
 	boolean RecebeuConfirmacaoUltimoQuadro;
 	
-
+	
 	public int getId() {
 		return id;
 	}
