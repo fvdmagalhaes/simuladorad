@@ -8,11 +8,10 @@ public class Estacao {
 	Canal rx;
 	int taxaDeChegada;
 	int pmf;
-	int idUltimoQuadro;
+	Quadro ultimoQuadroEnviado;
 	boolean RecebeuConfirmacaoUltimoQuadro;
 	
-	
-	
+
 	public int getId() {
 		return id;
 	}
@@ -47,12 +46,12 @@ public class Estacao {
 		this.pmf = pmf;
 	}
 	
-	public int getIdUltimoQuadro(){
-		return idUltimoQuadro;
+	public Quadro getUltimoQuadroEnviado(){
+		return ultimoQuadroEnviado;
 	}
 	
-	public void setIdUltimoQuadro(int idUltimoQuadro){
-		this.idUltimoQuadro = idUltimoQuadro;		
+	public void setUltimoQuadroEnviado(Quadro ultimoQuadroEnviado){
+		this.ultimoQuadroEnviado = ultimoQuadroEnviado;		
 	}
 	
 	public boolean getRecebeuConfirmacaoUltimoQuadro(){
