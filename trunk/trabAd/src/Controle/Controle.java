@@ -89,13 +89,7 @@ public class Controle {
 			 * tem que verificar se essa estacao está pendente de confirmacao 
 			 * de envio de quadro. 
 			 */
-				}else if(evento.getTipo()==TipoEvento.RECEBE_PACOTE){
-							Estacao estacao=evento.getQuadro().getPacote().getEstacao();
-							
-							Evento receber=new Evento();
-							receber.setTipo(TipoEvento.RECEBE_PACOTE);
-							
-					  }else if(evento.getTipo()==TipoEvento.RECEBE_PACOTE){
+				 }else if(evento.getTipo()==TipoEvento.RECEBE_PACOTE){
 							Estacao estacao=evento.getQuadro().getPacote().getEstacao();
 							
 							Evento receber=new Evento();
