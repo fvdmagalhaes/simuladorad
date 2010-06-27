@@ -1,6 +1,10 @@
 package Rede;
 
 public class Quadro {
+	
+	//Tamanho do quadro em bits: 1000 bytes = 1000 * 8 bits = 8000 bits
+	public final static int TAMANHO = 8000;
+	
 	int id;
 	int numeroSequencia;
 	Pacote pacote;
