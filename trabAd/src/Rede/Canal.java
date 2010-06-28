@@ -6,7 +6,6 @@ public class Canal {
 	Double tamanho;
 	
 	
-	
 	public Boolean getOcioso() {
 		return ocioso;
 	}
