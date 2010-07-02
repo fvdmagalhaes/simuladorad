@@ -26,7 +26,7 @@ public class main {
 		
 		//int CAPACIDADE = x;
 		
-		Controle controle = new Controle();
+		//Controle controle = new Controle();
 		
 		//instancia as estacoes do sistema
 		Estacao e1 = new Estacao();
@@ -126,9 +126,9 @@ public class main {
 		
 		//guarda o ultimo evento executado
 		Evento ultimoEvento = new Evento();
-		ultimoEvento.setTempo(0.0);
+		/*ultimoEvento.setTempo(0.0);
 		ultimoEvento.setTipo(TipoEvento.RECEBE_PACOTE);
-		ultimoEvento.setEstacao(e1);
+		ultimoEvento.setEstacao(e1);*/
 		//guarda a ultima transmissao com sucesso ou reforco de colisao
 		Evento ultimaTransmissao = new Evento();
 		//Estacao 1 recebe 1 pacote de 40mb
@@ -151,11 +151,13 @@ public class main {
 		e2.setTaxaDeChegada(40);
 		
 		e1.recebePacote(pacote1, 0.0, ultimoEvento);
-		while(ultimoEvento!=null){
-			controle.trataEventos(ultimoEvento, ultimaTransmissao);
-			ultimoEvento=ultimoEvento.getProximoEvento();
-		}
-		//e2.recebePacote(pacote2, 0.0, ultimoEvento);
+		
+		//Controle.trataEventos(ultimoEvento,null);
+		
+		//System.out.println(ultimoEvento.getProximoEvento().getTipo());
+		
+		
+		e2.recebePacote(pacote2, 0.0, ultimoEvento);
 		
 		//aqui acaba a funcao main
 		
