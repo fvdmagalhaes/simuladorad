@@ -1,7 +1,6 @@
 package vo;
 
 import Rede.Evento;
-import Rede.Pacote;
 
 public class EventoVo {
 	
