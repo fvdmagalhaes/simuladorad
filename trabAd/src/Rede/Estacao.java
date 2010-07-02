@@ -9,7 +9,12 @@ public class Estacao {
 	int pmf;
 	Quadro ultimoQuadroEnviado;
 	boolean RecebeuConfirmacaoUltimoQuadro;
+	private static int ultimoId=-1;
 	
+	public Estacao(){
+		ultimoId++;
+		id=ultimoId;
+	}
 	
 	public int getId() {
 		return id;
