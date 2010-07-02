@@ -1,8 +1,13 @@
 package Controle;
 
+import java.util.List;
+
 import vo.EventoVo;
+import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
+import Rede.Hub;
+import Rede.Pacote;
 import Rede.TipoEvento;
 import Rede.Quadro;
 
@@ -44,7 +49,7 @@ public class Controle {
 	//Ele recebe o evento a ser executado, a ultima transmissao(ultima transmissao com sucesso ou sinal de reforço de colisao) e o ultimo evento executado
 	//Agora o metodo retorna o ultimo evento executando por ele e um boolean que estará como true caso esse ultimo evento seja uma transmissao com sucesso ou reforço de colisao.
 	
-	public static EventoVo trataEventos(Evento evento, Evento ultimaTransmissao, Evento ultimoExecutado)
+	public static EventoVo trataEventos(Evento evento, Evento ultimaTransmissao)
 	{
 		EventoVo eventoVo = null;
 		Evento evento2 = null;
@@ -80,13 +85,17 @@ public class Controle {
 				evento2.setTempo(evento.getProximoEvento().getTempo());
 			}
 			
-			//insere o evento2 na lista. precisa passar a ultima transmissao.
-			insereEvento(evento2,ultimoExecutado);
+			//insere o evento2 na lista. precisa passar a ultimo evento executado que é o evento sente o meio que acabamos de executar
+			insereEvento(evento2,evento);
 			//Retorna o ultimo evento executado de sentir o meio
 			eventoVo.setUltimoEvento(evento);
 			eventoVo.setVerificaTransmissao(false);
 			
+			
+			
+			
 		}else 	if(evento.getTipo() == TipoEvento.RECEBE_QUADRO){
+			//acho que nao precisa mais do evento recebe quadro
 			//pega a estação que está recebendo o quadro
 			Estacao estacao = evento.getQuadro().getPacote().getEstacao();
 			
@@ -116,8 +125,42 @@ public class Controle {
 			 * tem que verificar se essa estacao está pendente de confirmacao 
 			 * de envio de quadro. 
 			 */
+		 }else if(evento.getTipo().equals(TipoEvento.TRANSMITE_QUADRO))
+		 {
+			 Estacao estacao = evento.getQuadro().getPacote().getEstacao();
+			 Double tempoTransmissao = estacao.getTx().getTempoTransmissao();
+			 //Cria um evento de retransmissao do hub
+			 Evento eventoHub = new Evento();
+			 eventoHub.setQuadro(evento.getQuadro());
+			 //o evento sera realizado no tempo em q a estaçao começa a transmitir mais o tempo de propagaçao no seu tx
+			 eventoHub.setTempo(evento.getTempo()+tempoTransmissao);
+			 eventoHub.setTipo(TipoEvento.RETRANSMITE_QUADRO);
+			 //insere o evento do hub na lista e passa o ultimo evento executado que foi o de transmitir o quadro
+			 insereEvento(eventoHub,evento);
+			 //Retorna o ultimo evento executado
+			 eventoVo.setUltimoEvento(evento);
+			 //true pois foi uma transmissao com sucesso
+			 eventoVo.setVerificaTransmissao(true);
+		 }else if(evento.getTipo().equals(TipoEvento.RETRANSMITE_QUADRO))
+		 {
+			 //Envia o quadro para o rx de tdas as estacoes
+			 Hub hub = evento.getQuadro().getPacote().getEstacao().getHub();
+			 List<Canal> listaCanais = hub.getListaCanais();
+			 Evento eventoRecebeEstacao = new Evento();
+			 for(Canal canal:(List<Canal>) listaCanais)
+			 {
+				 //Recupera o tempo de propagacao de cada canal e gera um evento de recepcao na estacao
+				 
+				 eventoRecebeEstacao.setQuadro(evento.getQuadro());
+				 eventoRecebeEstacao.setTempo(evento.getTempo()+canal.getTempoTransmissao());
+				 eventoRecebeEstacao.setTipo(TipoEvento.RECEBE_QUADRO);
+				 insereEvento(eventoRecebeEstacao,evento);
+			 }
+			 //Agora eu fiquei em duvida. GUardei o ultimo quadro transmitido pelo hub
+			 eventoVo.setUltimoEvento(eventoRecebeEstacao);
+			 eventoVo.setVerificaTransmissao(false);
 		 }
 		return eventoVo;
 	}
-	
+
 }
