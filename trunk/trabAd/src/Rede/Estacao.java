@@ -5,6 +5,7 @@ public class Estacao {
 	Canal tx;
 	Canal rx;
 	int taxaDeChegada;
+	//numero de quadros em uma mensagem
 	int pmf;
 	Quadro ultimoQuadroEnviado;
 	boolean RecebeuConfirmacaoUltimoQuadro;
@@ -99,5 +100,7 @@ public class Estacao {
 			quadro.setNumeroSequencia(i);
 			quadro.setPacote(pacote);
 		}
+		//cria um evento de enviar quadro para o hub para cada quadro
+		
 	}
 }

@@ -24,7 +24,15 @@ public class Canal {
 	public Double getTempoTransmissao(){
 		//propagacao eletrica = 5km/ns passando para m/s = 5 x 10^13
 		Double propagacao = 50000000000000.00;
-		Double tempo = tamanho / propagacao;
+		//Double tempo = tamanho / propagacao;
+		//Nova forma de calcular o tempo de transmissao
+		// Ttransmissão + Tpropagação = TAMANHOQUADRO/CANAL + DISTANCIA/VELOCIDADE_PROPAGACAO
+		//rede Ethernet a 10 Mbps, canal
+		//1 megabits = 1 048 576 bits logo 10Mbps = 1 048 576 bps
+		Double velocidadeCanal = 1048576.00;
+		Quadro quadro = new Quadro();
+		int tamanhoQuadro = quadro.TAMANHO;
+		Double tempo = (tamanhoQuadro / velocidadeCanal) + (tamanho/propagacao);
 		return tempo;
 	}
 	
