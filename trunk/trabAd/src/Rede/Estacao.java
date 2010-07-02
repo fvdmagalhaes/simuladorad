@@ -93,9 +93,11 @@ public class Estacao {
 		 * vai gerando os quadros e enviando
 		 * 
 		 */
-		Quadro quadro = new Quadro();
-		quadro.setNumeroSequencia(0);
-		quadro.setPacote(pacote);
-		
+		Quadro quadro;
+		for(int i=0;i<pmf;i++){
+			quadro= new Quadro();
+			quadro.setNumeroSequencia(i);
+			quadro.setPacote(pacote);
+		}
 	}
 }
