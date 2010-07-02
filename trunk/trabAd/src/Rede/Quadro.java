@@ -4,10 +4,16 @@ public class Quadro {
 	
 	//Tamanho do quadro em bits: 1000 bytes = 1000 * 8 bits = 8000 bits
 	public final static int TAMANHO = 8000;
+	public static int ultimoId=-1;
 
 	int id;
 	int numeroSequencia;
 	Pacote pacote;
+	
+	public Quadro(){
+		ultimoId++;
+		id=ultimoId;
+	}
 	
 	public Pacote getPacote() {
 		return pacote;
