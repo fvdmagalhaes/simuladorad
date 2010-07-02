@@ -9,7 +9,6 @@ import Rede.Evento;
 import Rede.Hub;
 import Rede.Pacote;
 import Rede.TipoEvento;
-import Rede.Quadro;
 
 public class Controle {
 	//Insere o evento na posicao correta, retorna o ultimo evento
@@ -52,6 +51,8 @@ public class Controle {
 	public static EventoVo trataEventos(Evento evento, Evento ultimaTransmissao)
 	{
 		EventoVo eventoVo = null;
+		
+		System.out.println(evento.getTempo()+" "+evento.getTipo());
 		
 		if(evento.getTipo()==TipoEvento.SENTE_MEIO){
 			Evento evento2 = null;
@@ -154,6 +155,12 @@ public class Controle {
 			 //Agora eu fiquei em duvida. GUardei o ultimo quadro transmitido pelo hub
 			 eventoVo.setUltimoEvento(eventoRecebeEstacao);
 			 eventoVo.setVerificaTransmissao(false);
+		 }else if(evento.getTipo().equals(TipoEvento.RECEBE_PACOTE)){
+			 Evento receberProximo=new Evento();
+			 receberProximo.setTipo(TipoEvento.RECEBE_PACOTE);
+			 receberProximo.setEstacao(evento.getEstacao());
+			 receberProximo.setTempo(evento.getTempo()+evento.getEstacao().getTaxaDeChegada());
+			 Controle.insereEvento(receberProximo,evento);
 		 }
 		return eventoVo;
 	}
