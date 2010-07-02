@@ -4,8 +4,14 @@ package Rede;
 public class Canal {
 	Boolean ocioso;
 	Double tamanho;
+	Estacao estacao;
 	
-	
+	public Estacao getEstacao() {
+		return estacao;
+	}
+	public void setEstacao(Estacao estacao) {
+		this.estacao = estacao;
+	}
 	public Boolean getOcioso() {
 		return ocioso;
 	}
