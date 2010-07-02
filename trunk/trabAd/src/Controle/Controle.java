@@ -1,5 +1,6 @@
 package Controle;
 
+import vo.EventoVo;
 import Rede.Estacao;
 import Rede.Evento;
 import Rede.TipoEvento;
@@ -40,9 +41,12 @@ public class Controle {
 		return tempoMaior;
 	}
 	//Metodo que manipula os eventos. Deve verificar o tipo do evento e manipula-lo de acordo com a especificaçao.
-	//Ele recebe e retorna o ultimo evento executado
-	public static Evento trataEventos(Evento evento, Evento ultimaTransmissao)
+	//Ele recebe o evento a ser executado, a ultima transmissao(ultima transmissao com sucesso ou sinal de reforço de colisao) e o ultimo evento executado
+	//Agora o metodo retorna o ultimo evento executando por ele e um boolean que estará como true caso esse ultimo evento seja uma transmissao com sucesso ou reforço de colisao.
+	
+	public static EventoVo trataEventos(Evento evento, Evento ultimaTransmissao, Evento ultimoExecutado)
 	{
+		EventoVo eventoVo = null;
 		Evento evento2 = null;
 		if(evento.getTipo()==TipoEvento.SENTE_MEIO){
 			//obtém a estação que está sentindo o meio
@@ -72,19 +76,19 @@ public class Controle {
 				//caso tx esteja ocupado,cria um novo evento sentindo o meio
 				evento2=new Evento();
 				evento2.setTipo(TipoEvento.SENTE_MEIO);
-				//1 é o instante provisório após a primeira inspeção do meio * ele persiste sentindo o meio até a transmissao acabar. Nao sei se 
-				//criamos um evento com o msm tempo ou esperamos algum tempo para sentir o meio novamente mesmo.
-				evento2.setTempo(evento.getTempo()+1);
+				//ele persiste sentindo o meio até a transmissao acabar. O tempo a ser sentido dinovo eh o tempo do proximo evento
+				evento2.setTempo(evento.getProximoEvento().getTempo());
 			}
-			evento2.setEventoAnterior(evento);
-			evento.setProximoEvento(evento2);
-			insereEvento(evento2,evento);
+			
+			//insere o evento2 na lista. precisa passar a ultima transmissao.
+			insereEvento(evento2,ultimoExecutado);
+			//Retorna o ultimo evento executado de sentir o meio
+			eventoVo.setUltimoEvento(evento);
+			eventoVo.setVerificaTransmissao(false);
 			
 		}else 	if(evento.getTipo() == TipoEvento.RECEBE_QUADRO){
 			//pega a estação que está recebendo o quadro
 			Estacao estacao = evento.getQuadro().getPacote().getEstacao();
-			Evento recebeQuadro = new Evento();
-			recebeQuadro.setTipo(TipoEvento.RECEBE_QUADRO);
 			
 			//Verifica qual estação está recebendo o pacote para calcular o tempo
 			if(estacao.getId() == '1'){
@@ -112,17 +116,8 @@ public class Controle {
 			 * tem que verificar se essa estacao está pendente de confirmacao 
 			 * de envio de quadro. 
 			 */
-		 }else if(evento.getTipo()==TipoEvento.RECEBE_PACOTE){
-			Estacao estacao=evento.getQuadro().getPacote().getEstacao();
-			
-			Evento receber=new Evento();
-			receber.setTipo(TipoEvento.RECEBE_PACOTE);
-			receber.setTempo(evento.getTempo()+estacao.getTaxaDeChegada());
-			
-			//adicionar na lista de eventos
-			Controle.insereEvento(evento2, evento);
 		 }
-		return evento2;
+		return eventoVo;
 	}
 	
 }

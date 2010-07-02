@@ -94,7 +94,7 @@ public class main {
 	*/
 		//para começar a funcionar a parada, vou simular o cenario 1, depois a gente muda pra todos
 		
-		//Estacao 1 recebe 1 pacte de 40mb
+		//Estacao 1 recebe 1 pacote de 40mb
 		Pacote pacote1 = new Pacote();
 		pacote1.setEstacao(e1);
 		//tamanho sempre em MB
