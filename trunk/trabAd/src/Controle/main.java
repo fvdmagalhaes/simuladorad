@@ -1,5 +1,8 @@
 package Controle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
@@ -22,6 +25,8 @@ public class main {
 		//vamos adicionar as informacoes do sistema
 		
 		//int CAPACIDADE = x;
+		
+		Controle controle = new Controle();
 		
 		//instancia as estacoes do sistema
 		Estacao e1 = new Estacao();
@@ -85,6 +90,22 @@ public class main {
 		e4.setRx(rx4);
 		e4.setTx(tx4);
 		
+		//Seta o hub das estacoes
+		e1.setHub(hub);
+		e2.setHub(hub);
+		e3.setHub(hub);
+		e4.setHub(hub);
+		
+		//Adiciona as informacoes do hub
+		List<Canal> listaCanais = new ArrayList<Canal>();
+		//Guarda apenas os canais de recepcao das estacoes pois na hr de calcular o tempo que demora para enviar para cada estacao vms 
+		//calcular utilizando esses canais
+		listaCanais.add(rx1);
+		listaCanais.add(rx2);
+		listaCanais.add(rx3);
+		listaCanais.add(rx4);
+		hub.setListaCanais(listaCanais);
+		
 	/*Agora podemos iniciar nossa rede... 
 	 * temos que pegar do usuario que cenario que ele quer simular
 	*	Os cenarios possiveis estao na descricao do trabalho
@@ -94,6 +115,10 @@ public class main {
 	*/
 		//para começar a funcionar a parada, vou simular o cenario 1, depois a gente muda pra todos
 		
+		//guarda o ultimo evento executado
+		Evento ultimoEvento = new Evento();
+		//guarda a ultima transmissao com sucesso ou reforco de colisao
+		Evento ultimaTransmissao = new Evento();
 		//Estacao 1 recebe 1 pacote de 40mb
 		Pacote pacote1 = new Pacote();
 		pacote1.setEstacao(e1);
@@ -112,8 +137,8 @@ public class main {
 		
 		e2.setTaxaDeChegada(40);
 		
-		e1.recebePacote(pacote1, 0.0);
-		e2.recebePacote(pacote2, 0.0);
+		e1.recebePacote(pacote1, 0.0, ultimoEvento);
+		e2.recebePacote(pacote2, 0.0, ultimoEvento);
 		
 		//aqui acaba a funcao main
 		

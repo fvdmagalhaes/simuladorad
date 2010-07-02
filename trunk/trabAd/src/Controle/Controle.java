@@ -150,7 +150,7 @@ public class Controle {
 			 for(Canal canal:(List<Canal>) listaCanais)
 			 {
 				 //Recupera o tempo de propagacao de cada canal e gera um evento de recepcao na estacao
-				 
+				 //Eh necessario saber a estacao para a qual o hub esta enviando em caso. Nao tem mais como recuperar a estacao pelo quadro
 				 eventoRecebeEstacao.setQuadro(evento.getQuadro());
 				 eventoRecebeEstacao.setTempo(evento.getTempo()+canal.getTempoTransmissao());
 				 eventoRecebeEstacao.setTipo(TipoEvento.RECEBE_QUADRO);
