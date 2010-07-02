@@ -1,5 +1,7 @@
 package Rede;
 
+import Controle.Controle;
+
 public class Estacao {
 	int id;
 	Canal tx;
@@ -10,6 +12,9 @@ public class Estacao {
 	Quadro ultimoQuadroEnviado;
 	boolean RecebeuConfirmacaoUltimoQuadro;
 	private static int ultimoId=-1;
+	
+	//Salva o hub ao qual a estacao esta ligada
+	Hub hub;
 	
 	public Estacao(){
 		ultimoId++;
@@ -65,6 +70,14 @@ public class Estacao {
 	public void setRecebeuConfirmacaoUltimoQuadro(boolean RecebeuConfirmacaoUltimoQuadro){
 		this.RecebeuConfirmacaoUltimoQuadro = RecebeuConfirmacaoUltimoQuadro;		
 	}
+	public void setHub(Hub hub)
+	{
+		this.hub = hub;
+	}
+	public Hub getHub()
+	{
+		return hub;
+	}
 	
 	/*public void enviaPacote (Pacote pacote, Evento ultimoEvento){
 		
@@ -90,8 +103,8 @@ public class Estacao {
 		
 	}*/
 	
-	//estacao recebe pacote no tempo x
-	public void recebePacote (Pacote pacote, Double tempo){
+//	estacao recebe pacote no tempo x
+	public void recebePacote (Pacote pacote, Double tempo, Evento ultimoEvento){
 		/*
 		 * Algoritmo:
 		 * Estacao recebe pacote
@@ -99,13 +112,23 @@ public class Estacao {
 		 * vai gerando os quadros e enviando
 		 * 
 		 */
+		Controle controle = new Controle();
 		Quadro quadro;
 		for(int i=0;i<pmf;i++){
 			quadro= new Quadro();
 			quadro.setNumeroSequencia(i);
 			quadro.setPacote(pacote);
+//			cria um evento de enviar quadro para o hub para cada quadro
+			Evento evento = new Evento();
+			evento.setQuadro(quadro);
+			evento.setTipo(TipoEvento.TRANSMITE_QUADRO);
+			evento.setTempo(tempo);
+			//insere o evento na lista
+			controle.insereEvento(evento,ultimoEvento);
+			
 		}
-		//cria um evento de enviar quadro para o hub para cada quadro
+		
 		
 	}
+	
 }
