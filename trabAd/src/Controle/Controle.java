@@ -52,11 +52,13 @@ public class Controle {
 	public static EventoVo trataEventos(Evento evento, Evento ultimaTransmissao)
 	{
 		EventoVo eventoVo = null;
-		Evento evento2 = null;
+		
 		if(evento.getTipo()==TipoEvento.SENTE_MEIO){
+			Evento evento2 = null;
 			//obtém a estação que está sentindo o meio
 			Estacao estacao=evento.getQuadro().getPacote().getEstacao();
 			if(estacao.getTx().getOcioso()){
+				
 				//se tx esta ocioso, verifica se já foram passados os 9,6 us = 9,6 x10^-6 s
 				if(evento.getTempo() >= (ultimaTransmissao.getTempo()+0.0000096))
 				{
@@ -95,36 +97,26 @@ public class Controle {
 			
 			
 		}else 	if(evento.getTipo() == TipoEvento.RECEBE_QUADRO){
-			//acho que nao precisa mais do evento recebe quadro
-			//pega a estação que está recebendo o quadro
-			Estacao estacao = evento.getQuadro().getPacote().getEstacao();
-			
-			//Verifica qual estação está recebendo o pacote para calcular o tempo
-			if(estacao.getId() == '1'){
-				
-				/*
-				 * TAMANHOQUADRO/CANAL + DISTANCIA/VELOCIDADE_PROPAGACAO
-
-					Por exemplo, pra calcular o tempo que o Hub transmite alguma coisa pra estação 1:
-					TamQuadro = 1000 bytes = 8000 bits
-					Distancia = 80m = 0,008km
-
-					tempo = 8000bits/10.000bps + 0,008km/ (5km/10^-6 segundos)
-				 * */
-
-			}else if(estacao.getId() == '2'){
-				
-			}else if(estacao.getId() == '3'){
-				
-			}else if(estacao.getId() == '4'){
-				
-			}
-			
+			//O evento recebe quadro soh sera ocasionado quando um hub enviar um quadro para tdas as estacoes.
+			//Logo nao eh valido recuperar a estacao pelo quadro. Deve recupera-la pelo metodo get estacao do evento que foi preenchido quando
+			//criamos o evento quando o hub enviou os quadros
 			/*
 			 * 
 			 * tem que verificar se essa estacao está pendente de confirmacao 
 			 * de envio de quadro. 
 			 */
+			Estacao estacao = evento.getEstacao();
+			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
+			if(estacao.getUltimoQuadroEnviado().getId() == evento.getQuadro().getId())
+			{
+				//retorna o ultimo evento executado
+				eventoVo.setUltimoEvento(evento);
+				//o evento nao eh uma transmissao com sucesso nem reforco de colisao
+				eventoVo.setVerificaTransmissao(false);
+			}else{
+				//caso nao seja deve dar colisao
+			}
+			
 		 }else if(evento.getTipo().equals(TipoEvento.TRANSMITE_QUADRO))
 		 {
 			 Estacao estacao = evento.getQuadro().getPacote().getEstacao();
@@ -141,6 +133,8 @@ public class Controle {
 			 eventoVo.setUltimoEvento(evento);
 			 //true pois foi uma transmissao com sucesso
 			 eventoVo.setVerificaTransmissao(true);
+			 //Seta esse quadro como o ultimo enviado pela estacao
+			 estacao.setUltimoQuadroEnviado(evento.getQuadro());
 		 }else if(evento.getTipo().equals(TipoEvento.RETRANSMITE_QUADRO))
 		 {
 			 //Envia o quadro para o rx de tdas as estacoes
@@ -154,6 +148,7 @@ public class Controle {
 				 eventoRecebeEstacao.setQuadro(evento.getQuadro());
 				 eventoRecebeEstacao.setTempo(evento.getTempo()+canal.getTempoTransmissao());
 				 eventoRecebeEstacao.setTipo(TipoEvento.RECEBE_QUADRO);
+				 eventoRecebeEstacao.setEstacao(canal.getEstacao());
 				 insereEvento(eventoRecebeEstacao,evento);
 			 }
 			 //Agora eu fiquei em duvida. GUardei o ultimo quadro transmitido pelo hub
