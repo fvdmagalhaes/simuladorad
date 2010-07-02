@@ -36,8 +36,8 @@ public class Canal {
 		//rede Ethernet a 10 Mbps, canal
 		//1 megabits = 1 048 576 bits logo 10Mbps = 1 048 576 bps
 		Double velocidadeCanal = 1048576.00;
-		Quadro quadro = new Quadro();
-		int tamanhoQuadro = quadro.TAMANHO;
+		//Quadro quadro = new Quadro();
+		int tamanhoQuadro = Quadro.TAMANHO;
 		Double tempo = (tamanhoQuadro / velocidadeCanal) + (tamanho/propagacao);
 		return tempo;
 	}
