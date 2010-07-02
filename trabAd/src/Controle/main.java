@@ -12,7 +12,7 @@ import Rede.TipoEvento;
 
 /*
  * Trabalho de AD 2010-1
- * 
+ *  
  * Grupo
  * a b c d e
  */
@@ -74,25 +74,26 @@ public class main {
 
 		//adiciona as informacoes das estacoes
 		
-		e1.setId(1);
+		//os ids são gerados automaticamente
+		//e1.setId(1);
 		e1.setRx(rx1);
 		e1.setTx(tx1);
 		rx1.setEstacao(e1);
 		tx1.setEstacao(e1);
 		
-		e2.setId(2);
+		//e2.setId(2);
 		e2.setRx(rx2);
 		e2.setTx(tx2);
 		rx2.setEstacao(e2);
 		tx2.setEstacao(e2);
 		
-		e3.setId(3);
+		//e3.setId(3);
 		e3.setRx(rx3);
 		e3.setTx(tx3);
 		rx3.setEstacao(e3);
 		tx3.setEstacao(e3);
 		
-		e4.setId(4);
+		//e4.setId(4);
 		e4.setRx(rx4);
 		e4.setTx(tx4);
 		rx4.setEstacao(e4);
@@ -125,9 +126,13 @@ public class main {
 		
 		//guarda o ultimo evento executado
 		Evento ultimoEvento = new Evento();
+		ultimoEvento.setTempo(0.0);
+		ultimoEvento.setTipo(TipoEvento.RECEBE_PACOTE);
+		ultimoEvento.setEstacao(e1);
 		//guarda a ultima transmissao com sucesso ou reforco de colisao
 		Evento ultimaTransmissao = new Evento();
 		//Estacao 1 recebe 1 pacote de 40mb
+		
 		Pacote pacote1 = new Pacote();
 		pacote1.setEstacao(e1);
 		//tamanho sempre em MB
@@ -146,7 +151,11 @@ public class main {
 		e2.setTaxaDeChegada(40);
 		
 		e1.recebePacote(pacote1, 0.0, ultimoEvento);
-		e2.recebePacote(pacote2, 0.0, ultimoEvento);
+		while(ultimoEvento!=null){
+			controle.trataEventos(ultimoEvento, ultimaTransmissao);
+			ultimoEvento=ultimoEvento.getProximoEvento();
+		}
+		//e2.recebePacote(pacote2, 0.0, ultimoEvento);
 		
 		//aqui acaba a funcao main
 		
