@@ -7,6 +7,7 @@ public class Evento {
 	Evento eventoAnterior;
 	TipoEvento tipo;
 	Quadro quadro;
+	Estacao estacao;
 	
 	public Double getTempo() {
 		return tempo;
@@ -38,6 +39,12 @@ public class Evento {
 	public void setQuadro(Quadro quadro) {
 		this.quadro = quadro;
 	}	
+	public Estacao getEstacao() {
+		return estacao;
+	}
+	public void setEstacao(Estacao estacao) {
+		this.estacao = estacao;
+	}
 
 	
 }
