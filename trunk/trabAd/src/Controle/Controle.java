@@ -7,7 +7,6 @@ import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
 import Rede.Hub;
-import Rede.Pacote;
 import Rede.TipoEvento;
 
 public class Controle {
@@ -52,7 +51,7 @@ public class Controle {
 	{
 		EventoVo eventoVo = null;
 		
-		System.out.println(evento.getTempo()+" "+evento.getTipo());
+		//System.out.println(evento.getTempo()+" "+evento.getTipo());
 		
 		if(evento.getTipo()==TipoEvento.SENTE_MEIO){
 			Evento evento2 = null;
@@ -160,6 +159,7 @@ public class Controle {
 			 receberProximo.setTipo(TipoEvento.RECEBE_PACOTE);
 			 receberProximo.setEstacao(evento.getEstacao());
 			 receberProximo.setTempo(evento.getTempo()+evento.getEstacao().getTaxaDeChegada());
+			 
 			 Controle.insereEvento(receberProximo,evento);
 		 }
 		return eventoVo;
