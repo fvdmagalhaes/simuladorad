@@ -13,6 +13,7 @@ public class Controle {
 	//Insere o evento na posicao correta, retorna o ultimo evento
 	public static Evento insereEvento(Evento evento, Evento ultimo)
 	{
+		/*
 		Evento eventoTemp = new Evento();
 		eventoTemp=ultimo;
 		//caso exista algum evento na lista
@@ -27,9 +28,53 @@ public class Controle {
 			eventoTemp.setProximoEvento(evento);
 			evento.setEventoAnterior(eventoTemp);
 		}
+		*/
 		//Caso contrario apenas retorna o evento como ultimo
 		
-
+		//evento=a ser inserido
+		//ultimo=evento de refrencia
+		Evento anterior,posterior;
+		
+		if(evento.getTempo()>=ultimo.getTempo()){
+			anterior=ultimo;
+			posterior=ultimo.getProximoEvento();
+		}else{
+			anterior=ultimo.getEventoAnterior();
+			posterior=ultimo;
+		}
+		
+		do{
+			if(posterior==null){
+				ultimo.setProximoEvento(evento);
+				evento.setEventoAnterior(ultimo);
+			}else	if(anterior==null){
+						evento.setProximoEvento(ultimo);
+						ultimo.setEventoAnterior(evento);
+			}else	if(anterior!=null && anterior.getTempo()>=evento.getTempo()){
+							posterior=anterior;
+							anterior=anterior.getEventoAnterior();
+					}else	if(posterior!=null && evento.getTempo()>posterior.getTempo()){
+									anterior=posterior;
+									posterior=posterior.getProximoEvento();
+							}
+		}while(!(anterior==null || posterior==null || (anterior.getTempo()<=evento.getTempo() &&
+				evento.getTempo()<=posterior.getTempo())));
+		
+			if(anterior==null){
+				evento.setEventoAnterior(anterior);
+				posterior.setEventoAnterior(evento);
+				evento.setProximoEvento(posterior);
+			}else	if(posterior==null){
+				anterior.setProximoEvento(evento);
+				evento.setEventoAnterior(anterior);
+				evento.setProximoEvento(posterior);
+			}else{
+				evento.setEventoAnterior(anterior);
+				anterior.setProximoEvento(evento);
+				posterior.setEventoAnterior(evento);
+				evento.setProximoEvento(posterior);
+			}
+	
 		return evento;
 		
 	}
@@ -49,9 +94,9 @@ public class Controle {
 	
 	public static EventoVo trataEventos(Evento evento, Evento ultimaTransmissao)
 	{
-		EventoVo eventoVo = null;
+		EventoVo eventoVo = new EventoVo();
 		
-		//System.out.println(evento.getTempo()+" "+evento.getTipo());
+		System.out.println(evento.getTempo()+" "+evento.getTipo());
 		
 		if(evento.getTipo()==TipoEvento.SENTE_MEIO){
 			Evento evento2 = null;
@@ -119,6 +164,7 @@ public class Controle {
 			
 		 }else if(evento.getTipo().equals(TipoEvento.TRANSMITE_QUADRO))
 		 {
+			 eventoVo=new EventoVo();
 			 Estacao estacao = evento.getQuadro().getPacote().getEstacao();
 			 Double tempoTransmissao = estacao.getTx().getTempoTransmissao();
 			 //Cria um evento de retransmissao do hub
