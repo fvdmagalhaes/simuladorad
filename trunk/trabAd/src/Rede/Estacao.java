@@ -123,7 +123,7 @@ public class Estacao {
 			evento = new Evento();
 			evento.setQuadro(quadro);
 			evento.setTipo(TipoEvento.TRANSMITE_QUADRO);
-			evento.setTempo(tempo);
+			evento.setTempo(tempo+i);
 			//insere o evento na lista
 			Controle.insereEvento(evento,ultimoEvento);
 			
