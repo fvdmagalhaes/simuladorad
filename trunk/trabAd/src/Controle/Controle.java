@@ -201,10 +201,12 @@ public class Controle {
 			 eventoVo.setUltimoEvento(eventoRecebeEstacao);
 			 eventoVo.setVerificaTransmissao(false);
 		 }else if(evento.getTipo().equals(TipoEvento.RECEBE_PACOTE)){
+			 evento.getEstacao().recebePacote(evento.getPacote(), evento.getTempo(), evento);
 			 Evento receberProximo=new Evento();
 			 receberProximo.setTipo(TipoEvento.RECEBE_PACOTE);
 			 receberProximo.setEstacao(evento.getEstacao());
 			 receberProximo.setTempo(evento.getTempo()+evento.getEstacao().getTaxaDeChegada());
+			 receberProximo.setEstacao(evento.getEstacao());
 			 
 			 Controle.insereEvento(receberProximo,evento);
 		 }
