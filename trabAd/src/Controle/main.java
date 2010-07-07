@@ -126,38 +126,46 @@ public class main {
 		
 		//guarda o ultimo evento executado
 		Evento ultimoEvento = new Evento();
-		/*ultimoEvento.setTempo(0.0);
+		ultimoEvento.setTempo(0.0);
 		ultimoEvento.setTipo(TipoEvento.RECEBE_PACOTE);
-		ultimoEvento.setEstacao(e1);*/
+		ultimoEvento.setEstacao(e1);
 		//guarda a ultima transmissao com sucesso ou reforco de colisao
 		Evento ultimaTransmissao = new Evento();
 		//Estacao 1 recebe 1 pacote de 40mb
 		
 		Pacote pacote1 = new Pacote();
 		pacote1.setEstacao(e1);
-		//tamanho sempre em MB
-		pacote1.setTamanho(40);
+		//tamanho sempre em KB
+		pacote1.setTamanho(40*8000);
 		
 		//Estacao 2 recebe 1 pacote de 40mb
-		Pacote pacote2 = new Pacote();
+		/*Pacote pacote2 = new Pacote();
 		pacote2.setEstacao(e2);
-		pacote2.setTamanho(40);
+		pacote2.setTamanho(40);*/
 		
 		//para o cenario 1 A1 = A2 = 40ms determistico p1=p2=40
 		e1.setTaxaDeChegada(40);
 		e1.setPmf(40);
 		e1.setPmf(40);
 		
-		e2.setTaxaDeChegada(40);
+		//e2.setTaxaDeChegada(40);
 		
 		e1.recebePacote(pacote1, 0.0, ultimoEvento);
+		
+		int i=0;
+		while(i<3){
+			Controle.trataEventos(ultimoEvento,null);
+			ultimoEvento=ultimoEvento.getProximoEvento();
+			System.out.println(ultimoEvento);
+			i++;
+		}
 		
 		//Controle.trataEventos(ultimoEvento,null);
 		
 		//System.out.println(ultimoEvento.getProximoEvento().getTipo());
 		
 		
-		e2.recebePacote(pacote2, 0.0, ultimoEvento);
+		//e2.recebePacote(pacote2, 0.0, ultimoEvento);
 		
 		//aqui acaba a funcao main
 		
