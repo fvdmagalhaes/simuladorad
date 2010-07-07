@@ -125,10 +125,10 @@ public class main {
 		//para começar a funcionar a parada, vou simular o cenario 1, depois a gente muda pra todos
 		
 		//guarda o ultimo evento executado
-		Evento ultimoEvento = new Evento();
-		ultimoEvento.setTempo(0.0);
-		ultimoEvento.setTipo(TipoEvento.RECEBE_PACOTE);
-		ultimoEvento.setEstacao(e1);
+		Evento atual = new Evento();
+		atual.setTempo(0.0);
+		atual.setTipo(TipoEvento.RECEBE_PACOTE);
+		atual.setEstacao(e1);
 		//guarda a ultima transmissao com sucesso ou reforco de colisao
 		Evento ultimaTransmissao = new Evento();
 		//Estacao 1 recebe 1 pacote de 40mb
@@ -137,6 +137,7 @@ public class main {
 		pacote1.setEstacao(e1);
 		//tamanho sempre em KB
 		pacote1.setTamanho(40*8000);
+		atual.setPacote(pacote1);
 		
 		//Estacao 2 recebe 1 pacote de 40mb
 		/*Pacote pacote2 = new Pacote();
@@ -150,14 +151,11 @@ public class main {
 		
 		//e2.setTaxaDeChegada(40);
 		
-		e1.recebePacote(pacote1, 0.0, ultimoEvento);
+		//e1.recebePacote(pacote1, 0.0, ultimoEvento);
 		
-		int i=0;
-		while(i<3){
-			Controle.trataEventos(ultimoEvento,null);
-			ultimoEvento=ultimoEvento.getProximoEvento();
-			System.out.println(ultimoEvento);
-			i++;
+		while(atual!=null){
+			Controle.trataEventos(atual,null);
+			atual=atual.getProximoEvento();
 		}
 		
 		//Controle.trataEventos(ultimoEvento,null);
