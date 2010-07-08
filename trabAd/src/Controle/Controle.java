@@ -7,6 +7,7 @@ import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
 import Rede.Hub;
+import Rede.Quadro;
 import Rede.TipoEvento;
 
 public class Controle {
@@ -152,12 +153,34 @@ public class Controle {
 			 */
 			Estacao estacao = evento.getEstacao();
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
-			if(estacao.getUltimoQuadroEnviado().getId() == evento.getQuadro().getId())
+			if(estacao.getUltimoQuadroEnviado().getNumeroSequencia() == evento.getQuadro().getNumeroSequencia())
 			{
 				//retorna o ultimo evento executado
 				eventoVo.setUltimoEvento(evento);
 				//o evento nao eh uma transmissao com sucesso nem reforco de colisao
 				eventoVo.setVerificaTransmissao(false);
+				
+				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
+				
+				if(numeroSequencia > estacao.getPmf()){
+					//agora tem que gerar o proximo quadro que vai ser enviado...
+					Quadro quadro;
+					Evento eventoQ;
+					quadro= new Quadro();
+					//a estacao gera o primeiro quadro da sequencia de quadros. Assim que a estacao confirmar o envio deste quadro, gera o proximo
+
+					quadro.setNumeroSequencia(1);
+					quadro.setPacote(evento.getQuadro().getPacote());
+					//cria um evento de enviar quadro para o hub para cada quadro
+					eventoQ = new Evento();
+					eventoQ.setQuadro(quadro);
+					eventoQ.setTipo(TipoEvento.TRANSMITE_QUADRO);
+					eventoQ.setTempo(evento.getTempo());
+
+					//insere o evento na lista
+					Controle.insereEvento(eventoQ,evento);	
+				}
+
 			}else{
 				//caso nao seja deve dar colisao
 			}
