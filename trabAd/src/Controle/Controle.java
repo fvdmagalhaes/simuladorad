@@ -172,6 +172,8 @@ public class Controle {
 			 * 
 			 * tem que verificar se essa estacao está pendente de confirmacao 
 			 * de envio de quadro. 
+			 * e verificar se o quadro que ela recebeu é essa confirmacao ou nao..
+			 * 
 			 */
 			Estacao estacao = evento.getEstacao();
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
