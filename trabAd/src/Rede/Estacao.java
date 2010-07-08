@@ -115,17 +115,23 @@ public class Estacao {
 		//Controle controle = new Controle();Comentei porque como ela usa um metodo static achei que não precisasse ser instanciada,mas qualquer coisa descomentem
 		Quadro quadro;
 		Evento evento;
-		for(int i=0;i<pmf;i++){
-			quadro= new Quadro();
-			quadro.setNumeroSequencia(i);
-			quadro.setPacote(pacote);
-//			cria um evento de enviar quadro para o hub para cada quadro
-			evento = new Evento();
-			evento.setQuadro(quadro);
-			evento.setTipo(TipoEvento.TRANSMITE_QUADRO);
-			evento.setTempo(tempo+i);
-			//insere o evento na lista
-			Controle.insereEvento(evento,ultimoEvento);		
-		}		
+		
+		//a estacao gera o primeiro quadro da sequencia de quadros. Assim que a estacao confirmar o envio deste quadro, gera o proximo
+		pacote.setSequenciaEnviada(1);
+		
+		quadro= new Quadro();
+		quadro.setNumeroSequencia(1);
+		quadro.setPacote(pacote);
+		//cria um evento de enviar quadro para o hub para cada quadro
+		evento = new Evento();
+		evento.setQuadro(quadro);
+		evento.setTipo(TipoEvento.TRANSMITE_QUADRO);
+		evento.setTempo(tempo);
+		evento.setPacote(pacote);
+		evento.setEstacao(pacote.getEstacao());	
+		
+		//insere o evento na lista
+		Controle.insereEvento(evento,ultimoEvento);		
+				
 	}
 }

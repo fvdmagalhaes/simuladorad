@@ -6,6 +6,15 @@ public class Pacote {
 	int id;
 	int tamanho;
 	Estacao estacao;
+	int sequenciaEnviada;
+	
+	public int getSequenciaEnviada() {
+		return sequenciaEnviada;
+	}
+
+	public void setSequenciaEnviada(int sequenciaEnviada) {
+		this.sequenciaEnviada = sequenciaEnviada;
+	}
 	private static int ultimoId=-1;
 	
 	public Pacote(){
