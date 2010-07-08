@@ -125,11 +125,7 @@ public class Estacao {
 			evento.setTipo(TipoEvento.TRANSMITE_QUADRO);
 			evento.setTempo(tempo+i);
 			//insere o evento na lista
-			Controle.insereEvento(evento,ultimoEvento);
-			
-		}
-		
-		
+			Controle.insereEvento(evento,ultimoEvento);		
+		}		
 	}
-	
 }
