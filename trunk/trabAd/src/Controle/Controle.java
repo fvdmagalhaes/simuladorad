@@ -164,7 +164,6 @@ public class Controle {
 			
 		 }else if(evento.getTipo().equals(TipoEvento.TRANSMITE_QUADRO))
 		 {
-			 eventoVo=new EventoVo();
 			 Estacao estacao = evento.getQuadro().getPacote().getEstacao();
 			 Double tempoTransmissao = estacao.getTx().getTempoTransmissao();
 			 //Cria um evento de retransmissao do hub
