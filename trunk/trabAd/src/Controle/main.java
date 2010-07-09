@@ -3,6 +3,8 @@ package Controle;
 import java.util.ArrayList;
 import java.util.List;
 
+import vo.EventoVo;
+
 import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
@@ -33,6 +35,11 @@ public class main {
 		Estacao e2 = new Estacao();
 		Estacao e3 = new Estacao();
 		Estacao e4 = new Estacao();
+		e1.setNumColisoes(0);
+		e2.setNumColisoes(0);
+		e3.setNumColisoes(0);
+		e4.setNumColisoes(0);
+		
 		
 		//canais
 		Canal tx1 = new Canal();
@@ -126,6 +133,7 @@ public class main {
 		
 		//guarda o ultimo evento executado
 		Evento atual = new Evento();
+		EventoVo eventovo = new EventoVo();
 		atual.setTempo(0.0);
 		atual.setTipo(TipoEvento.RECEBE_PACOTE);
 		atual.setEstacao(e1);
@@ -154,7 +162,12 @@ public class main {
 		//e1.recebePacote(pacote1, 0.0, ultimoEvento);
 		
 		while(atual!=null){
-			Controle.trataEventos(atual,null);
+			eventovo = Controle.trataEventos(atual,ultimaTransmissao);
+			//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
+			if(eventovo.getVerificaTransmissao())
+			{
+				ultimaTransmissao = eventovo.getUltimoEvento();
+			}
 			atual=atual.getProximoEvento();
 		}
 		
