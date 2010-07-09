@@ -10,6 +10,7 @@ public enum TipoEvento {
 	//HUB RETRANSMITE O QUADRO PARA OS TX DELE
 	RETRANSMITE_QUADRO,
 	//ESTACAO RECEBE O PACOTE RETRANSMITIDO
-	RECEBE_QUADRO
-	
+	RECEBE_QUADRO,
+	//Apenas guarda o tempo de final de reforço de colisao
+	REFORCO_COLISAO
 }
