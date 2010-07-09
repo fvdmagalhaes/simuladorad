@@ -7,6 +7,7 @@ public class Estacao {
 	Canal tx;
 	Canal rx;
 	int taxaDeChegada;
+	int numeroColisoes;
 	//numero de quadros em uma mensagem
 	int pmf;
 	Quadro ultimoQuadroEnviado;
@@ -19,6 +20,12 @@ public class Estacao {
 	public Estacao(){
 		ultimoId++;
 		id=ultimoId;
+	}
+	public int getNumColisoes() {
+		return numeroColisoes;
+	}
+	public void setNumColisoes(int numeroColisoes) {
+		this.numeroColisoes = numeroColisoes;
 	}
 	
 	public int getId() {
