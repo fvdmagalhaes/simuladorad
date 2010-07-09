@@ -8,7 +8,22 @@ public class EventoVo {
 	//um reforço de colisao
 	boolean transmissaoSucesso;
 	Evento ultimoEvento;
+	double atrazo;
+	boolean descartaQuadro;
 	
+	public double getAtrazo() {
+		return atrazo;
+	}
+	public void setAtrazo(double atrazo) {
+		this.atrazo = atrazo;
+	}
+	
+	public boolean getDescartado() {
+		return descartaQuadro;
+	}
+	public void setDescartado(boolean descartado) {
+		this.descartaQuadro = descartado;
+	}
 	public Evento getUltimoEvento() {
 		return ultimoEvento;
 	}
