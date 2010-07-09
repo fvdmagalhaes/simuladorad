@@ -1,6 +1,9 @@
 package Controle;
 
 import java.util.List;
+import java.util.Random;
+
+import javax.naming.BinaryRefAddr;
 
 import vo.EventoVo;
 import Rede.Canal;
@@ -155,7 +158,7 @@ public class Controle {
 				evento2.setTempo(evento.getProximoEvento().getTempo());
 			}
 			
-			//insere o evento2 na lista. precisa passar a ultimo evento executado que é o evento sente o meio que acabamos de executar
+			//insere o evento2 na lista. precisa passar o ultimo evento executado que é o evento sente o meio que acabamos de executar
 			insereEvento(evento2,evento);
 			//Retorna o ultimo evento executado de sentir o meio
 			eventoVo.setUltimoEvento(evento);
@@ -177,8 +180,11 @@ public class Controle {
 			 */
 			Estacao estacao = evento.getEstacao();
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
-			if(evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
+			
+			if(estacao.getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
 			{
+				//Agora o canal rx da estacao esta ocioso
+				estacao.getRx().setOcioso(true);
 				estacao.setUltimoQuadroEnviado(evento.getQuadro());
 				
 				//retorna o ultimo evento executado
@@ -216,22 +222,61 @@ public class Controle {
 		 }else if(evento.getTipo().equals(TipoEvento.TRANSMITE_QUADRO))
 		 {
 			 Estacao estacao = evento.getQuadro().getPacote().getEstacao();
-			 Double tempoTransmissao = estacao.getTx().getTempoTransmissao();
-			 //Cria um evento de retransmissao do hub
-			 Evento eventoHub = new Evento();
-			 eventoHub.setQuadro(evento.getQuadro());
-			 eventoHub.setEstacao(estacao);
-			 //o evento sera realizado no tempo em q a estaçao começa a transmitir mais o tempo de propagaçao no seu tx
-			 eventoHub.setTempo(evento.getTempo()+tempoTransmissao);
-			 eventoHub.setTipo(TipoEvento.RETRANSMITE_QUADRO);
-			 //insere o evento do hub na lista e passa o ultimo evento executado que foi o de transmitir o quadro
-			 insereEvento(eventoHub,evento);
-			 //Retorna o ultimo evento executado
-			 eventoVo.setUltimoEvento(evento);
-			 //true pois foi uma transmissao com sucesso
-			 eventoVo.setVerificaTransmissao(true);
-			 //Seta esse quadro como o ultimo enviado pela estacao
-			 estacao.setUltimoQuadroEnviado(evento.getQuadro());
+			 EventoVo eventovoAtrazo = new EventoVo();
+			 //Caso o canal da estacao esteja ocioso
+			 if(estacao.getTx().getOcioso())
+			 {
+				 estacao.getTx().setOcioso(false);
+				 Double tempoTransmissao = estacao.getTx().getTempoTransmissao();
+				 //Cria um evento de retransmissao do hub
+				 Evento eventoHub = new Evento();
+				 eventoHub.setQuadro(evento.getQuadro());
+				 eventoHub.setEstacao(estacao);
+				 //o evento sera realizado no tempo em q a estaçao começa a transmitir mais o tempo de propagaçao no seu tx
+				 eventoHub.setTempo(evento.getTempo()+tempoTransmissao);
+				 eventoHub.setTipo(TipoEvento.RETRANSMITE_QUADRO);
+				 //insere o evento do hub na lista e passa o ultimo evento executado que foi o de transmitir o quadro
+				 insereEvento(eventoHub,evento);
+				 //Retorna o ultimo evento executado
+				 eventoVo.setUltimoEvento(evento);
+				 //true pois foi uma transmissao com sucesso
+				 eventoVo.setVerificaTransmissao(true);
+				 //Seta esse quadro como o ultimo enviado pela estacao
+				 estacao.setUltimoQuadroEnviado(evento.getQuadro());
+			 }else{
+				 System.out.println("O quadro"+evento.getQuadro().getNumeroSequencia()+"da estacao"+estacao.getId()+"foi perdido pois o canal estava ocupado");
+				 //aborta a transmissão em andamento, transmite um sinal de reforço de colisão por 3,2 ?s (equivalente a tx de 32 bits) e, após este atraso, escolhe um instante
+				 //aleatório para retransmissão, segundo o algoritmo Binary Backoff 
+				 //Apenas insere no eventovo o a ultima transmissao como um evento de reforço de colisao para que isso seja verificado
+				 //no sente o meio. Cria um novo evento de transmissao com o tempo igual ao tempo de atrazo do reforço + tempo aleatorio
+				 
+				 double atrazo = 0.0;
+				 Evento reforcoColisao = new Evento();
+				 reforcoColisao.setTipo(TipoEvento.REFORCO_COLISAO);
+				 reforcoColisao.setEstacao(estacao);
+				 reforcoColisao.setQuadro(evento.getQuadro());
+				 //3,2^10-6
+				 reforcoColisao.setTempo(evento.getTempo()+0.0000032);
+				 eventoVo.setUltimoEvento(reforcoColisao);
+				 eventoVo.setVerificaTransmissao(true);
+				 
+				 eventovoAtrazo = binaryBackof(estacao);
+				//Caso o quadro nao tenha sido descartado
+				 if(!eventovoAtrazo.getDescartado())
+				 {
+					 Evento transmiteQuadro = new Evento();
+					 transmiteQuadro.setEstacao(estacao);
+					 transmiteQuadro.setPacote(evento.getQuadro().getPacote());
+					 transmiteQuadro.setQuadro(evento.getQuadro());
+					 transmiteQuadro.setTipo(TipoEvento.TRANSMITE_QUADRO);
+					 transmiteQuadro.setTempo(evento.getTempo()+0.0000032+eventovoAtrazo.getAtrazo());
+					
+				 }else{
+					 //descarta o quadro
+					 System.out.println("quadro"+evento.getQuadro().getId()+"descartado");
+				 }
+				 estacao.setNumColisoes(estacao.getNumColisoes()+1);
+			 }
 		 }else if(evento.getTipo().equals(TipoEvento.RETRANSMITE_QUADRO))
 		 {
 			 //Envia o quadro para o rx de tdas as estacoes
@@ -242,13 +287,22 @@ public class Controle {
 			 {
 				 //Recupera o tempo de propagacao de cada canal e gera um evento de recepcao na estacao
 				 //Eh necessario saber a estacao para a qual o hub esta enviando em caso. Nao tem mais como recuperar a estacao pelo quadro
-				 eventoRecebeEstacao.setQuadro(evento.getQuadro());
-				 eventoRecebeEstacao.setEstacao(evento.getEstacao());
-				 eventoRecebeEstacao.setPacote(evento.getQuadro().getPacote());
-				 eventoRecebeEstacao.setTempo(evento.getTempo()+canal.getTempoTransmissao());
-				 eventoRecebeEstacao.setTipo(TipoEvento.RECEBE_QUADRO);
-				 eventoRecebeEstacao.setEstacao(canal.getEstacao());
-				 insereEvento(eventoRecebeEstacao,evento);
+				 if(canal.getOcioso())
+				 {
+					 eventoRecebeEstacao.setQuadro(evento.getQuadro());
+					 eventoRecebeEstacao.setEstacao(evento.getEstacao());
+					 eventoRecebeEstacao.setPacote(evento.getQuadro().getPacote());
+					 eventoRecebeEstacao.setTempo(evento.getTempo()+canal.getTempoTransmissao());
+					 eventoRecebeEstacao.setTipo(TipoEvento.RECEBE_QUADRO);
+					 eventoRecebeEstacao.setEstacao(canal.getEstacao());
+					 //O canal rx agora está ocupado
+					 canal.setOcioso(false);
+					 //O tx agora esta ocioso
+					 canal.getEstacao().getTx().setOcioso(true);
+					 insereEvento(eventoRecebeEstacao,evento);
+				 }else{
+					 System.out.println("o pacote"+evento.getQuadro().getPacote().getSequenciaEnviada()+"foi perdido pois o canal"+canal.getEstacao().getId()+"estava ocupado");
+				 }
 			 }
 			 //Agora eu fiquei em duvida. GUardei o ultimo quadro transmitido pelo hub
 			 eventoVo.setUltimoEvento(eventoRecebeEstacao);
@@ -264,6 +318,58 @@ public class Controle {
 			 Controle.insereEvento(receberProximo,evento);
 		 }
 		return eventoVo;
+	}
+	
+	public static EventoVo binaryBackof(Estacao estacao)
+	{
+		/*Para dar um exemplo, imagine que o quadro na estação PC1 já sofreu 1 colisão. Quando este
+quadro começa sua segunda tentativa de transmissão, ele colide com a primeira tentativa de
+transmissão de um quadro da estação PC2. Cada uma das estações ao detectar colisão gera
+o reforço de colisão e escolhe o próximo instante de retransmissão segundo o algoritmo de
+colisão.
+A estação PC1, com k=2, irá escolher aleatoriamente um atraso dentre as seguintes quatro
+possibilidades:
+• 0 ?s (tenta transmitir imediatamente), com probabilidade ¼
+• 51,2 ?s, com probabilidade ¼
+• 102,4 ?s, com probabilidade ¼
+• 153,6 ?s, com probabilidade ¼
+A estação PC2, por seu lado, só sofreu uma colisão, e irá escolher aleatoriamente um atraso
+dentre os seguintes:
+• 0 ?s (tenta transmitir imediatamente), com probabilidade ½
+• 51,2 ?s, com probabilidade ½*/
+		EventoVo eventovo = new EventoVo();
+		int numColisoes = estacao.getNumColisoes();
+		double atrazo = 0.0;
+		boolean descartaQuadro = false;
+		Random random = new Random();
+		int aleatorio = 0;
+		//51,2 us = 51,2x10-6, tempo do intervalo
+		double tempo = 0.0000512;
+		if(numColisoes <= 10)
+		{
+			//Após k colisões, a estação escolhe aleatoriamente um atraso entre 0 e 2k - 1 intervalos para retransmitir.
+			//escolhe um numero aleatorio entre 0 e o numero de colisoes
+			aleatorio = random.nextInt(numColisoes+1);
+			atrazo = Math.pow(2,aleatorio);
+			atrazo--;
+			atrazo=atrazo*tempo;
+		}else{
+			if(numColisoes < 16)
+			{
+				//Quando o número de colisões sobe além de 10, continua-se a usar k=10
+				aleatorio = random.nextInt(11);
+				atrazo = Math.pow(2,aleatorio);
+				atrazo--;
+			}else{
+				//Se o número de colisões consecutivas chega a 16, o quadro é imediatamente descartado após a detecção da 16ª colisão.
+				descartaQuadro = true;
+				//A submissão do quadro descartado para uma nova transmissão é uma tarefa relegada a protocolos de nível superior, que não serão simulados neste trabalho.
+			}
+		}
+		eventovo.setAtrazo(atrazo);
+		eventovo.setDescartado(descartaQuadro);
+		return eventovo;
+		
 	}
 
 }
