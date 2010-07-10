@@ -155,7 +155,6 @@ public class main {
 		//para o cenario 1 A1 = A2 = 40ms determistico p1=p2=40
 		e1.setTaxaDeChegada(40);
 		e1.setPmf(40);
-		e1.setPmf(40);
 		
 		//e2.setTaxaDeChegada(40);
 		
