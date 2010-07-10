@@ -17,26 +17,29 @@ public class Controle {
 	//Insere o evento na posicao correta, retorna o ultimo evento
 	public static Evento insereEvento(Evento evento, Evento ultimo)
 	{
-		/*
+		
 		Evento eventoTemp = new Evento();
 		eventoTemp=ultimo;
 		//caso exista algum evento na lista
 		if(ultimo != null)
 		{
-			while(verificaAnterior(eventoTemp, evento))
+			//O evento soh podera ter o tempo maior ou igual do q o ultimo, nunca menor. Pois o ultimo evento eh o ultimo evento que foi tratado
+			while(verificaProximo(eventoTemp, evento))
 			{
-				//Vai pegando os eventos anteriores na lista
-				eventoTemp = eventoTemp.getEventoAnterior();
+				//Vai pegando os proximos eventos na lista
+				eventoTemp = eventoTemp.getProximoEvento();
 			}
 			//Como o evento que vms inserir tem tempo maior que o evento em q estamos na lista:
 			eventoTemp.setProximoEvento(evento);
 			evento.setEventoAnterior(eventoTemp);
 		}
-		*/
+		return evento;
+	
 		//Caso contrario apenas retorna o evento como ultimo
 		
 		//evento=a ser inserido
 		//ultimo=evento de refrencia
+		/*
 		Evento anterior,posterior;
 		
 		if(evento.getTempo()>=ultimo.getTempo()){
@@ -80,14 +83,15 @@ public class Controle {
 			}
 	
 		return evento;
+		*/
 		
 	}
-	public static boolean verificaAnterior(Evento eventoTemp, Evento eventoInsere)
+	public static boolean verificaProximo(Evento eventoTemp, Evento eventoInsere)
 	{
 		boolean tempoMaior = false;
-		if(eventoTemp.getTempo() > eventoInsere.getTempo())
+		if(eventoTemp.getTempo() < eventoInsere.getTempo())
 		{
-			//Se o tempo do ultimo evento é maior do que o que eu quero inserir, o evento que eu vou inserir vai ser inserido antes dele
+			//Se o tempo do ultimo evento é menor do que o que eu quero inserir, o evento que eu vou inserir vai ser inserido depois dele
 			tempoMaior = true;
 		}
 		return tempoMaior;
