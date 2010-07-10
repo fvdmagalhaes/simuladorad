@@ -182,20 +182,11 @@ public class Controle {
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
 			
 			if(estacao.getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
-			{
-				//Agora o canal rx da estacao esta ocioso
-				estacao.getRx().setOcioso(true);
-				estacao.setUltimoQuadroEnviado(evento.getQuadro());
-				
-				//retorna o ultimo evento executado
-				eventoVo.setUltimoEvento(evento);
-				//o evento nao eh uma transmissao com sucesso nem reforco de colisao
-				eventoVo.setVerificaTransmissao(false);
-				
+			{			
 				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
 				
-				if(numeroSequencia > estacao.getPmf()){
-					//agora tem que gerar o proximo quadro que vai ser enviado...
+				if(numeroSequencia < estacao.getPmf()){
+					//agora tem que gerar o proximo quadro que vai  ser enviado...
 					Quadro quadro;
 					Evento eventoQ;
 					quadro= new Quadro();
@@ -218,6 +209,15 @@ public class Controle {
 			}else{
 				//caso nao seja deve dar colisao
 			}
+			
+
+			//Agora o canal rx da estacao esta ocioso
+			estacao.getRx().setOcioso(true);
+			
+			//retorna o ultimo evento executado
+			eventoVo.setUltimoEvento(evento);
+			//o evento nao eh uma transmissao com sucesso nem reforco de colisao
+			eventoVo.setVerificaTransmissao(false);
 			
 		 }else if(evento.getTipo().equals(TipoEvento.TRANSMITE_QUADRO))
 		 {
@@ -285,20 +285,22 @@ public class Controle {
 			 Evento eventoRecebeEstacao = new Evento();
 			 for(Canal canal:(List<Canal>) listaCanais)
 			 {
+				 System.out.println("estacao que vai receber o quadro:  " + canal.getEstacao().getId());
 				 //Recupera o tempo de propagacao de cada canal e gera um evento de recepcao na estacao
 				 //Eh necessario saber a estacao para a qual o hub esta enviando em caso. Nao tem mais como recuperar a estacao pelo quadro
 				 if(canal.getOcioso())
 				 {
 					 eventoRecebeEstacao.setQuadro(evento.getQuadro());
-					 eventoRecebeEstacao.setEstacao(evento.getEstacao());
+					 eventoRecebeEstacao.setEstacao(canal.getEstacao());
 					 eventoRecebeEstacao.setPacote(evento.getQuadro().getPacote());
-					 eventoRecebeEstacao.setTempo(evento.getTempo()+canal.getTempoTransmissao());
+					 eventoRecebeEstacao.setTempo(evento.getTempo() + canal.getTempoTransmissao());
 					 eventoRecebeEstacao.setTipo(TipoEvento.RECEBE_QUADRO);
 					 eventoRecebeEstacao.setEstacao(canal.getEstacao());
 					 //O canal rx agora está ocupado
 					 canal.setOcioso(false);
 					 //O tx agora esta ocioso
-					 canal.getEstacao().getTx().setOcioso(true);
+					 //PQ O TX FICA OCIOSO?????
+					 //canal.getEstacao().getTx().setOcioso(true);
 					 insereEvento(eventoRecebeEstacao,evento);
 				 }else{
 					 System.out.println("o pacote"+evento.getQuadro().getPacote().getSequenciaEnviada()+"foi perdido pois o canal"+canal.getEstacao().getId()+"estava ocupado");
