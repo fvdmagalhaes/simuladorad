@@ -16,7 +16,7 @@ public class Pacote {
 	public void setSequenciaEnviada(int sequenciaEnviada) {
 		this.sequenciaEnviada = sequenciaEnviada;
 	}
-	private static int ultimoId=-1;
+	private static int ultimoId=0;
 	
 	public Pacote(){
 		ultimoId++;
