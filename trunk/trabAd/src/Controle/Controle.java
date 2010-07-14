@@ -3,13 +3,12 @@ package Controle;
 import java.util.List;
 import java.util.Random;
 
-import javax.naming.BinaryRefAddr;
-
 import vo.EventoVo;
 import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
 import Rede.Hub;
+import Rede.Pacote;
 import Rede.Quadro;
 import Rede.TipoEvento;
 
@@ -18,7 +17,7 @@ public class Controle {
 	public static Evento insereEvento(Evento evento, Evento ultimo)
 	{
 		
-		Evento eventoTemp = new Evento();
+		/*Evento eventoTemp = new Evento();
 		eventoTemp=ultimo;
 		//caso exista algum evento na lista
 		if(ultimo != null)
@@ -39,7 +38,7 @@ public class Controle {
 		
 		//evento=a ser inserido
 		//ultimo=evento de refrencia
-		/*
+	*/
 		Evento anterior,posterior;
 		
 		if(evento.getTempo()>=ultimo.getTempo()){
@@ -82,9 +81,7 @@ public class Controle {
 				evento.setProximoEvento(posterior);
 			}
 	
-		return evento;
-		*/
-		
+			return evento;	
 	}
 	public static boolean verificaProximo(Evento eventoTemp, Evento eventoInsere)
 	{
@@ -159,7 +156,7 @@ public class Controle {
 				evento2=new Evento();
 				evento2.setTipo(TipoEvento.SENTE_MEIO);
 				//ele persiste sentindo o meio até a transmissao acabar. O tempo a ser sentido dinovo eh o tempo do proximo evento
-				evento2.setTempo(evento.getProximoEvento().getTempo());
+				evento2.setTempo(evento.getProximoEvento().getTempo()+0.1);
 			}
 			
 			//insere o evento2 na lista. precisa passar o ultimo evento executado que é o evento sente o meio que acabamos de executar
@@ -286,9 +283,10 @@ public class Controle {
 			 //Envia o quadro para o rx de tdas as estacoes
 			 Hub hub = evento.getQuadro().getPacote().getEstacao().getHub();
 			 List<Canal> listaCanais = hub.getListaCanais();
-			 Evento eventoRecebeEstacao = new Evento();
+			 Evento eventoRecebeEstacao=new Evento();
 			 for(Canal canal:(List<Canal>) listaCanais)
 			 {
+				 eventoRecebeEstacao= new Evento();
 				 System.out.println("estacao que vai receber o quadro:  " + canal.getEstacao().getId());
 				 //Recupera o tempo de propagacao de cada canal e gera um evento de recepcao na estacao
 				 //Eh necessario saber a estacao para a qual o hub esta enviando em caso. Nao tem mais como recuperar a estacao pelo quadro
@@ -319,7 +317,7 @@ public class Controle {
 			 receberProximo.setTipo(TipoEvento.RECEBE_PACOTE);
 			 receberProximo.setEstacao(evento.getEstacao());
 			 receberProximo.setTempo(evento.getTempo()+evento.getEstacao().getTaxaDeChegada());
-			 receberProximo.setEstacao(evento.getEstacao());
+			 receberProximo.setPacote(new Pacote());
 			 
 			 Controle.insereEvento(receberProximo,evento);
 		 }
