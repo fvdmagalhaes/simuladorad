@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vo.EventoVo;
-
 import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
 import Rede.Hub;
 import Rede.Pacote;
+import Rede.Quadro;
 import Rede.TipoEvento;
 
 /*
@@ -139,12 +139,19 @@ public class main {
 		atual.setEstacao(e1);
 		//guarda a ultima transmissao com sucesso ou reforco de colisao
 		Evento ultimaTransmissao = new Evento();
+		ultimaTransmissao.setTempo(0.0);
 		//Estacao 1 recebe 1 pacote de 40*1000bits
+	
+//		para o cenario 1 A1 = A2 = 40ms determistico p1=p2=40
+		e1.setTaxaDeChegada(40);
+		e1.setPmf(40);
+		/*e2.setTaxaDeChegada(40);
+		e2.setPmf(40);*/
 		
 		Pacote pacote1 = new Pacote();
 		pacote1.setEstacao(e1);
 		//tamanho sempre em bits
-		pacote1.setTamanho(40*8000);
+		pacote1.setTamanho(pacote1.getEstacao().getPmf()*Quadro.TAMANHO);
 		atual.setPacote(pacote1);
 		
 		//Estacao 2 recebe 1 pacote de 40*1000bits
@@ -152,15 +159,10 @@ public class main {
 		pacote2.setEstacao(e2);
 		pacote2.setTamanho(40*8000);*/
 		
-		//para o cenario 1 A1 = A2 = 40ms determistico p1=p2=40
-		e1.setTaxaDeChegada(40);
-		e1.setPmf(40);
-		/*e2.setTaxaDeChegada(40);
-		e2.setPmf(40);*/
 		
 		//e1.recebePacote(pacote1, 0.0, ultimoEvento);
 		int i=0;
-		while(atual!=null){
+		while(i<7){
 			eventovo = Controle.trataEventos(atual,ultimaTransmissao);
 			//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 			if(eventovo.getVerificaTransmissao())

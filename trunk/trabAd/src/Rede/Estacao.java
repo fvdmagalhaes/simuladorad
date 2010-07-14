@@ -1,5 +1,8 @@
 package Rede;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Controle.Controle;
 
 public class Estacao {
@@ -14,7 +17,10 @@ public class Estacao {
 	boolean RecebeuConfirmacaoUltimoQuadro;
 	private static int ultimoId=0;
 	//milisegundos
-	public String distribuicaoChegadaPacotes;
+	private String distribuicaoChegadaPacotes;
+	private String distribuicaoNumeroQuadrosPacote;
+	private List<Pacote> pacotes;
+	//private double p;//parametro para saber se a pmf é geometrica ou deterministica
 	
 	//Salva o hub ao qual a estacao esta ligada
 	Hub hub;
@@ -22,6 +28,7 @@ public class Estacao {
 	public Estacao(){
 		ultimoId++;
 		id=ultimoId;
+		pacotes=new ArrayList<Pacote>(0);
 	}
 	public int getNumColisoes() {
 		return numeroColisoes;
@@ -96,6 +103,18 @@ public class Estacao {
 		return this.distribuicaoChegadaPacotes;
 	}
 	
+	public Pacote getPacote(){
+		if(pacotes.size()>0){
+			return pacotes.remove(0);
+		}else{
+			return null;
+		}
+	}
+	
+	public void addPacote(Pacote pacote){
+		pacotes.add(pacote);
+	}
+	
 	/*public void enviaPacote (Pacote pacote, Evento ultimoEvento){
 		
 		//Antes de enviar o pacote a estacao sente o meio e "seta" o proximo evento como o evento de enviar
@@ -134,7 +153,7 @@ public class Estacao {
 		Evento evento;
 		
 		//a estacao gera o primeiro quadro da sequencia de quadros. Assim que a estacao confirmar o envio deste quadro, gera o proximo
-		pacote.setSequenciaEnviada(1);
+		pacote.setSequenciaEnviada(0);
 		
 		quadro= new Quadro();
 		quadro.setNumeroSequencia(1);
