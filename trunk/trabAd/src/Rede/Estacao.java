@@ -13,6 +13,8 @@ public class Estacao {
 	Quadro ultimoQuadroEnviado;
 	boolean RecebeuConfirmacaoUltimoQuadro;
 	private static int ultimoId=-1;
+	//milisegundos
+	public String distribuicaoChegadaPacotes;
 	
 	//Salva o hub ao qual a estacao esta ligada
 	Hub hub;
@@ -84,6 +86,14 @@ public class Estacao {
 	public Hub getHub()
 	{
 		return hub;
+	}
+	
+	public void setDistribuicaoChegadapacotes(String distribuicao){
+		this.distribuicaoChegadaPacotes=distribuicao;
+	}
+	
+	public String getDistribuicaoChegadaPacotes(){
+		return this.distribuicaoChegadaPacotes;
 	}
 	
 	/*public void enviaPacote (Pacote pacote, Evento ultimoEvento){
