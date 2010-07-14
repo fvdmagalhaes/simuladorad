@@ -162,6 +162,8 @@ public class main {
 		
 		//e1.recebePacote(pacote1, 0.0, ultimoEvento);
 		int i=0;
+		//apenas para teste
+		Evento primeiro=atual;
 		while(i<10){
 			eventovo = Controle.trataEventos(atual,ultimaTransmissao);
 			//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
