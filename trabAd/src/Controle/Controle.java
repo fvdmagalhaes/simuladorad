@@ -102,11 +102,25 @@ public class Controle {
 		EventoVo eventoVo = new EventoVo();
 		
 		System.out.println("---------------------------------------");
-		if(evento.getTipo()==TipoEvento.RETRANSMITE_QUADRO)
+		if(evento.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
+			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": HUB Retransmite o quadro "+evento.getQuadro().getId());
+		/*else
+			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo());*/
+		}else	if(evento.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
 			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": HUB Retransmite o quadro");
-		else
+		}else	if(evento.getTipo()==TipoEvento.RECEBE_QUADRO){
+			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo()+" Pacote: "+evento.getPacote().getId()+" Quadro: "+evento.getQuadro().getId());
+		}else	if(evento.getTipo()==TipoEvento.RECEBE_PACOTE){
+			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo()+" Pacote: "+evento.getPacote().getId());
+		}else	if(evento.getTipo()==TipoEvento.REFORCO_COLISAO){
 			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo());
-		
+		}else	if(evento.getTipo()==TipoEvento.SENTE_MEIO){
+			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo());
+		}else	if(evento.getTipo()==TipoEvento.TRANSMITE_QUADRO){
+			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo()+" Pacote: "+evento.getPacote().getId()+" Quadro: "+evento.getQuadro().getId());
+		}
+			
+			
 		System.out.println("\n");
 		System.out.println("Existem esses eventos para serem tratados:");
 		System.out.println("\n");
@@ -117,11 +131,19 @@ public class Controle {
 			ev = ev.getProximoEvento();
 			
 			if(ev != null){
-				if(ev.getTipo()==TipoEvento.RETRANSMITE_QUADRO)
+				if(ev.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
 					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": HUB Retransmite o quadro");
-				else
+				}else	if(ev.getTipo()==TipoEvento.RECEBE_QUADRO){
+					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo()+" Pacote: "+ev.getPacote().getId()+" Quadro: "+ev.getQuadro().getId());
+				}else	if(ev.getTipo()==TipoEvento.RECEBE_PACOTE){
+					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo()+" Pacote: "+ev.getPacote().getId());
+				}else	if(ev.getTipo()==TipoEvento.REFORCO_COLISAO){
 					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo());
-
+				}else	if(ev.getTipo()==TipoEvento.SENTE_MEIO){
+					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo());
+				}else	if(ev.getTipo()==TipoEvento.TRANSMITE_QUADRO){
+					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo()+" Pacote: "+ev.getPacote().getId()+" Quadro: "+ev.getQuadro().getId());
+				}
 			}
 		}
 		
