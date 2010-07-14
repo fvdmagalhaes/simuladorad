@@ -82,25 +82,25 @@ public class main {
 		//adiciona as informacoes das estacoes
 		
 		//os ids são gerados automaticamente
-		e1.setId(1);
+		//e1.setId(1);
 		e1.setRx(rx1);
 		e1.setTx(tx1);
 		rx1.setEstacao(e1);
 		tx1.setEstacao(e1);
 		
-		e2.setId(2);
+		//e2.setId(2);
 		e2.setRx(rx2);
 		e2.setTx(tx2);
 		rx2.setEstacao(e2);
 		tx2.setEstacao(e2);
 		
-		e3.setId(3);
+		//e3.setId(3);
 		e3.setRx(rx3);
 		e3.setTx(tx3);
 		rx3.setEstacao(e3);
 		tx3.setEstacao(e3);
 		
-		e4.setId(4);
+		//e4.setId(4);
 		e4.setRx(rx4);
 		e4.setTx(tx4);
 		rx4.setEstacao(e4);

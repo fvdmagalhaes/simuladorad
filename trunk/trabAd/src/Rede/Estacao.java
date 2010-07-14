@@ -12,7 +12,7 @@ public class Estacao {
 	int pmf;
 	Quadro ultimoQuadroEnviado;
 	boolean RecebeuConfirmacaoUltimoQuadro;
-	private static int ultimoId=-1;
+	private static int ultimoId=0;
 	//milisegundos
 	public String distribuicaoChegadaPacotes;
 	
