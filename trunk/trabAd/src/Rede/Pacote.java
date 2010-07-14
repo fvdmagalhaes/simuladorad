@@ -7,6 +7,7 @@ public class Pacote {
 	int tamanho;
 	Estacao estacao;
 	int sequenciaEnviada;
+	//em milisegundos
 	
 	public int getSequenciaEnviada() {
 		return sequenciaEnviada;
@@ -40,5 +41,4 @@ public class Pacote {
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
 	}
-	
 }
