@@ -144,7 +144,7 @@ public class main {
 	
 //		para o cenario 1 A1 = A2 = 40ms determistico p1=p2=40
 		e1.setTaxaDeChegada(40);
-		e1.setPmf(40);
+		e1.setPmf(2);
 		/*e2.setTaxaDeChegada(40);
 		e2.setPmf(40);*/
 		
@@ -162,7 +162,7 @@ public class main {
 		
 		//e1.recebePacote(pacote1, 0.0, ultimoEvento);
 		int i=0;
-		while(i<7){
+		while(i<10){
 			eventovo = Controle.trataEventos(atual,ultimaTransmissao);
 			//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 			if(eventovo.getVerificaTransmissao())
@@ -172,6 +172,7 @@ public class main {
 			atual=atual.getProximoEvento();
 			i++;
 		}
+		i=0;
 		
 		//Controle.trataEventos(ultimoEvento,null);
 		

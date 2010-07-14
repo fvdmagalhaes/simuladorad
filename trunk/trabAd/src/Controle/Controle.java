@@ -138,7 +138,19 @@ public class Controle {
 					//caso já tenha passado cria um evento de transmissao
 					evento2=new Evento();
 					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
-					evento2.setQuadro(evento.getQuadro());
+					Quadro novoQuadro=new Quadro();
+					//se o quadro foi o ultimo do atual pacote
+					if(evento.getQuadro().getPacote().getSequenciaEnviada()==evento.getEstacao().getPmf()){
+						//o quadro e o primeiro do novo pacote
+						novoQuadro.setNumeroSequencia(1);
+						//pega o proximo pacote da estacao
+						novoQuadro.setPacote(evento.getEstacao().getPacote());
+					}else{
+						//o novo quadro é o próximo do atual pacote
+						novoQuadro.setNumeroSequencia(evento.getQuadro().getNumeroSequencia()+1);
+						novoQuadro.setPacote(evento.getPacote());
+					}
+					evento2.setQuadro(novoQuadro);
 					//tempo de transmissao, inicia imediatamente
 					//tempo do evento de transmissao e igual ao de sentir o meio
 					evento2.setTempo(evento.getTempo());
@@ -149,7 +161,21 @@ public class Controle {
 					//Entao vou criar um evento com o tempo atual + restante
 					evento2=new Evento();
 					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
-					evento2.setQuadro(evento.getQuadro());
+					
+					Quadro novoQuadro=new Quadro();
+					//se o quadro foi o ultimo do atual pacote
+					if(evento.getQuadro().getPacote().getSequenciaEnviada()==evento.getEstacao().getPmf()){
+						//o quadro e o primeiro do novo pacote
+						novoQuadro.setNumeroSequencia(1);
+						//pega o proximo pacote da estacao
+						novoQuadro.setPacote(evento.getEstacao().getPacote());
+					}else{
+						//o novo quadro é o próximo do atual pacote
+						novoQuadro.setNumeroSequencia(evento.getQuadro().getNumeroSequencia()+1);
+						novoQuadro.setPacote(evento.getPacote());
+					}
+					evento2.setQuadro(novoQuadro);
+					
 					//evento de transmissao vai ocorrer 0,0000096 instante após a ultima transmissão
 					evento2.setTempo(ultimaTransmissao.getTempo()+0.0000096);
 					evento2.setEstacao(evento.getEstacao());
