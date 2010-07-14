@@ -129,7 +129,8 @@ public class Controle {
 			Evento evento2 = null;
 			//obtém a estação que está sentindo o meio
 			Estacao estacao=evento.getQuadro().getPacote().getEstacao();
-			if(estacao.getTx().getOcioso()){
+			if(estacao.getTx().getOcioso())
+			{
 				
 				//se tx esta ocioso, verifica se já foram passados os 9,6 us = 9,6 x10^-6 s
 				if(evento.getTempo() >= (ultimaTransmissao.getTempo()+0.0000096))
@@ -193,7 +194,8 @@ public class Controle {
 					quadro= new Quadro();
 					//a estacao gera o primeiro quadro da sequencia de quadros. Assim que a estacao confirmar o envio deste quadro, gera o proximo
 					evento.getPacote().setSequenciaEnviada(numeroSequencia);
-					
+					//O canal de recepçao da estaçao agora esta ocioso
+					estacao.getRx().setOcioso(true);
 					quadro.setNumeroSequencia(numeroSequencia);
 					quadro.setPacote(evento.getPacote());
 					//cria um evento de enviar quadro para o hub para cada quadro
@@ -202,6 +204,9 @@ public class Controle {
 					eventoQ.setTipo(TipoEvento.TRANSMITE_QUADRO);
 					eventoQ.setTempo(evento.getTempo());
 					eventoQ.setEstacao(estacao);
+					//FIM DE TRANSMISSAO COM SUCESSO
+					eventoVo.setUltimoEvento(evento);
+					eventoVo.setVerificaTransmissao(true);
 
 					//insere o evento na lista
 					insereEvento(eventoQ,evento);	
@@ -240,8 +245,8 @@ public class Controle {
 				 insereEvento(eventoHub,evento);
 				 //Retorna o ultimo evento executado
 				 eventoVo.setUltimoEvento(evento);
-				 //true pois foi uma transmissao com sucesso
-				 eventoVo.setVerificaTransmissao(true);
+				 
+				 eventoVo.setVerificaTransmissao(false);
 				 //Seta esse quadro como o ultimo enviado pela estacao
 				 estacao.setUltimoQuadroEnviado(evento.getQuadro());
 			 }else{
@@ -258,6 +263,7 @@ public class Controle {
 				 reforcoColisao.setQuadro(evento.getQuadro());
 				 //3,2^10-6
 				 reforcoColisao.setTempo(evento.getTempo()+0.0000032);
+				 
 				 eventoVo.setUltimoEvento(reforcoColisao);
 				 eventoVo.setVerificaTransmissao(true);
 				 
@@ -301,8 +307,8 @@ public class Controle {
 					 //O canal rx agora está ocupado
 					 canal.setOcioso(false);
 					 //O tx agora esta ocioso
-					 //PQ O TX FICA OCIOSO?????
-					 //canal.getEstacao().getTx().setOcioso(true);
+					 //PQ O TX FICA OCIOSO????
+					 canal.getEstacao().getTx().setOcioso(true);
 					 insereEvento(eventoRecebeEstacao,evento);
 				 }else{
 					 System.out.println("o pacote"+evento.getQuadro().getPacote().getSequenciaEnviada()+"foi perdido pois o canal"+canal.getEstacao().getId()+"estava ocupado");
