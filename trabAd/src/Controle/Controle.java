@@ -317,7 +317,9 @@ public class Controle {
 			 receberProximo.setTipo(TipoEvento.RECEBE_PACOTE);
 			 receberProximo.setEstacao(evento.getEstacao());
 			 receberProximo.setTempo(evento.getTempo()+evento.getEstacao().getTaxaDeChegada());
-			 receberProximo.setPacote(new Pacote());
+			 Pacote pacote=new Pacote();
+			 pacote.setEstacao(evento.getEstacao());
+			 receberProximo.setPacote(pacote);
 			 
 			 Controle.insereEvento(receberProximo,evento);
 		 }
