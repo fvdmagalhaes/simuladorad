@@ -164,24 +164,30 @@ public class Controle {
 					//se o quadro foi o ultimo do atual pacote
 					if(evento.getQuadro().getPacote().getSequenciaEnviada()==evento.getEstacao().getPmf()){
 						Pacote pacote=evento.getEstacao().getPacote();
-						if(pacote!=null){
+						if(pacote!=null && pacote.recebidoPelaEstacao){
 //							o quadro e o primeiro do novo pacote
 							novoQuadro.setNumeroSequencia(1);
 							//pega o proximo pacote da estacao
 							novoQuadro.setPacote(pacote);
 							evento2.setPacote(pacote);
+							evento2.setQuadro(novoQuadro);
+							//tempo de transmissao, inicia imediatamente
+							//tempo do evento de transmissao e igual ao de sentir o meio
+							evento2.setTempo(evento.getTempo());
+							evento2.setEstacao(evento.getEstacao());
 						}
 					}else{
 						//o novo quadro é o próximo do atual pacote
 						novoQuadro.setNumeroSequencia(evento.getQuadro().getNumeroSequencia()+1);
 						novoQuadro.setPacote(evento.getPacote());
 						evento2.setPacote(evento.getPacote());
+						evento2.setQuadro(novoQuadro);
+						//tempo de transmissao, inicia imediatamente
+						//tempo do evento de transmissao e igual ao de sentir o meio
+						evento2.setTempo(evento.getTempo());
+						evento2.setEstacao(evento.getEstacao());
 					}
-					evento2.setQuadro(novoQuadro);
-					//tempo de transmissao, inicia imediatamente
-					//tempo do evento de transmissao e igual ao de sentir o meio
-					evento2.setTempo(evento.getTempo());
-					evento2.setEstacao(evento.getEstacao());
+					
 				}else{
 					//espera a contagem do tempo restante para passar os 9,6us e transmite imediatamente.
 					//Entao vou criar um evento com o tempo atual + restante
@@ -394,6 +400,7 @@ public class Controle {
 			 eventoVo.setUltimoEvento(eventoRecebeEstacao);
 			 eventoVo.setVerificaTransmissao(false);
 		 }else if(evento.getTipo().equals(TipoEvento.RECEBE_PACOTE)){
+			 evento.getPacote().recebidoPelaEstacao=true;
 			 if(evento.getProximoEvento()==null){
 				 evento.getEstacao().recebePacote(evento.getPacote(), evento.getTempo(), evento);
 			 }
