@@ -117,8 +117,8 @@ public class main {
 		//Guarda apenas os canais de recepcao das estacoes pois na hr de calcular o tempo que demora para enviar para cada estacao vms 
 		//calcular utilizando esses canais
 		listaCanais.add(rx1);
-		/*listaCanais.add(rx2);
-		listaCanais.add(rx3);
+		//listaCanais.add(rx2);
+		/*listaCanais.add(rx3);
 		listaCanais.add(rx4);*/
 		hub.setListaCanais(listaCanais);
 		
@@ -139,24 +139,24 @@ public class main {
 		atual.setEstacao(e1);
 		//guarda a ultima transmissao com sucesso ou reforco de colisao
 		Evento ultimaTransmissao = new Evento();
-		//Estacao 1 recebe 1 pacote de 40mb
+		//Estacao 1 recebe 1 pacote de 40*1000bits
 		
 		Pacote pacote1 = new Pacote();
 		pacote1.setEstacao(e1);
-		//tamanho sempre em KB
+		//tamanho sempre em bits
 		pacote1.setTamanho(40*8000);
 		atual.setPacote(pacote1);
 		
-		//Estacao 2 recebe 1 pacote de 40mb
+		//Estacao 2 recebe 1 pacote de 40*1000bits
 		/*Pacote pacote2 = new Pacote();
 		pacote2.setEstacao(e2);
-		pacote2.setTamanho(40);*/
+		pacote2.setTamanho(40*8000);*/
 		
 		//para o cenario 1 A1 = A2 = 40ms determistico p1=p2=40
 		e1.setTaxaDeChegada(40);
 		e1.setPmf(40);
-		
-		//e2.setTaxaDeChegada(40);
+		/*e2.setTaxaDeChegada(40);
+		e2.setPmf(40);*/
 		
 		//e1.recebePacote(pacote1, 0.0, ultimoEvento);
 		int i=0;
