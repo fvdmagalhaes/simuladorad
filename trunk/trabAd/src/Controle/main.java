@@ -159,7 +159,7 @@ public class main {
 		//e2.setTaxaDeChegada(40);
 		
 		//e1.recebePacote(pacote1, 0.0, ultimoEvento);
-		
+		int i=0;
 		while(atual!=null){
 			eventovo = Controle.trataEventos(atual,ultimaTransmissao);
 			//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
@@ -168,6 +168,7 @@ public class main {
 				ultimaTransmissao = eventovo.getUltimoEvento();
 			}
 			atual=atual.getProximoEvento();
+			i++;
 		}
 		
 		//Controle.trataEventos(ultimoEvento,null);
