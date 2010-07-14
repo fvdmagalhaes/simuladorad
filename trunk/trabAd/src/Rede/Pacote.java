@@ -7,6 +7,7 @@ public class Pacote {
 	int tamanho;
 	Estacao estacao;
 	int sequenciaEnviada;
+	public boolean recebidoPelaEstacao;
 	//em milisegundos
 	
 	public int getSequenciaEnviada() {

@@ -105,10 +105,14 @@ public class Estacao {
 	
 	public Pacote getPacote(){
 		if(pacotes.size()>0){
-			return pacotes.remove(0);
+			return pacotes.get(0);
 		}else{
 			return null;
 		}
+	}
+	
+	public void removerPacote(){
+		pacotes.remove(0);
 	}
 	
 	public void addPacote(Pacote pacote){
