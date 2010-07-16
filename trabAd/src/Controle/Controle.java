@@ -27,7 +27,12 @@ public class Controle {
 			while(verificaProximo(eventoTemp, evento))
 			{
 				//Vai pegando os proximos eventos na lista
-				eventoTemp = eventoTemp.getProximoEvento();
+				if(eventoTemp.getProximoEvento() != null)
+				{
+					eventoTemp = eventoTemp.getProximoEvento();
+				}else{
+					break;
+				}
 			}
 			//Como o evento que vms inserir tem tempo maior que o evento em q estamos na lista:
 			eventoTemp.setProximoEvento(evento);
@@ -89,10 +94,13 @@ public class Controle {
 	public static boolean verificaProximo(Evento eventoTemp, Evento eventoInsere)
 	{
 		boolean tempoMaior = false;
-		if(eventoTemp.getTempo() < eventoInsere.getTempo())
+		if(eventoTemp != null)
 		{
-			//Se o tempo do ultimo evento é menor do que o que eu quero inserir, o evento que eu vou inserir vai ser inserido depois dele
-			tempoMaior = true;
+			if(eventoTemp.getTempo() < eventoInsere.getTempo())
+			{
+				//Se o tempo do ultimo evento é menor do que o que eu quero inserir, o evento que eu vou inserir vai ser inserido depois dele
+				tempoMaior = true;
+			}
 		}
 		return tempoMaior;
 	}
