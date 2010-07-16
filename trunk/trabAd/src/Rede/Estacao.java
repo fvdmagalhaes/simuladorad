@@ -167,7 +167,8 @@ public class Estacao {
 		//cria um evento de enviar quadro para o hub para cada quadro
 		evento = new Evento();
 		evento.setQuadro(quadro);
-		evento.setTipo(TipoEvento.TRANSMITE_QUADRO);
+		//evento.setTipo(TipoEvento.TRANSMITE_QUADRO);
+		evento.setTipo(TipoEvento.SENTE_MEIO);
 		evento.setTempo(tempo);
 		evento.setPacote(pacote);
 		evento.setEstacao(pacote.getEstacao());	
