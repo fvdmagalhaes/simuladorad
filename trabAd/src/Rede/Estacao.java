@@ -162,6 +162,7 @@ public class Estacao {
 		quadro= new Quadro();
 		quadro.setNumeroSequencia(1);
 		quadro.setPacote(pacote);
+		quadro.setQuadroConfirmado(false);
 		//cria um evento de enviar quadro para o hub para cada quadro
 		evento = new Evento();
 		evento.setQuadro(quadro);

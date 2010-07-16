@@ -9,6 +9,27 @@ public class Quadro {
 
 	int id;
 	int numeroSequencia;
+	boolean quadroConfirmado;
+	
+	public static int getUltimoId() {
+		return ultimoId;
+	}
+
+	public static void setUltimoId(int ultimoId) {
+		Quadro.ultimoId = ultimoId;
+	}
+
+	public boolean isQuadroConfirmado() {
+		return quadroConfirmado;
+	}
+
+	public void setQuadroConfirmado(boolean quadroConfirmado) {
+		this.quadroConfirmado = quadroConfirmado;
+	}
+
+	public static int getTamanho() {
+		return TAMANHO;
+	}
 	Pacote pacote;
 	
 	public Quadro(){
