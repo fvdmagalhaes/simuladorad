@@ -186,7 +186,7 @@ public class Controle {
 				evento2.setPacote(evento.getPacote());
 				evento2.setQuadro(evento.getQuadro());
 				//ele persiste sentindo o meio até a transmissao acabar. O tempo a ser sentido dinovo eh o tempo do proximo evento
-				evento2.setTempo(evento.getProximoEvento().getTempo()+1);
+				evento2.setTempo(evento.getProximoEvento().getTempo());
 			}
 			
 			//insere o evento2 na lista. precisa passar o ultimo evento executado que é o evento sente o meio que acabamos de executar
