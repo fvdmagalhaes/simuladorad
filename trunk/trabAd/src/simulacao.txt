@@ -1,0 +1,4 @@
+Simulacao:
+TAp(i)= tempo de acesso de um quadro na estação i
+
+Criei um atributo chamado tap... ele marca o INICIO da tentativa de envio do quadro... completo amanha isso aqui
