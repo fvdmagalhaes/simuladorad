@@ -20,6 +20,7 @@ public class Controle {
 		
 		Evento eventoTemp = new Evento();
 		eventoTemp=ultimo;
+		boolean naoexistemaior = false;
 		//caso exista algum evento na lista
 		if(ultimo != null)
 		{
@@ -31,12 +32,21 @@ public class Controle {
 				{
 					eventoTemp = eventoTemp.getProximoEvento();
 				}else{
+					eventoTemp.setProximoEvento(evento);
+					evento.setEventoAnterior(eventoTemp);
+					naoexistemaior = true;
+					
 					break;
 				}
 			}
 			//Como o evento que vms inserir tem tempo maior que o evento em q estamos na lista:
-			eventoTemp.setProximoEvento(evento);
-			evento.setEventoAnterior(eventoTemp);
+			if(!naoexistemaior)
+			{
+				evento.setProximoEvento(eventoTemp);
+				evento.setEventoAnterior(eventoTemp.getEventoAnterior());
+				eventoTemp.setEventoAnterior(evento);
+				eventoTemp.getEventoAnterior().setProximoEvento(evento);
+			}
 		}
 		return evento;
 	
@@ -96,7 +106,7 @@ public class Controle {
 		boolean tempoMaior = false;
 		if(eventoTemp != null)
 		{
-			if(eventoTemp.getTempo() < eventoInsere.getTempo())
+			if(eventoTemp.getTempo() <= eventoInsere.getTempo())
 			{
 				//Se o tempo do ultimo evento é menor do que o que eu quero inserir, o evento que eu vou inserir vai ser inserido depois dele
 				tempoMaior = true;
@@ -150,6 +160,8 @@ public class Controle {
 					evento2=new Evento();
 					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
 					evento2.setQuadro(evento.getQuadro());
+					evento2.setEstacao(evento.getEstacao());
+					evento2.setPacote(evento.getPacote());
 					//tempo de transmissao, inicia imediatamente
 					//tempo do evento de transmissao e igual ao de sentir o meio
 					evento2.setTempo(evento.getTempo());
@@ -159,6 +171,8 @@ public class Controle {
 					evento2=new Evento();
 					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
 					evento2.setQuadro(evento.getQuadro());
+					evento2.setEstacao(evento.getEstacao());
+					evento2.setPacote(evento.getPacote());
 					//evento de transmissao vai ocorrer 0,0000096 instante após a ultima transmissão
 					evento2.setTempo(ultimaTransmissao.getTempo()+0.0000096);
 					//evento2.setTempo(tempoAtual + (evento.getTempo()-(ultimaTransmissao.getTempo()+0.0000096)));
@@ -167,6 +181,9 @@ public class Controle {
 				//caso tx esteja ocupado,cria um novo evento sentindo o meio
 				evento2=new Evento();
 				evento2.setTipo(TipoEvento.SENTE_MEIO);
+				evento2.setEstacao(evento.getEstacao());
+				evento2.setPacote(evento.getPacote());
+				evento2.setQuadro(evento.getQuadro());
 				//ele persiste sentindo o meio até a transmissao acabar. O tempo a ser sentido dinovo eh o tempo do proximo evento
 				evento2.setTempo(evento.getProximoEvento().getTempo()+1);
 			}
