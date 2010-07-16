@@ -157,7 +157,7 @@ public class Estacao {
 		Evento evento;
 		
 		//a estacao gera o primeiro quadro da sequencia de quadros. Assim que a estacao confirmar o envio deste quadro, gera o proximo
-		pacote.setSequenciaEnviada(0);
+		pacote.setSequenciaEnviada(1);
 		
 		quadro= new Quadro();
 		quadro.setNumeroSequencia(1);
