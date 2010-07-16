@@ -144,7 +144,7 @@ public class Controle {
 				
 				//se tx esta ocioso, verifica se já foram passados os 9,6 us = 9,6 x10^-6 s
 				//caso ainda n tenha tido a ultima transmissao transmite imediatamente
-				if(ultimaTransmissao != null && evento.getTempo() >= (ultimaTransmissao.getTempo()+0.0000096))
+				if(ultimaTransmissao.getQuadro() != null && evento.getTempo() >= (ultimaTransmissao.getTempo()+0.0000096))
 				{
 					//caso já tenha passado cria um evento de transmissao
 					evento2=new Evento();
