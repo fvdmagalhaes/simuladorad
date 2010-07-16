@@ -35,7 +35,6 @@ public class Controle {
 					eventoTemp.setProximoEvento(evento);
 					evento.setEventoAnterior(eventoTemp);
 					naoexistemaior = true;
-					
 					break;
 				}
 			}
@@ -312,9 +311,10 @@ public class Controle {
 			 //Envia o quadro para o rx de tdas as estacoes
 			 Hub hub = evento.getQuadro().getPacote().getEstacao().getHub();
 			 List<Canal> listaCanais = hub.getListaCanais();
-			 Evento eventoRecebeEstacao = new Evento();
+			 
 			 for(Canal canal:(List<Canal>) listaCanais)
 			 {
+				 Evento eventoRecebeEstacao = new Evento();
 				 System.out.println("estacao que vai receber o quadro:  " + canal.getEstacao().getId());
 				 //Recupera o tempo de propagacao de cada canal e gera um evento de recepcao na estacao
 				 //Eh necessario saber a estacao para a qual o hub esta enviando em caso. Nao tem mais como recuperar a estacao pelo quadro
