@@ -44,8 +44,9 @@ public class Controle {
 			{
 				evento.setProximoEvento(eventoTemp);
 				evento.setEventoAnterior(eventoTemp.getEventoAnterior());
-				eventoTemp.setEventoAnterior(evento);
 				eventoTemp.getEventoAnterior().setProximoEvento(evento);
+				eventoTemp.setEventoAnterior(evento);
+				
 			}
 		}
 		return evento;
