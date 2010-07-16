@@ -1,4 +1,11 @@
 Simulacao:
 TAp(i)= tempo de acesso de um quadro na estação i
 
-Criei um atributo chamado tap... ele marca o INICIO da tentativa de envio do quadro... completo amanha isso aqui
+Criei um atributo chamado tap no quadro. Como funciona:
+
+1) quando o quadro é criado e o primeiro evento de sentir o meio dele é gerado, inicio o tap com o tempo que ele foi iniciado
+
+2) quando o quadro é transmitido, ou seja, qd o tx ta ocioso e ocorre o envio, eu atualizo esse tap com o tempo de acesso dele na estacao
+
+3) quando a estacao recebe o quadro, é confirmado o recebimento dele e aí sim coletamos a estatistica dele. Lembrando que só quadros transmitido com sucesso vale.
+
