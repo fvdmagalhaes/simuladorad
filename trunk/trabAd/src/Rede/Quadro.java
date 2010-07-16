@@ -10,7 +10,17 @@ public class Quadro {
 	int id;
 	int numeroSequencia;
 	boolean quadroConfirmado;
+	Double tap;
 	
+
+	public Double getTap() {
+		return tap;
+	}
+
+	public void setTap(Double tap) {
+		this.tap = tap;
+	}
+
 	public static int getUltimoId() {
 		return ultimoId;
 	}
