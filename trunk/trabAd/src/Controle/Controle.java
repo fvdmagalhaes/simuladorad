@@ -3,12 +3,13 @@ package Controle;
 import java.util.List;
 import java.util.Random;
 
+import javax.naming.BinaryRefAddr;
+
 import vo.EventoVo;
 import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
 import Rede.Hub;
-import Rede.Pacote;
 import Rede.Quadro;
 import Rede.TipoEvento;
 
@@ -17,7 +18,7 @@ public class Controle {
 	public static Evento insereEvento(Evento evento, Evento ultimo)
 	{
 		
-		/*Evento eventoTemp = new Evento();
+		Evento eventoTemp = new Evento();
 		eventoTemp=ultimo;
 		//caso exista algum evento na lista
 		if(ultimo != null)
@@ -38,7 +39,7 @@ public class Controle {
 		
 		//evento=a ser inserido
 		//ultimo=evento de refrencia
-	*/
+		/*
 		Evento anterior,posterior;
 		
 		if(evento.getTempo()>=ultimo.getTempo()){
@@ -56,10 +57,10 @@ public class Controle {
 			}else	if(anterior==null){
 						evento.setProximoEvento(ultimo);
 						ultimo.setEventoAnterior(evento);
-			}else	if(anterior!=null && anterior.getTempo()>evento.getTempo()){
+			}else	if(anterior!=null && anterior.getTempo()>=evento.getTempo()){
 							posterior=anterior;
 							anterior=anterior.getEventoAnterior();
-					}else	if(posterior!=null && evento.getTempo()>=posterior.getTempo()){
+					}else	if(posterior!=null && evento.getTempo()>posterior.getTempo()){
 									anterior=posterior;
 									posterior=posterior.getProximoEvento();
 							}
@@ -81,7 +82,9 @@ public class Controle {
 				evento.setProximoEvento(posterior);
 			}
 	
-			return evento;	
+		return evento;
+		*/
+		
 	}
 	public static boolean verificaProximo(Evento eventoTemp, Evento eventoInsere)
 	{
@@ -102,25 +105,11 @@ public class Controle {
 		EventoVo eventoVo = new EventoVo();
 		
 		System.out.println("---------------------------------------");
-		if(evento.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
-			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": HUB Retransmite o quadro "+evento.getQuadro().getId());
-		/*else
-			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo());*/
-		}else	if(evento.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
+		if(evento.getTipo()==TipoEvento.RETRANSMITE_QUADRO)
 			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": HUB Retransmite o quadro");
-		}else	if(evento.getTipo()==TipoEvento.RECEBE_QUADRO){
-			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo()+" Pacote: "+evento.getPacote().getId()+" Quadro: "+evento.getQuadro().getId());
-		}else	if(evento.getTipo()==TipoEvento.RECEBE_PACOTE){
-			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo()+" Pacote: "+evento.getPacote().getId());
-		}else	if(evento.getTipo()==TipoEvento.REFORCO_COLISAO){
+		else
 			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo());
-		}else	if(evento.getTipo()==TipoEvento.SENTE_MEIO){
-			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo());
-		}else	if(evento.getTipo()==TipoEvento.TRANSMITE_QUADRO){
-			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo()+" Pacote: "+evento.getPacote().getId()+" Quadro: "+evento.getQuadro().getId());
-		}
-			
-			
+		
 		System.out.println("\n");
 		System.out.println("Existem esses eventos para serem tratados:");
 		System.out.println("\n");
@@ -131,19 +120,11 @@ public class Controle {
 			ev = ev.getProximoEvento();
 			
 			if(ev != null){
-				if(ev.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
+				if(ev.getTipo()==TipoEvento.RETRANSMITE_QUADRO)
 					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": HUB Retransmite o quadro");
-				}else	if(ev.getTipo()==TipoEvento.RECEBE_QUADRO){
-					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo()+" Pacote: "+ev.getPacote().getId()+" Quadro: "+ev.getQuadro().getId());
-				}else	if(ev.getTipo()==TipoEvento.RECEBE_PACOTE){
-					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo()+" Pacote: "+ev.getPacote().getId());
-				}else	if(ev.getTipo()==TipoEvento.REFORCO_COLISAO){
+				else
 					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo());
-				}else	if(ev.getTipo()==TipoEvento.SENTE_MEIO){
-					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo());
-				}else	if(ev.getTipo()==TipoEvento.TRANSMITE_QUADRO){
-					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo()+" Pacote: "+ev.getPacote().getId()+" Quadro: "+ev.getQuadro().getId());
-				}
+
 			}
 		}
 		
@@ -151,8 +132,7 @@ public class Controle {
 			Evento evento2 = null;
 			//obtém a estação que está sentindo o meio
 			Estacao estacao=evento.getQuadro().getPacote().getEstacao();
-			if(estacao.getTx().getOcioso())
-			{
+			if(estacao.getTx().getOcioso()){
 				
 				//se tx esta ocioso, verifica se já foram passados os 9,6 us = 9,6 x10^-6 s
 				if(evento.getTempo() >= (ultimaTransmissao.getTempo()+0.0000096))
@@ -160,58 +140,18 @@ public class Controle {
 					//caso já tenha passado cria um evento de transmissao
 					evento2=new Evento();
 					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
-					Quadro novoQuadro=new Quadro();
-					//se o quadro foi o ultimo do atual pacote
-					if(evento.getQuadro().getPacote().getSequenciaEnviada()==evento.getEstacao().getPmf()){
-						Pacote pacote=evento.getEstacao().getPacote();
-						if(pacote!=null && pacote.recebidoPelaEstacao){
-//							o quadro e o primeiro do novo pacote
-							novoQuadro.setNumeroSequencia(1);
-							//pega o proximo pacote da estacao
-							novoQuadro.setPacote(pacote);
-							evento2.setPacote(pacote);
-							evento2.setQuadro(novoQuadro);
-							//tempo de transmissao, inicia imediatamente
-							//tempo do evento de transmissao e igual ao de sentir o meio
-							evento2.setTempo(evento.getTempo());
-							evento2.setEstacao(evento.getEstacao());
-						}
-					}else{
-						//o novo quadro é o próximo do atual pacote
-						novoQuadro.setNumeroSequencia(evento.getQuadro().getNumeroSequencia()+1);
-						novoQuadro.setPacote(evento.getPacote());
-						evento2.setPacote(evento.getPacote());
-						evento2.setQuadro(novoQuadro);
-						//tempo de transmissao, inicia imediatamente
-						//tempo do evento de transmissao e igual ao de sentir o meio
-						evento2.setTempo(evento.getTempo());
-						evento2.setEstacao(evento.getEstacao());
-					}
-					
+					evento2.setQuadro(evento.getQuadro());
+					//tempo de transmissao, inicia imediatamente
+					//tempo do evento de transmissao e igual ao de sentir o meio
+					evento2.setTempo(evento.getTempo());
 				}else{
 					//espera a contagem do tempo restante para passar os 9,6us e transmite imediatamente.
 					//Entao vou criar um evento com o tempo atual + restante
 					evento2=new Evento();
 					evento2.setTipo(TipoEvento.TRANSMITE_QUADRO);
-					
-					Quadro novoQuadro=new Quadro();
-					//se o quadro foi o ultimo do atual pacote
-					if(evento.getQuadro().getPacote().getSequenciaEnviada()==evento.getEstacao().getPmf()){
-						//o quadro e o primeiro do novo pacote
-						novoQuadro.setNumeroSequencia(1);
-						//pega o proximo pacote da estacao
-						novoQuadro.setPacote(evento.getEstacao().getPacote());
-					}else{
-						//o novo quadro é o próximo do atual pacote
-						novoQuadro.setNumeroSequencia(evento.getQuadro().getNumeroSequencia()+1);
-						novoQuadro.setPacote(evento.getPacote());
-					}
-					evento2.setQuadro(novoQuadro);
-					
+					evento2.setQuadro(evento.getQuadro());
 					//evento de transmissao vai ocorrer 0,0000096 instante após a ultima transmissão
 					evento2.setTempo(ultimaTransmissao.getTempo()+0.0000096);
-					evento2.setEstacao(evento.getEstacao());
-					evento2.setPacote(evento.getQuadro().getPacote());
 					//evento2.setTempo(tempoAtual + (evento.getTempo()-(ultimaTransmissao.getTempo()+0.0000096)));
 				}
 			}else{
@@ -219,10 +159,7 @@ public class Controle {
 				evento2=new Evento();
 				evento2.setTipo(TipoEvento.SENTE_MEIO);
 				//ele persiste sentindo o meio até a transmissao acabar. O tempo a ser sentido dinovo eh o tempo do proximo evento
-				evento2.setTempo(evento.getProximoEvento().getTempo()+0.1);
-				evento2.setEstacao(evento.getEstacao());
-				evento2.setQuadro(evento.getQuadro());
-				evento2.setPacote(evento.getPacote());
+				evento2.setTempo(evento.getProximoEvento().getTempo()+1);
 			}
 			
 			//insere o evento2 na lista. precisa passar o ultimo evento executado que é o evento sente o meio que acabamos de executar
@@ -248,17 +185,9 @@ public class Controle {
 			Estacao estacao = evento.getEstacao();
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
 			
-			if(estacao.getUltimoQuadroEnviado().equals(evento.getQuadro()) /*&& evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia()*/)
-			{		
-				Evento senteMeio=new Evento();
-				senteMeio.setTipo(TipoEvento.SENTE_MEIO);
-				senteMeio.setTempo(evento.getTempo());
-				senteMeio.setEstacao(evento.getEstacao());
-				senteMeio.setQuadro(evento.getQuadro());
-				senteMeio.setEstacao(evento.getEstacao());
-				senteMeio.setPacote(evento.getPacote());
-				Controle.insereEvento(senteMeio, evento);
-				/*int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
+			if(estacao.getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
+			{			
+				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
 				
 				if(numeroSequencia < estacao.getPmf()){
 					//agora tem que gerar o proximo quadro que vai  ser enviado...
@@ -267,8 +196,7 @@ public class Controle {
 					quadro= new Quadro();
 					//a estacao gera o primeiro quadro da sequencia de quadros. Assim que a estacao confirmar o envio deste quadro, gera o proximo
 					evento.getPacote().setSequenciaEnviada(numeroSequencia);
-					//O canal de recepçao da estaçao agora esta ocioso
-					estacao.getRx().setOcioso(true);
+					
 					quadro.setNumeroSequencia(numeroSequencia);
 					quadro.setPacote(evento.getPacote());
 					//cria um evento de enviar quadro para o hub para cada quadro
@@ -277,21 +205,10 @@ public class Controle {
 					eventoQ.setTipo(TipoEvento.TRANSMITE_QUADRO);
 					eventoQ.setTempo(evento.getTempo());
 					eventoQ.setEstacao(estacao);
-					//FIM DE TRANSMISSAO COM SUCESSO
-					eventoVo.setUltimoEvento(evento);
-					eventoVo.setVerificaTransmissao(true);
 
 					//insere o evento na lista
 					insereEvento(eventoQ,evento);	
-				}else{
-					//casos eja o ultimo quadro do pacote,a estação sente o meio
-					Quadro quadro=new Quadro();
-					Evento senteMeio=new Evento();
-					senteMeio.setTipo(TipoEvento.SENTE_MEIO);
-					senteMeio.setTempo(evento.getTempo());
-					senteMeio.setEstacao(evento.getEstacao());
-					Controle.insereEvento(senteMeio, evento);
-				}*/
+				}
 
 			}else{
 				//caso nao seja deve dar colisao
@@ -303,19 +220,18 @@ public class Controle {
 			
 			//retorna o ultimo evento executado
 			eventoVo.setUltimoEvento(evento);
-			//o evento nao eh uma transmissao com sucesso nem reforco de colisao
-			eventoVo.setVerificaTransmissao(false);
+			//o evento eh uma transmissao com sucesso
+			eventoVo.setVerificaTransmissao(true);
 			
 		 }else if(evento.getTipo().equals(TipoEvento.TRANSMITE_QUADRO))
 		 {
 			 Estacao estacao = evento.getQuadro().getPacote().getEstacao();
 			 EventoVo eventovoAtrazo = new EventoVo();
-			 evento.getPacote().setSequenciaEnviada(evento.getQuadro().getNumeroSequencia());
 			 //Caso o canal da estacao esteja ocioso
 			 if(estacao.getTx().getOcioso())
 			 {
 				 estacao.getTx().setOcioso(false);
-				 Double tempoTransmissao = estacao.getRx().getTempoTransmissao();
+				 Double tempoTransmissao = estacao.getTx().getTempoTransmissao();
 				 //Cria um evento de retransmissao do hub
 				 Evento eventoHub = new Evento();
 				 eventoHub.setQuadro(evento.getQuadro());
@@ -327,7 +243,6 @@ public class Controle {
 				 insereEvento(eventoHub,evento);
 				 //Retorna o ultimo evento executado
 				 eventoVo.setUltimoEvento(evento);
-				 
 				 eventoVo.setVerificaTransmissao(false);
 				 //Seta esse quadro como o ultimo enviado pela estacao
 				 estacao.setUltimoQuadroEnviado(evento.getQuadro());
@@ -345,7 +260,6 @@ public class Controle {
 				 reforcoColisao.setQuadro(evento.getQuadro());
 				 //3,2^10-6
 				 reforcoColisao.setTempo(evento.getTempo()+0.0000032);
-				 
 				 eventoVo.setUltimoEvento(reforcoColisao);
 				 eventoVo.setVerificaTransmissao(true);
 				 
@@ -371,10 +285,9 @@ public class Controle {
 			 //Envia o quadro para o rx de tdas as estacoes
 			 Hub hub = evento.getQuadro().getPacote().getEstacao().getHub();
 			 List<Canal> listaCanais = hub.getListaCanais();
-			 Evento eventoRecebeEstacao=new Evento();
+			 Evento eventoRecebeEstacao = new Evento();
 			 for(Canal canal:(List<Canal>) listaCanais)
 			 {
-				 eventoRecebeEstacao= new Evento();
 				 System.out.println("estacao que vai receber o quadro:  " + canal.getEstacao().getId());
 				 //Recupera o tempo de propagacao de cada canal e gera um evento de recepcao na estacao
 				 //Eh necessario saber a estacao para a qual o hub esta enviando em caso. Nao tem mais como recuperar a estacao pelo quadro
@@ -385,35 +298,56 @@ public class Controle {
 					 eventoRecebeEstacao.setPacote(evento.getQuadro().getPacote());
 					 eventoRecebeEstacao.setTempo(evento.getTempo() + canal.getTempoTransmissao());
 					 eventoRecebeEstacao.setTipo(TipoEvento.RECEBE_QUADRO);
-					 eventoRecebeEstacao.setEstacao(canal.getEstacao());
 					 //O canal rx agora está ocupado
 					 canal.setOcioso(false);
 					 //O tx agora esta ocioso
-					 //PQ O TX FICA OCIOSO????
 					 canal.getEstacao().getTx().setOcioso(true);
 					 insereEvento(eventoRecebeEstacao,evento);
+					 eventoVo.setUltimoEvento(eventoRecebeEstacao);
+					 eventoVo.setVerificaTransmissao(false);
 				 }else{
 					 System.out.println("o pacote"+evento.getQuadro().getPacote().getSequenciaEnviada()+"foi perdido pois o canal"+canal.getEstacao().getId()+"estava ocupado");
+					 double atrazo = 0.0;
+					 Estacao estacao = canal.getEstacao();
+					 //Transmite um reforco de colisao
+					 EventoVo eventovoAtrazo = new EventoVo();
+					 Evento reforcoColisao = new Evento();
+					 reforcoColisao.setTipo(TipoEvento.REFORCO_COLISAO);
+					 reforcoColisao.setEstacao(canal.getEstacao());
+					 reforcoColisao.setQuadro(evento.getQuadro());
+					 //3,2^10-6
+					 reforcoColisao.setTempo(evento.getTempo()+0.0000032);
+					 eventoVo.setUltimoEvento(reforcoColisao);
+					 eventoVo.setVerificaTransmissao(true);
+					 
+					 //Tenta renviar o quadro apos esse atrazo mais um tempo aleatorio
+					 eventovoAtrazo = binaryBackof(canal.getEstacao());
+					//Caso o quadro nao tenha sido descartado
+					 if(!eventovoAtrazo.getDescartado())
+					 {
+						 Evento transmiteQuadro = new Evento();
+						 transmiteQuadro.setEstacao(canal.getEstacao());
+						 transmiteQuadro.setPacote(evento.getQuadro().getPacote());
+						 transmiteQuadro.setQuadro(evento.getQuadro());
+						 transmiteQuadro.setTipo(TipoEvento.TRANSMITE_QUADRO);
+						 transmiteQuadro.setTempo(evento.getTempo()+0.0000032+eventovoAtrazo.getAtrazo());
+						
+					 }else{
+						 //descarta o quadro
+						 System.out.println("quadro"+evento.getQuadro().getId()+"descartado");
+					 }
+					 estacao.setNumColisoes(estacao.getNumColisoes()+1);
 				 }
 			 }
-			 //Agora eu fiquei em duvida. GUardei o ultimo quadro transmitido pelo hub
-			 eventoVo.setUltimoEvento(eventoRecebeEstacao);
-			 eventoVo.setVerificaTransmissao(false);
+			
+			 
 		 }else if(evento.getTipo().equals(TipoEvento.RECEBE_PACOTE)){
-			 evento.getPacote().recebidoPelaEstacao=true;
-			 if(evento.getProximoEvento()==null){
-				 evento.getEstacao().recebePacote(evento.getPacote(), evento.getTempo(), evento);
-			 }
+			 evento.getEstacao().recebePacote(evento.getPacote(), evento.getTempo(), evento);
 			 Evento receberProximo=new Evento();
 			 receberProximo.setTipo(TipoEvento.RECEBE_PACOTE);
 			 receberProximo.setEstacao(evento.getEstacao());
 			 receberProximo.setTempo(evento.getTempo()+evento.getEstacao().getTaxaDeChegada());
-			 Pacote pacote=new Pacote();
-			 pacote.setEstacao(evento.getEstacao());
-			 pacote.setTamanho(evento.getEstacao().getPmf()*Quadro.TAMANHO);
-			 receberProximo.setPacote(pacote);
-			 //adiciona um pacote a lista de pacotes da estação
-			 evento.getEstacao().addPacote(pacote);
+			 receberProximo.setEstacao(evento.getEstacao());
 			 
 			 Controle.insereEvento(receberProximo,evento);
 		 }
