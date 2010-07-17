@@ -211,7 +211,7 @@ public class Controle {
 			Estacao estacao = evento.getEstacao();
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
 			
-			if(estacao.getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
+			if(estacao.getUltimoQuadroEnviado() != null && estacao.getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
 			{			
 				//quadro enviado com sucesso... agora podemos colher o tap aqui vai gerar o metodo de calcular o tap...
 				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap());
