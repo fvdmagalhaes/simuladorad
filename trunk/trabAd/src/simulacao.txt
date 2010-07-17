@@ -9,3 +9,4 @@ Criei um atributo chamado tap no quadro. Como funciona:
 
 3) quando a estacao recebe o quadro, é confirmado o recebimento dele e aí sim coletamos a estatistica dele. Lembrando que só quadros transmitido com sucesso vale.
 
+No método trataEvento vao ter variaveis de controle da rodada
