@@ -9,4 +9,18 @@ Criei um atributo chamado tap no quadro. Como funciona:
 
 3) quando a estacao recebe o quadro, é confirmado o recebimento dele e aí sim coletamos a estatistica dele. Lembrando que só quadros transmitido com sucesso vale.
 
-No método trataEvento vao ter variaveis de controle da rodada
+
+
+
+A coleta dos dados eu fiz da seguinte forma:
+
+Cada medida tem um numero de rodadas que sao tiradas as amostras
+
+Cada rodada tem um numero de amostras X
+
+A cada iteracao, vou pegando a media da amostra e jogando na rodada
+
+Rodada = conjunto de amostras de uma variavel
+
+Iteracao = uma amostra dessa variavel
+
