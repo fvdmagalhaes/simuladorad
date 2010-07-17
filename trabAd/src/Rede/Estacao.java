@@ -14,7 +14,7 @@ public class Estacao {
 	int numeroColisoes;
 	//numero de quadros em uma mensagem
 	int pmf;
-	Quadro ultimoQuadroEnviado;
+	//Quadro ultimoQuadroEnviado;
 	boolean RecebeuConfirmacaoUltimoQuadro;
 	private static int ultimoId=0;
 	//milisegundos
@@ -81,13 +81,13 @@ public class Estacao {
 		this.pmf = pmf;
 	}
 	
-	public Quadro getUltimoQuadroEnviado(){
+	/*public Quadro getUltimoQuadroEnviado(){
 		return ultimoQuadroEnviado;
 	}
 	
 	public void setUltimoQuadroEnviado(Quadro ultimoQuadroEnviado){
 		this.ultimoQuadroEnviado = ultimoQuadroEnviado;		
-	}
+	}*/
 	
 	public boolean getRecebeuConfirmacaoUltimoQuadro(){
 		return RecebeuConfirmacaoUltimoQuadro;
