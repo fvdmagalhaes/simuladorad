@@ -11,6 +11,7 @@ import Rede.Hub;
 import Rede.Pacote;
 import Rede.Quadro;
 import Rede.TipoEvento;
+import Simulacao.Tap;
 
 /*
  * Trabalho de AD 2010-1
@@ -27,8 +28,26 @@ public class main {
 		//vamos adicionar as informacoes do sistema
 		
 		//int CAPACIDADE = x;
+		//instancia as classes das medidas do simulador
+		Tap tap1 = new Tap();
+		tap1.setNumMaximoIteracoes(500);
+		tap1.setNumMaximoRodadas(100);
+		tap1.setAcabou(false);
 		
-		//Controle controle = new Controle();
+		Tap tap2 = new Tap();
+		tap2.setNumMaximoIteracoes(500);
+		tap2.setNumMaximoRodadas(100);
+		tap2.setAcabou(false);
+		
+		Tap tap3 = new Tap();
+		tap3.setNumMaximoIteracoes(500);
+		tap3.setNumMaximoRodadas(100);
+		tap3.setAcabou(false);
+		
+		Tap tap4 = new Tap();
+		tap4.setNumMaximoIteracoes(500);
+		tap4.setNumMaximoRodadas(100);
+		tap4.setAcabou(false);
 		
 		//instancia as estacoes do sistema
 		Estacao e1 = new Estacao();
@@ -40,6 +59,10 @@ public class main {
 		e3.setNumColisoes(0);
 		e4.setNumColisoes(0);
 		
+		e1.setTap(tap1);
+		e2.setTap(tap2);
+		e3.setTap(tap3);
+		e4.setTap(tap4);
 		
 		//canais
 		Canal tx1 = new Canal();
@@ -164,7 +187,7 @@ public class main {
 		int i=0;
 		//apenas para teste
 		Evento primeiro=atual;
-		while(i<10){
+		while(!e1.getTap().getAcabou()){
 			eventovo = Controle.trataEventos(atual,ultimaTransmissao);
 			//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 			if(eventovo.getVerificaTransmissao())
@@ -174,7 +197,8 @@ public class main {
 			atual=atual.getProximoEvento();
 			i++;
 		}
-		i=0;
+		
+		e1.getTap().getMediaFinal();
 		
 		//Controle.trataEventos(ultimoEvento,null);
 		

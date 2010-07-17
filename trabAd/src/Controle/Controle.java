@@ -213,6 +213,9 @@ public class Controle {
 			
 			if(estacao.getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
 			{			
+				//quadro enviado com sucesso... agora podemos colher o tap aqui vai gerar o metodo de calcular o tap...
+				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap());
+				
 				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
 				
 				if(numeroSequencia < estacao.getPmf()){
@@ -225,10 +228,11 @@ public class Controle {
 					
 					quadro.setNumeroSequencia(numeroSequencia);
 					quadro.setPacote(evento.getPacote());
-					//cria um evento de enviar quadro para o hub para cada quadro
+					quadro.setTap(evento.getTempo());
+
 					eventoQ = new Evento();
 					eventoQ.setQuadro(quadro);
-					eventoQ.setTipo(TipoEvento.TRANSMITE_QUADRO);
+					eventoQ.setTipo(TipoEvento.SENTE_MEIO);
 					eventoQ.setTempo(evento.getTempo());
 					eventoQ.setEstacao(estacao);
 
@@ -256,6 +260,10 @@ public class Controle {
 			 //Caso o canal da estacao esteja ocioso
 			 if(estacao.getTx().getOcioso())
 			 {
+				 //vai enviar o quadro, hora de calcular o TAP
+				Double tap = evento.getTempo() - evento.getQuadro().getTap();
+				evento.getQuadro().setTap(tap);
+				
 				 estacao.getTx().setOcioso(false);
 				 Double tempoTransmissao = estacao.getTx().getTempoTransmissao();
 				 //Cria um evento de retransmissao do hub
