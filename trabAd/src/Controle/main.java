@@ -140,9 +140,9 @@ public class main {
 		//Guarda apenas os canais de recepcao das estacoes pois na hr de calcular o tempo que demora para enviar para cada estacao vms 
 		//calcular utilizando esses canais
 		listaCanais.add(rx1);
-		//listaCanais.add(rx2);
-		/*listaCanais.add(rx3);
-		listaCanais.add(rx4);*/
+		listaCanais.add(rx2);
+		listaCanais.add(rx3);
+		listaCanais.add(rx4);
 		hub.setListaCanais(listaCanais);
 		
 	/*Agora podemos iniciar nossa rede... 
@@ -167,7 +167,7 @@ public class main {
 	
 //		para o cenario 1 A1 = A2 = 40ms determistico p1=p2=40
 		e1.setTaxaDeChegada(40);
-		e1.setPmf(2);
+		e1.setPmf(40);
 		/*e2.setTaxaDeChegada(40);
 		e2.setPmf(40);*/
 		
