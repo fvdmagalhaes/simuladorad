@@ -211,7 +211,7 @@ public class Controle {
 			Estacao estacao = evento.getEstacao();
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
 			
-			if(estacao.getPacote().getUltimoQuadroEnviado() != null && estacao.getPacote().getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
+			if(evento.getQuadro().getPacote().getUltimoQuadroEnviado() != null && evento.getQuadro().getPacote().getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
 			{			
 				//quadro enviado com sucesso... agora podemos colher o tap aqui vai gerar o metodo de calcular o tap...
 				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap());
@@ -235,6 +235,7 @@ public class Controle {
 					eventoQ.setTipo(TipoEvento.SENTE_MEIO);
 					eventoQ.setTempo(evento.getTempo());
 					eventoQ.setEstacao(estacao);
+					eventoQ.setPacote(quadro.getPacote());
 
 					//insere o evento na lista
 					insereEvento(eventoQ,evento);	
@@ -279,7 +280,7 @@ public class Controle {
 				 eventoVo.setUltimoEvento(evento);
 				 eventoVo.setVerificaTransmissao(false);
 				 //Seta esse quadro como o ultimo enviado pela estacao
-				 estacao.getPacote().setUltimoQuadroEnviado(evento.getQuadro());
+				 evento.getPacote().setUltimoQuadroEnviado(evento.getQuadro());
 			 }else{
 				 System.out.println("O quadro"+evento.getQuadro().getNumeroSequencia()+"da estacao"+estacao.getId()+"foi perdido pois o canal estava ocupado");
 				 //aborta a transmissão em andamento, transmite um sinal de reforço de colisão por 3,2 us (equivalente a tx de 32 bits) e, após este atraso, escolhe um instante
