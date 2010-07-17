@@ -7,8 +7,18 @@ public class Pacote {
 	int tamanho;
 	Estacao estacao;
 	int sequenciaEnviada;
-	public boolean recebidoPelaEstacao;
+	//public boolean recebidoPelaEstacao;
 	//em milisegundos
+	Quadro ultimoQuadroEnviado;
+	
+	
+	public Quadro getUltimoQuadroEnviado(){
+		return ultimoQuadroEnviado;
+	}
+
+	public void setUltimoQuadroEnviado(Quadro ultimoQuadroEnviado){
+		this.ultimoQuadroEnviado = ultimoQuadroEnviado;		
+	}
 	
 	public int getSequenciaEnviada() {
 		return sequenciaEnviada;
