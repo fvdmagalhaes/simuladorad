@@ -152,9 +152,9 @@ public class Controle {
 			Estacao estacao=evento.getQuadro().getPacote().getEstacao();
 			if(estacao.getTx().getOcioso()){
 				
-				//se tx esta ocioso, verifica se já foram passados os 9,6 us = 9,6 x10^-6 s
+				//se tx esta ocioso, verifica se já foram passados os 9,6 us = 9,6 x10^-3 ms
 				//caso ainda n tenha tido a ultima transmissao transmite imediatamente
-				if(ultimaTransmissao.getQuadro() == null || evento.getTempo() >= (ultimaTransmissao.getTempo()+0.0000096))
+				if(ultimaTransmissao.getQuadro() == null || evento.getTempo() >= (ultimaTransmissao.getTempo()+0.0096))
 				{
 					//caso já tenha passado cria um evento de transmissao
 					evento2=new Evento();
@@ -174,7 +174,7 @@ public class Controle {
 					evento2.setEstacao(evento.getEstacao());
 					evento2.setPacote(evento.getPacote());
 					//evento de transmissao vai ocorrer 0,0000096 instante após a ultima transmissão
-					evento2.setTempo(ultimaTransmissao.getTempo()+0.0000096);
+					evento2.setTempo(ultimaTransmissao.getTempo()+0.0096);
 					//evento2.setTempo(tempoAtual + (evento.getTempo()-(ultimaTransmissao.getTempo()+0.0000096)));
 				}
 			}else{
@@ -282,7 +282,7 @@ public class Controle {
 				 estacao.setUltimoQuadroEnviado(evento.getQuadro());
 			 }else{
 				 System.out.println("O quadro"+evento.getQuadro().getNumeroSequencia()+"da estacao"+estacao.getId()+"foi perdido pois o canal estava ocupado");
-				 //aborta a transmissão em andamento, transmite um sinal de reforço de colisão por 3,2 ?s (equivalente a tx de 32 bits) e, após este atraso, escolhe um instante
+				 //aborta a transmissão em andamento, transmite um sinal de reforço de colisão por 3,2 us (equivalente a tx de 32 bits) e, após este atraso, escolhe um instante
 				 //aleatório para retransmissão, segundo o algoritmo Binary Backoff 
 				 //Apenas insere no eventovo o a ultima transmissao como um evento de reforço de colisao para que isso seja verificado
 				 //no sente o meio. Cria um novo evento de transmissao com o tempo igual ao tempo de atrazo do reforço + tempo aleatorio
@@ -292,8 +292,8 @@ public class Controle {
 				 reforcoColisao.setTipo(TipoEvento.REFORCO_COLISAO);
 				 reforcoColisao.setEstacao(estacao);
 				 reforcoColisao.setQuadro(evento.getQuadro());
-				 //3,2^10-6
-				 reforcoColisao.setTempo(evento.getTempo()+0.0000032);
+				 //3,2^10-3ms
+				 reforcoColisao.setTempo(evento.getTempo()+0.0032);
 				 eventoVo.setUltimoEvento(reforcoColisao);
 				 eventoVo.setVerificaTransmissao(true);
 				 
@@ -306,7 +306,7 @@ public class Controle {
 					 transmiteQuadro.setPacote(evento.getQuadro().getPacote());
 					 transmiteQuadro.setQuadro(evento.getQuadro());
 					 transmiteQuadro.setTipo(TipoEvento.TRANSMITE_QUADRO);
-					 transmiteQuadro.setTempo(evento.getTempo()+0.0000032+eventovoAtrazo.getAtrazo());
+					 transmiteQuadro.setTempo(evento.getTempo()+0.0032+eventovoAtrazo.getAtrazo());
 					
 				 }else{
 					 //descarta o quadro
@@ -351,7 +351,7 @@ public class Controle {
 					 reforcoColisao.setEstacao(canal.getEstacao());
 					 reforcoColisao.setQuadro(evento.getQuadro());
 					 //3,2^10-6
-					 reforcoColisao.setTempo(evento.getTempo()+0.0000032);
+					 reforcoColisao.setTempo(evento.getTempo()+0.0032);
 					 eventoVo.setUltimoEvento(reforcoColisao);
 					 eventoVo.setVerificaTransmissao(true);
 					 
@@ -365,7 +365,7 @@ public class Controle {
 						 transmiteQuadro.setPacote(evento.getQuadro().getPacote());
 						 transmiteQuadro.setQuadro(evento.getQuadro());
 						 transmiteQuadro.setTipo(TipoEvento.TRANSMITE_QUADRO);
-						 transmiteQuadro.setTempo(evento.getTempo()+0.0000032+eventovoAtrazo.getAtrazo());
+						 transmiteQuadro.setTempo(evento.getTempo()+0.0032+eventovoAtrazo.getAtrazo());
 						
 					 }else{
 						 //descarta o quadro
