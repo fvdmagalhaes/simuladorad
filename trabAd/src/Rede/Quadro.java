@@ -11,6 +11,7 @@ public class Quadro {
 	int numeroSequencia;
 	boolean quadroConfirmado;
 	Double tap;
+	Double tam;
 	
 
 	public Double getTap() {
@@ -21,6 +22,15 @@ public class Quadro {
 		this.tap = tap;
 	}
 
+	public Double getTam() {
+		return tam;
+	}
+
+	public void setTam(Double tam) {
+		this.tam = tam;
+	}
+	
+	
 	public static int getUltimoId() {
 		return ultimoId;
 	}
