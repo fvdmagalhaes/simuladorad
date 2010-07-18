@@ -3,6 +3,7 @@ package Simulacao;
 public class Rodada {
 	int numIteracoes;
 	Double media;
+	int mediaInt;
 	public int getNumIteracoes() {
 		return numIteracoes;
 	}
@@ -16,5 +17,13 @@ public class Rodada {
 		this.media = media;
 	}
 	
+	public int getMediaInt()
+	{
+		return mediaInt;
+	}
+	public void setMediaInt(int mediaInt)
+	{
+		this.mediaInt = mediaInt;
+	}
 	
 }
