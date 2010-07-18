@@ -285,7 +285,7 @@ public class Controle {
 				//hora de calcular o TAM
 				if(evento.getQuadro().getNumeroSequencia() < estacao.getPmf()){
 					Double tam = evento.getTempo() - evento.getQuadro().getTam();
-					evento.getQuadro().setTap(tam);
+					evento.getQuadro().setTam(tam);
 				}
 				
 				 estacao.getTx().setOcioso(false);
