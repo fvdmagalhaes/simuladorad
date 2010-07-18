@@ -85,6 +85,11 @@ public class main {
 		e3.setTap(tap3);
 		e4.setTap(tap4);
 		
+		e1.setTam(tam1);
+		e2.setTam(tam2);
+		e3.setTam(tam3);
+		e4.setTam(tam4);
+		
 		//canais
 		Canal tx1 = new Canal();
 		Canal tx2 = new Canal();
