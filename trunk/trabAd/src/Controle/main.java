@@ -2,6 +2,17 @@ package Controle;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
+import java.awt.event.*;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import vo.EventoVo;
 import Rede.Canal;
@@ -14,6 +25,7 @@ import Rede.TipoEvento;
 import Simulacao.Tam;
 import Simulacao.Tap;
 
+
 /*
  * Trabalho de AD 2010-1
  *  
@@ -25,11 +37,15 @@ public class main {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		//vamos adicionar as informacoes do sistema
 		
 		//int CAPACIDADE = x;
 		//instancia as classes das medidas do simulador
+		
+		new Interface();
+		
 		Tap tap1 = new Tap();
 		tap1.setNumMaximoIteracoes(500);
 		tap1.setNumMaximoRodadas(100);
@@ -228,6 +244,8 @@ public class main {
 		
 		e1.getTap().getMediaFinal();
 		
+	}
+		
 		//Controle.trataEventos(ultimoEvento,null);
 		
 		//System.out.println(ultimoEvento.getProximoEvento().getTipo());
@@ -237,7 +255,7 @@ public class main {
 		
 		//aqui acaba a funcao main
 		
-	}
+	
 	
 
 }
