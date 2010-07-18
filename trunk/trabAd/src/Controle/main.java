@@ -24,6 +24,7 @@ import Rede.Quadro;
 import Rede.TipoEvento;
 import Simulacao.Tam;
 import Simulacao.Tap;
+import Simulacao.ncm;
 
 
 /*
@@ -86,6 +87,27 @@ public class main {
 		tam4.setNumMaximoRodadas(100);
 		tam4.setAcabou(false);
 		
+		ncm ncm1 = new ncm();
+		ncm1.setNumMaximoIteracoes(1000);
+		ncm1.setNumMaximoRodadas(100);
+		ncm1.setAcabou(false);
+		
+		ncm ncm2 = new ncm();
+		ncm2.setNumMaximoIteracoes(1000);
+		ncm2.setNumMaximoRodadas(100);
+		ncm2.setAcabou(false);
+		
+		ncm ncm3 = new ncm();
+		ncm3.setNumMaximoIteracoes(1000);
+		ncm3.setNumMaximoRodadas(100);
+		ncm3.setAcabou(false);
+		
+		ncm ncm4 = new ncm();
+		ncm4.setNumMaximoIteracoes(1000);
+		ncm4.setNumMaximoRodadas(100);
+		ncm4.setAcabou(false);
+		
+		
 		//instancia as estacoes do sistema
 		Estacao e1 = new Estacao();
 		Estacao e2 = new Estacao();
@@ -105,6 +127,11 @@ public class main {
 		e2.setTam(tam2);
 		e3.setTam(tam3);
 		e4.setTam(tam4);
+		
+		e1.setNcm(ncm1);
+		e2.setNcm(ncm2);
+		e3.setNcm(ncm3);
+		e4.setNcm(ncm4);
 		
 		//canais
 		Canal tx1 = new Canal();
