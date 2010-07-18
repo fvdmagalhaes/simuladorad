@@ -183,6 +183,7 @@ public class Estacao {
 		quadro.setPacote(pacote);
 		quadro.setQuadroConfirmado(false);
 		quadro.setTap(tempo);
+		quadro.setTam(tempo);
 		//cria um evento de enviar quadro para o hub para cada quadro
 		evento = new Evento();
 		evento.setQuadro(quadro);
