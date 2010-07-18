@@ -211,15 +211,25 @@ public class Controle {
 			Estacao estacao = evento.getEstacao();
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
 			
-			if(evento.getQuadro().getPacote().getUltimoQuadroEnviado() != null && evento.getQuadro().getPacote().getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia())
+			if(evento.getQuadro().getPacote().getUltimoQuadroEnviado() != null && evento.getQuadro().getPacote().getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia() && evento.getEstacao().equals(evento.getPacote().getEstacao()))
 			{			
 				//quadro enviado com sucesso... agora podemos colher o tap aqui vai gerar o metodo de calcular o tap...
 				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap());
-				evento.getEstacao().getTam().adicionaMedida(evento.getQuadro().getTam());
+				
+				
 				
 				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
 				
+				
 				if(numeroSequencia < estacao.getPmf()){
+					
+					//Vai gerar um novo quadro do pacote entao vamos apenas somar o tam
+					if(evento.getQuadro().getPacote().getTam()!=null)
+					{
+						evento.getQuadro().getPacote().setTam(evento.getQuadro().getPacote().getTam()+evento.getQuadro().getTam());
+					}else{
+						evento.getQuadro().getPacote().setTam(evento.getQuadro().getTam());
+					}
 					//agora tem que gerar o proximo quadro que vai  ser enviado...
 					Quadro quadro;
 					Evento eventoQ;
@@ -241,6 +251,11 @@ public class Controle {
 
 					//insere o evento na lista
 					insereEvento(eventoQ,evento);	
+				}else{
+					//caso contrario ja colhemos todos os tams do pacote
+					evento.getEstacao().getTam().adicionaMedida(evento.getQuadro().getPacote().getTam()+evento.getQuadro().getTam());
+					//Acabou o pacote, portanto vamos adicionar a rodada do numero de colisoes do pacote sobre o numero de quadros no pacote que eh a pmf
+					evento.getEstacao().getNcm().adicionaMedida(evento.getQuadro().getPacote().getNcm()/estacao.getPmf());
 				}
 
 			}else{
@@ -267,10 +282,9 @@ public class Controle {
 				Double tap = evento.getTempo() - evento.getQuadro().getTap();
 				evento.getQuadro().setTap(tap);
 				
-				//Se o quadro sendo transmitido for o ultimo, hora de calcular o TAM
-				if(evento.getQuadro().getNumeroSequencia() == estacao.getPmf()){
-					//tam = instante de transmissao do ultimo quadro - instante de transmissao do primeiro
-					Double tam = evento.getTempo() - evento.getQuadro().getTap();
+				//hora de calcular o TAM
+				if(evento.getQuadro().getNumeroSequencia() < estacao.getPmf()){
+					Double tam = evento.getTempo() - evento.getQuadro().getTam();
 					evento.getQuadro().setTap(tam);
 				}
 				
@@ -297,6 +311,9 @@ public class Controle {
 				 //Apenas insere no eventovo o a ultima transmissao como um evento de reforço de colisao para que isso seja verificado
 				 //no sente o meio. Cria um novo evento de transmissao com o tempo igual ao tempo de atrazo do reforço + tempo aleatorio
 				 
+				 
+				 //Se deu colisao eu somo um ao nmc do pacote
+				 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm()+1);
 				 double atrazo = 0.0;
 				 Evento reforcoColisao = new Evento();
 				 reforcoColisao.setTipo(TipoEvento.REFORCO_COLISAO);
@@ -354,6 +371,8 @@ public class Controle {
 					 System.out.println("o pacote"+evento.getQuadro().getPacote().getSequenciaEnviada()+"foi perdido pois o canal"+canal.getEstacao().getId()+"estava ocupado");
 					 double atrazo = 0.0;
 					 Estacao estacao = canal.getEstacao();
+					 //Soma um no nmc do quadro
+					 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm()+1);
 					 //Transmite um reforco de colisao
 					 EventoVo eventovoAtrazo = new EventoVo();
 					 Evento reforcoColisao = new Evento();
