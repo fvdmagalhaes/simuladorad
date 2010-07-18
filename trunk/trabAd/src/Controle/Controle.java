@@ -215,9 +215,7 @@ public class Controle {
 			{			
 				//quadro enviado com sucesso... agora podemos colher o tap aqui vai gerar o metodo de calcular o tap...
 				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap());
-				
-				
-				
+								
 				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
 				
 				
