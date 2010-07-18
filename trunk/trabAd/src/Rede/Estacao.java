@@ -6,6 +6,7 @@ import java.util.List;
 import Controle.Controle;
 import Simulacao.Tam;
 import Simulacao.Tap;
+import Simulacao.ncm;
 
 public class Estacao {
 	int id;
@@ -25,6 +26,7 @@ public class Estacao {
 	
 	Tap tap;
 	Tam tam;
+	ncm ncm;
 	//private double p;//parametro para saber se a pmf é geometrica ou deterministica
 	
 	public Tap getTap() {
@@ -32,6 +34,12 @@ public class Estacao {
 	}
 	public void setTap(Tap tap) {
 		this.tap = tap;
+	}
+	public ncm getNcm() {
+		return ncm;
+	}
+	public void setNcm(ncm ncm) {
+		this.ncm = ncm;
 	}
 
 	public Tam getTam() {
@@ -184,6 +192,8 @@ public class Estacao {
 		quadro.setQuadroConfirmado(false);
 		quadro.setTap(tempo);
 		quadro.setTam(tempo);
+		//Inicialmente temos 0 colisoes de quadros desse pacote
+		pacote.setNcm(0);
 		//cria um evento de enviar quadro para o hub para cada quadro
 		evento = new Evento();
 		evento.setQuadro(quadro);
