@@ -107,7 +107,7 @@ public class Tap {
 	public Double getMediaFinal(){
 		int i=1;
 		for(Rodada rodada : rodadas){
-			System.out.println("Media da rodada " + i + ": " + rodada.getMedia());
+			System.out.println("Media Tap da rodada " + i + ": " + rodada.getMedia());
 			i++;
 		}
 		return null;
