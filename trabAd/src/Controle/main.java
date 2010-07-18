@@ -11,6 +11,7 @@ import Rede.Hub;
 import Rede.Pacote;
 import Rede.Quadro;
 import Rede.TipoEvento;
+import Simulacao.Tam;
 import Simulacao.Tap;
 
 /*
@@ -48,6 +49,26 @@ public class main {
 		tap4.setNumMaximoIteracoes(500);
 		tap4.setNumMaximoRodadas(100);
 		tap4.setAcabou(false);
+		
+		Tam tam1 = new Tam();
+		tam1.setNumMaximoIteracoes(500);
+		tam1.setNumMaximoRodadas(100);
+		tam1.setAcabou(false);
+		
+		Tam tam2 = new Tam();
+		tam2.setNumMaximoIteracoes(500);
+		tam2.setNumMaximoRodadas(100);
+		tam2.setAcabou(false);
+		
+		Tam tam3 = new Tam();
+		tam3.setNumMaximoIteracoes(500);
+		tam3.setNumMaximoRodadas(100);
+		tam3.setAcabou(false);
+		
+		Tam tam4 = new Tam();
+		tam4.setNumMaximoIteracoes(500);
+		tam4.setNumMaximoRodadas(100);
+		tam4.setAcabou(false);
 		
 		//instancia as estacoes do sistema
 		Estacao e1 = new Estacao();
@@ -166,7 +187,9 @@ public class main {
 		//Estacao 1 recebe 1 pacote de 40*1000bits
 	
 //		para o cenario 1 A1 = A2 = 40ms determistico p1=p2=40
-		e1.setTaxaDeChegada(40);
+		//só mudei a taxa de chegada do cenário 1 pra 80 pq eh o q tah na especificacao
+		//se vcs tiverem colocado 40 por algum motivo, podem mudar
+		e1.setTaxaDeChegada(80);
 		e1.setPmf(40);
 		/*e2.setTaxaDeChegada(40);
 		e2.setPmf(40);*/
