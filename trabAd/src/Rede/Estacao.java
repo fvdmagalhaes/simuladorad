@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Controle.Controle;
+import Simulacao.Tam;
 import Simulacao.Tap;
 
 public class Estacao {
@@ -23,6 +24,7 @@ public class Estacao {
 	private List<Pacote> pacotes;
 	
 	Tap tap;
+	Tam tam;
 	//private double p;//parametro para saber se a pmf é geometrica ou deterministica
 	
 	public Tap getTap() {
@@ -32,6 +34,13 @@ public class Estacao {
 		this.tap = tap;
 	}
 
+	public Tam getTam() {
+		return tam;
+	}
+	public void setTam(Tam tam) {
+		this.tam = tam;
+	}
+	
 	//Salva o hub ao qual a estacao esta ligada
 	Hub hub;
 	
