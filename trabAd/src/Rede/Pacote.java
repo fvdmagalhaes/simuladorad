@@ -10,7 +10,24 @@ public class Pacote {
 	//public boolean recebidoPelaEstacao;
 	//em milisegundos
 	Quadro ultimoQuadroEnviado;
+	Double tam;
+	int ncm;
 	
+
+	public Double getTam() {
+		return tam;
+	}
+
+	public void setTam(Double tam) {
+		this.tam = tam;
+	} 
+	public int getNcm() {
+		return ncm;
+	}
+
+	public void setNcm(int ncm) {
+		this.ncm = ncm;
+	} 
 	
 	public Quadro getUltimoQuadroEnviado(){
 		return ultimoQuadroEnviado;
