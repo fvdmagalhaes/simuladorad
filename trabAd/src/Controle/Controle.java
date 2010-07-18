@@ -271,7 +271,7 @@ public class Controle {
 				if(evento.getQuadro().getNumeroSequencia() == estacao.getPmf()){
 					//tam = instante de transmissao do ultimo quadro - instante de transmissao do primeiro
 					Double tam = evento.getTempo() - evento.getQuadro().getTap();
-					evento.getQuadro().setTap(tap);
+					evento.getQuadro().setTap(tam);
 				}
 				
 				 estacao.getTx().setOcioso(false);
