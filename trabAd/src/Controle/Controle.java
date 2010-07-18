@@ -215,6 +215,7 @@ public class Controle {
 			{			
 				//quadro enviado com sucesso... agora podemos colher o tap aqui vai gerar o metodo de calcular o tap...
 				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap());
+				evento.getEstacao().getTam().adicionaMedida(evento.getQuadro().getTam());
 				
 				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
 				
@@ -229,6 +230,7 @@ public class Controle {
 					quadro.setNumeroSequencia(numeroSequencia);
 					quadro.setPacote(evento.getPacote());
 					quadro.setTap(evento.getTempo());
+					quadro.setTam(evento.getTempo());
 
 					eventoQ = new Evento();
 					eventoQ.setQuadro(quadro);
@@ -264,6 +266,13 @@ public class Controle {
 				 //vai enviar o quadro, hora de calcular o TAP
 				Double tap = evento.getTempo() - evento.getQuadro().getTap();
 				evento.getQuadro().setTap(tap);
+				
+				//Se o quadro sendo transmitido for o ultimo, hora de calcular o TAM
+				if(evento.getQuadro().getNumeroSequencia() == estacao.getPmf()){
+					//tam = instante de transmissao do ultimo quadro - instante de transmissao do primeiro
+					Double tam = evento.getTempo() - evento.getQuadro().getTap();
+					evento.getQuadro().setTap(tap);
+				}
 				
 				 estacao.getTx().setOcioso(false);
 				 Double tempoTransmissao = estacao.getTx().getTempoTransmissao();
