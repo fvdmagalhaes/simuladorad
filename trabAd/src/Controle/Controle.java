@@ -407,6 +407,8 @@ public class Controle {
 			 }
 		 }else if(evento.getTipo().equals(TipoEvento.RETRANSMITE_QUADRO))
 		 {
+			// O tx agora esta ocioso
+			 evento.getEstacao().getTx().setOcioso(true);
 			 int CanaisTdsOciosos = 0;
 			 //Envia o quadro para o rx de tdas as estacoes
 			 Hub hub = evento.getQuadro().getPacote().getEstacao().getHub();
@@ -421,6 +423,7 @@ public class Controle {
 			 
 			 for(Canal canal:(List<Canal>) listaCanais)
 			 {
+
 				 Evento eventoRecebeEstacao = new Evento();
 				 System.out.println("estacao que vai receber o quadro:  " + canal.getEstacao().getId());
 				 //Recupera o tempo de propagacao de cada canal e gera um evento de recepcao na estacao
@@ -434,8 +437,7 @@ public class Controle {
 					 eventoRecebeEstacao.setTipo(TipoEvento.RECEBE_QUADRO);
 					 //O canal rx agora está ocupado
 					 canal.setOcioso(false);
-					 //O tx agora esta ocioso
-					 canal.getEstacao().getTx().setOcioso(true);
+					 
 					 insereEvento(eventoRecebeEstacao,evento);
 					 eventoVo.setUltimoEvento(eventoRecebeEstacao);
 					 eventoVo.setVerificaTransmissao(false);
