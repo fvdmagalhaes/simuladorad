@@ -20,7 +20,9 @@ public class Estacao {
 	boolean RecebeuConfirmacaoUltimoQuadro;
 	private static int ultimoId=0;
 	//milisegundos
-	private String distribuicaoChegadaPacotes;
+	
+	//false = determinística ; true = exponencial
+	boolean distribuicaoChegadaPacotes;
 	private String distribuicaoNumeroQuadrosPacote;
 	private List<Pacote> pacotes;
 	
@@ -88,7 +90,13 @@ public class Estacao {
 		return taxaDeChegada;
 	}
 	public void setTaxaDeChegada(int taxaDeChegada) {
-		this.taxaDeChegada = taxaDeChegada;
+		
+		if(distribuicaoChegadaPacotes){
+			this.taxaDeChegada = 1/taxaDeChegada;
+		}else{
+		
+			this.taxaDeChegada = taxaDeChegada;
+		}
 	}
 		
 	public int getPmf() {
@@ -122,11 +130,11 @@ public class Estacao {
 		return hub;
 	}
 	
-	public void setDistribuicaoChegadapacotes(String distribuicao){
-		this.distribuicaoChegadaPacotes=distribuicao;
+	public void setDistribuicaoChegadapacotes(boolean distribuicao){
+		this.distribuicaoChegadaPacotes = distribuicao;
 	}
 	
-	public String getDistribuicaoChegadaPacotes(){
+	public boolean getDistribuicaoChegadaPacotes(){
 		return this.distribuicaoChegadaPacotes;
 	}
 	
