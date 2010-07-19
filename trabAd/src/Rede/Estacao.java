@@ -25,11 +25,19 @@ public class Estacao {
 	boolean distribuicaoChegadaPacotes;
 	private String distribuicaoNumeroQuadrosPacote;
 	private List<Pacote> pacotes;
-	
+	Quadro ultimoQuadroEnviado;
 	Tap tap;
 	Tam tam;
 	ncm ncm;
 	//private double p;//parametro para saber se a pmf é geometrica ou deterministica
+	
+	public Quadro getUltimoQuadroEnviado(){
+		return ultimoQuadroEnviado;
+	}
+
+	public void setUltimoQuadroEnviado(Quadro ultimoQuadroEnviado){
+		this.ultimoQuadroEnviado = ultimoQuadroEnviado;		
+	}
 	
 	public Tap getTap() {
 		return tap;
@@ -106,13 +114,6 @@ public class Estacao {
 		this.pmf = pmf;
 	}
 	
-	/*public Quadro getUltimoQuadroEnviado(){
-		return ultimoQuadroEnviado;
-	}
-	
-	public void setUltimoQuadroEnviado(Quadro ultimoQuadroEnviado){
-		this.ultimoQuadroEnviado = ultimoQuadroEnviado;		
-	}*/
 	
 	public boolean getRecebeuConfirmacaoUltimoQuadro(){
 		return RecebeuConfirmacaoUltimoQuadro;
