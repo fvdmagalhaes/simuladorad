@@ -306,8 +306,176 @@ public class ControleCenarios {
 				
 			}else if(intfc.getRadioSelected() == 3){
 				
-			}else if(intfc.getRadioSelected() == 4){
+				/*
+				 * Cenário 3: estação 1 injetando tráfego determinístico (msgs de 40 quadros) e 
+				 * estações 2, 3 e 4 gerando tráfego de mensagens com um único quadro na taxa de 0,5 Mbps 
+				 * por estação também determinístico - todas sincronizadas na geração.
+				 * Parâmetros: A1 = 80ms, determinístico; p1 = 40; A2 = A3 = A4 = 16 ms, todos deterministicos
+				 * p2 = p3 = p4 = 1
+				 */
 				
+				//envento da estacao 1
+				Evento ev1 = new Evento();
+				EventoVo eventovo = new EventoVo();
+				ev1.setTempo(0.0);
+				ev1.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev1.setEstacao(e1);
+				Evento ultimaTransmissao = new Evento();
+				ultimaTransmissao.setTempo(0.0);
+				e1.setDistribuicaoChegadapacotes(false);
+				e1.setTaxaDeChegada(80);
+				e1.setPmf(40);
+				Pacote pacote1 = new Pacote();
+				pacote1.setEstacao(e1);
+				pacote1.setTamanho(pacote1.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev1.setPacote(pacote1);
+				
+				//evento da estacao 2
+				Evento ev2 = new Evento();
+				ev2.setTempo(0.0);
+				ev2.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev2.setEstacao(e2);
+				e2.setDistribuicaoChegadapacotes(false);
+				e2.setTaxaDeChegada(16);
+				e2.setPmf(1);
+				Pacote pacote2 = new Pacote();
+				pacote2.setEstacao(e2);
+				pacote2.setTamanho(pacote2.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev2.setPacote(pacote2);
+				
+				ev1.setProximoEvento(ev2);
+				ev2.setEventoAnterior(ev1);
+				
+				//evento da estacao 3
+				Evento ev3 = new Evento();
+				ev3.setTempo(0.0);
+				ev3.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev3.setEstacao(e3);
+				e3.setDistribuicaoChegadapacotes(false);
+				e3.setTaxaDeChegada(16);
+				e3.setPmf(1);
+				Pacote pacote3 = new Pacote();
+				pacote3.setEstacao(e3);
+				pacote3.setTamanho(pacote3.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev3.setPacote(pacote3);
+				
+				ev2.setProximoEvento(ev3);
+				ev3.setEventoAnterior(ev2);
+				
+				//evento da estacao 4
+				Evento ev4 = new Evento();
+				ev4.setTempo(0.0);
+				ev4.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev4.setEstacao(e4);
+				e4.setDistribuicaoChegadapacotes(false);
+				e4.setTaxaDeChegada(16);
+				e4.setPmf(1);
+				Pacote pacote4 = new Pacote();
+				pacote4.setEstacao(e4);
+				pacote4.setTamanho(pacote4.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev4.setPacote(pacote4);
+				
+				ev3.setProximoEvento(ev4);
+				ev4.setEventoAnterior(ev3);
+				
+				while(!e1.getTap().getAcabou()){
+					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
+					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
+					if(eventovo.getVerificaTransmissao())
+					{
+						ultimaTransmissao = eventovo.getUltimoEvento();
+					}
+					ev1=ev1.getProximoEvento();
+				}
+				
+				e1.getTap().getMediaFinal();
+				
+			}else if(intfc.getRadioSelected() == 4){
+
+				/*
+				 * Cenário 4: estação 1 injetando tráfego determinístico (msgs de 40 quadros) e 
+				 * estações 2, 3 e 4 gerando tráfego de mensagens com um único quadro na taxa de 0,5 Mbps 
+				 * por estação Poisson
+				 * Parâmetros: A1 = 80ms, determinístico; p1 = 40; A2 = A3 = A4 = 16 ms, todos exponenciais
+				 * p2 = p3 = p4 = 1
+				 */
+				
+				//envento da estacao 1
+				Evento ev1 = new Evento();
+				EventoVo eventovo = new EventoVo();
+				ev1.setTempo(0.0);
+				ev1.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev1.setEstacao(e1);
+				Evento ultimaTransmissao = new Evento();
+				ultimaTransmissao.setTempo(0.0);
+				e1.setDistribuicaoChegadapacotes(false);
+				e1.setTaxaDeChegada(80);
+				e1.setPmf(40);
+				Pacote pacote1 = new Pacote();
+				pacote1.setEstacao(e1);
+				pacote1.setTamanho(pacote1.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev1.setPacote(pacote1);
+				
+				//evento da estacao 2
+				Evento ev2 = new Evento();
+				ev2.setTempo(0.0);
+				ev2.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev2.setEstacao(e2);
+				e2.setDistribuicaoChegadapacotes(true);
+				e2.setTaxaDeChegada(16);
+				e2.setPmf(1);
+				Pacote pacote2 = new Pacote();
+				pacote2.setEstacao(e2);
+				pacote2.setTamanho(pacote2.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev2.setPacote(pacote2);
+				
+				ev1.setProximoEvento(ev2);
+				ev2.setEventoAnterior(ev1);
+				
+				//evento da estacao 3
+				Evento ev3 = new Evento();
+				ev3.setTempo(0.0);
+				ev3.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev3.setEstacao(e3);
+				e3.setDistribuicaoChegadapacotes(true);
+				e3.setTaxaDeChegada(16);
+				e3.setPmf(1);
+				Pacote pacote3 = new Pacote();
+				pacote3.setEstacao(e3);
+				pacote3.setTamanho(pacote3.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev3.setPacote(pacote3);
+				
+				ev2.setProximoEvento(ev3);
+				ev3.setEventoAnterior(ev2);
+				
+				//evento da estacao 4
+				Evento ev4 = new Evento();
+				ev4.setTempo(0.0);
+				ev4.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev4.setEstacao(e4);
+				e4.setDistribuicaoChegadapacotes(true);
+				e4.setTaxaDeChegada(16);
+				e4.setPmf(1);
+				Pacote pacote4 = new Pacote();
+				pacote4.setEstacao(e4);
+				pacote4.setTamanho(pacote4.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev4.setPacote(pacote4);
+				
+				ev3.setProximoEvento(ev4);
+				ev4.setEventoAnterior(ev3);
+				
+				while(!e1.getTap().getAcabou()){
+					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
+					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
+					if(eventovo.getVerificaTransmissao())
+					{
+						ultimaTransmissao = eventovo.getUltimoEvento();
+					}
+					ev1=ev1.getProximoEvento();
+				}
+				
+				e1.getTap().getMediaFinal();
+
 			}else if(intfc.getRadioSelected() == 5){
 				
 			}
