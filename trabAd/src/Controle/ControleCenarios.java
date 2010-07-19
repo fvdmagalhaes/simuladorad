@@ -215,6 +215,7 @@ public class ControleCenarios {
 				ev1.setEstacao(e1);
 				Evento ultimaTransmissao = new Evento();
 				ultimaTransmissao.setTempo(0.0);
+				//e1.setDistribuicaoChegadapacotes(false);
 				e1.setTaxaDeChegada(80);
 				e1.setPmf(40);
 				Pacote pacote1 = new Pacote();
@@ -227,6 +228,7 @@ public class ControleCenarios {
 				ev2.setTempo(0.0);
 				ev2.setTipo(TipoEvento.RECEBE_PACOTE);
 				ev2.setEstacao(e2);
+				//e2.setDistribuicaoChegadapacotes(false);
 				e2.setTaxaDeChegada(80);
 				e2.setPmf(40);
 				Pacote pacote2 = new Pacote();
@@ -250,6 +252,57 @@ public class ControleCenarios {
 				e1.getTap().getMediaFinal();				
 				
 			}else if(intfc.getRadioSelected() == 2){
+				/*
+				 * Cenário 2: estação 1 e estação 2 transmitem mensagens de 40 quadros de 1000
+				 * bytes, totalizando 4 Mbps por estação, chegada de mensagens Poisson
+				 * 
+				 * Parâmetros: A1 = A2 = 80 ms exponencial; p1 = p2 = 40; estações 3 e 4
+				 * sem tráfego.	
+				 */
+				
+				//envento da estacao 1
+				Evento ev1 = new Evento();
+				EventoVo eventovo = new EventoVo();
+				ev1.setTempo(0.0);
+				ev1.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev1.setEstacao(e1);
+				Evento ultimaTransmissao = new Evento();
+				ultimaTransmissao.setTempo(0.0);
+				e1.setDistribuicaoChegadapacotes(true);
+				e1.setTaxaDeChegada(80);
+				e1.setPmf(40);
+				Pacote pacote1 = new Pacote();
+				pacote1.setEstacao(e1);
+				pacote1.setTamanho(pacote1.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev1.setPacote(pacote1);
+				
+				//evento da estacao 2
+				Evento ev2 = new Evento();
+				ev2.setTempo(0.0);
+				ev2.setTipo(TipoEvento.RECEBE_PACOTE);
+				ev2.setEstacao(e2);
+				e2.setDistribuicaoChegadapacotes(true);
+				e2.setTaxaDeChegada(80);
+				e2.setPmf(40);
+				Pacote pacote2 = new Pacote();
+				pacote2.setEstacao(e2);
+				pacote2.setTamanho(pacote2.getEstacao().getPmf()*Quadro.TAMANHO);
+				ev2.setPacote(pacote2);
+				
+				ev1.setProximoEvento(ev2);
+				ev2.setEventoAnterior(ev1);
+				
+				while(!e1.getTap().getAcabou()){
+					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
+					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
+					if(eventovo.getVerificaTransmissao())
+					{
+						ultimaTransmissao = eventovo.getUltimoEvento();
+					}
+					ev1=ev1.getProximoEvento();
+				}
+				
+				e1.getTap().getMediaFinal();
 				
 			}else if(intfc.getRadioSelected() == 3){
 				
