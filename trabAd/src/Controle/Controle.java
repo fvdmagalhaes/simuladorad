@@ -115,7 +115,7 @@ public class Controle {
 		return tempoMaior;
 	}
 	//Metodo que manipula os eventos. Deve verificar o tipo do evento e manipula-lo de acordo com a especificaçao.
-	//Ele recebe o evento a ser executado, a ultima transmissao(ultima transmissao com sucesso ou sinal de reforço de colisao) e o ultimo evento executado
+	//Ele recebe o evento a ser executado e a ultima transmissao(ultima transmissao com sucesso ou sinal de reforço de colisao)
 	//Agora o metodo retorna o ultimo evento executando por ele e um boolean que estará como true caso esse ultimo evento seja uma transmissao com sucesso ou reforço de colisao.
 	
 	public static EventoVo trataEventos(Evento evento, Evento ultimaTransmissao)
@@ -211,12 +211,16 @@ public class Controle {
 			Estacao estacao = evento.getEstacao();
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
 			
-			if(evento.getQuadro().getPacote().getUltimoQuadroEnviado() != null && evento.getQuadro().getPacote().getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia() && evento.getEstacao().equals(evento.getPacote().getEstacao()))
+			if(estacao.getUltimoQuadroEnviado() != null && estacao.getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia() && evento.getEstacao().equals(evento.getPacote().getEstacao()))
 			{			
 				//quadro enviado com sucesso... agora podemos colher o tap aqui vai gerar o metodo de calcular o tap...
 				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap());
 								
 				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
+				
+//				A estacao recebeu o ultimo quadro enviado
+				estacao.setRecebeuConfirmacaoUltimoQuadro(true);
+				evento.getQuadro().setQuadroConfirmado(true);
 				
 				
 				if(numeroSequencia < estacao.getPmf()){
@@ -251,13 +255,35 @@ public class Controle {
 					insereEvento(eventoQ,evento);	
 				}else{
 					//caso contrario ja colhemos todos os tams do pacote
-					evento.getEstacao().getTam().adicionaMedida(evento.getQuadro().getPacote().getTam()+evento.getQuadro().getTam());
-					//Acabou o pacote, portanto vamos adicionar a rodada do numero de colisoes do pacote sobre o numero de quadros no pacote que eh a pmf
+					if(evento.getQuadro().getPacote().getTam()!=null)
+					{
+						evento.getEstacao().getTam().adicionaMedida(evento.getQuadro().getPacote().getTam()+evento.getQuadro().getTam());
+					}else{
+						evento.getQuadro().getPacote().setTam(evento.getQuadro().getTam());
+					}
+					//Enviamos todo o pacote, portanto vamos adicionar a rodada do numero de colisoes do pacote sobre o numero de quadros no pacote que eh a pmf
+					
 					evento.getEstacao().getNcm().adicionaMedida(evento.getQuadro().getPacote().getNcm()/estacao.getPmf());
 				}
 
 			}else{
 				//caso nao seja deve dar colisao
+				
+				//Caso a estacao ja tenha enviado um quadro e ainda nao recebeu sua confirmacao deve dar colisao
+				if(!estacao.getRecebeuConfirmacaoUltimoQuadro())
+				{
+					//A estacao vai reenviar o ultimo quadro enviado
+					Evento evento2 = new Evento();
+					evento2.setQuadro(estacao.getUltimoQuadroEnviado());
+					evento2.setPacote(estacao.getUltimoQuadroEnviado().getPacote());
+					evento2.setEstacao(estacao);
+					evento2.setTempo(evento.getTempo());
+					evento2.setTipo(TipoEvento.SENTE_MEIO);
+					
+					//insere o evento na lista de eventos
+					insereEvento(evento2,evento);
+					
+				}
 			}
 			
 
@@ -273,9 +299,13 @@ public class Controle {
 		 {
 			 Estacao estacao = evento.getQuadro().getPacote().getEstacao();
 			 EventoVo eventovoAtrazo = new EventoVo();
-			 //Caso o canal da estacao esteja ocioso
-			 if(estacao.getTx().getOcioso())
+			
+			 //Caso o canal da estacao esteja ocioso e a estacao ja tenha recebido a confirmacao do ultimo quadro que foi enviado
+			 if(estacao.getTx().getOcioso() && estacao.getRecebeuConfirmacaoUltimoQuadro())
 			 {
+				 //Ainda nao recebeu a confirmacao para o quadro que vai ser enviado agora
+				 estacao.setRecebeuConfirmacaoUltimoQuadro(false);
+				 
 				 //vai enviar o quadro, hora de calcular o TAP
 				Double tap = evento.getTempo() - evento.getQuadro().getTap();
 				evento.getQuadro().setTap(tap);
@@ -285,7 +315,7 @@ public class Controle {
 					Double tam = evento.getTempo() - evento.getQuadro().getTam();
 					evento.getQuadro().setTam(tam);
 				}
-				
+				//O tx da estacao nao esta mais ocioso
 				 estacao.getTx().setOcioso(false);
 				 Double tempoTransmissao = estacao.getTx().getTempoTransmissao();
 				 //Cria um evento de retransmissao do hub
@@ -301,7 +331,7 @@ public class Controle {
 				 eventoVo.setUltimoEvento(evento);
 				 eventoVo.setVerificaTransmissao(false);
 				 //Seta esse quadro como o ultimo enviado pela estacao
-				 evento.getPacote().setUltimoQuadroEnviado(evento.getQuadro());
+				 estacao.setUltimoQuadroEnviado(evento.getQuadro());
 			 }else{
 				 System.out.println("O quadro"+evento.getQuadro().getNumeroSequencia()+"da estacao"+estacao.getId()+"foi perdido pois o canal estava ocupado");
 				 //aborta a transmissão em andamento, transmite um sinal de reforço de colisão por 3,2 us (equivalente a tx de 32 bits) e, após este atraso, escolhe um instante
@@ -310,7 +340,7 @@ public class Controle {
 				 //no sente o meio. Cria um novo evento de transmissao com o tempo igual ao tempo de atrazo do reforço + tempo aleatorio
 				 
 				 
-				 //Se deu colisao eu somo um ao nmc do pacote
+				 //Se deu colisao soma um ao nmc do pacote
 				 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm()+1);
 				 double atrazo = 0.0;
 				 Evento reforcoColisao = new Evento();
@@ -369,7 +399,7 @@ public class Controle {
 					 System.out.println("o pacote"+evento.getQuadro().getPacote().getSequenciaEnviada()+"foi perdido pois o canal"+canal.getEstacao().getId()+"estava ocupado");
 					 double atrazo = 0.0;
 					 Estacao estacao = canal.getEstacao();
-					 //Soma um no nmc do quadro
+					 //Soma um no nmc do pacote
 					 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm()+1);
 					 //Transmite um reforco de colisao
 					 EventoVo eventovoAtrazo = new EventoVo();
