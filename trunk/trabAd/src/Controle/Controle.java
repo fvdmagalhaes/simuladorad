@@ -272,16 +272,45 @@ public class Controle {
 				//Caso a estacao ja tenha enviado um quadro e ainda nao recebeu sua confirmacao deve dar colisao
 				if(!estacao.getRecebeuConfirmacaoUltimoQuadro())
 				{
-					//A estacao vai reenviar o ultimo quadro enviado
-					Evento evento2 = new Evento();
-					evento2.setQuadro(estacao.getUltimoQuadroEnviado());
-					evento2.setPacote(estacao.getUltimoQuadroEnviado().getPacote());
-					evento2.setEstacao(estacao);
-					evento2.setTempo(evento.getTempo());
-					evento2.setTipo(TipoEvento.SENTE_MEIO);
+//					Para que o quadro possa ser enviado dinovo
+					estacao.setRecebeuConfirmacaoUltimoQuadro(true);
 					
-					//insere o evento na lista de eventos
-					insereEvento(evento2,evento);
+					 EventoVo eventovoAtrazo = new EventoVo();
+					 double atrazo = 0.0;
+					 Evento reforcoColisao = new Evento();
+					 reforcoColisao.setTipo(TipoEvento.REFORCO_COLISAO);
+					 reforcoColisao.setEstacao(estacao);
+					 reforcoColisao.setQuadro(estacao.getUltimoQuadroEnviado());
+					 //3,2^10-3ms
+					 reforcoColisao.setTempo(evento.getTempo()+0.0032);
+					 eventoVo.setUltimoEvento(reforcoColisao);
+					 eventoVo.setVerificaTransmissao(true);
+					 
+					 eventovoAtrazo = binaryBackof(estacao);
+					//Caso o quadro nao tenha sido descartado
+					 if(!eventovoAtrazo.getDescartado())
+					 {
+						 Evento transmiteQuadro = new Evento();
+						 transmiteQuadro.setEstacao(estacao);
+						 transmiteQuadro.setPacote(estacao.getUltimoQuadroEnviado().getPacote());
+						 transmiteQuadro.setQuadro(estacao.getUltimoQuadroEnviado());
+						 transmiteQuadro.setTipo(TipoEvento.SENTE_MEIO);
+						 transmiteQuadro.setTempo(evento.getTempo()+0.0032+eventovoAtrazo.getAtrazo());
+//						insere o evento na lista de eventos
+							insereEvento(transmiteQuadro,evento);
+						
+					 }else{
+						 //descarta o quadro
+						 System.out.println("quadro"+evento.getQuadro().getId()+"descartado");
+					 }
+					 estacao.setNumColisoes(estacao.getNumColisoes()+1);
+	
+				
+					
+					//soma o ncm do pacote
+					 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm()+1);
+					
+					
 					
 				}
 			}
@@ -360,8 +389,9 @@ public class Controle {
 					 transmiteQuadro.setEstacao(estacao);
 					 transmiteQuadro.setPacote(evento.getQuadro().getPacote());
 					 transmiteQuadro.setQuadro(evento.getQuadro());
-					 transmiteQuadro.setTipo(TipoEvento.TRANSMITE_QUADRO);
+					 transmiteQuadro.setTipo(TipoEvento.SENTE_MEIO);
 					 transmiteQuadro.setTempo(evento.getTempo()+0.0032+eventovoAtrazo.getAtrazo());
+					 insereEvento(transmiteQuadro,evento);
 					
 				 }else{
 					 //descarta o quadro
@@ -371,9 +401,17 @@ public class Controle {
 			 }
 		 }else if(evento.getTipo().equals(TipoEvento.RETRANSMITE_QUADRO))
 		 {
+			 int CanaisTdsOciosos = 0;
 			 //Envia o quadro para o rx de tdas as estacoes
 			 Hub hub = evento.getQuadro().getPacote().getEstacao().getHub();
 			 List<Canal> listaCanais = hub.getListaCanais();
+			 for(Canal canal2:(List<Canal>)listaCanais)
+			 {
+				 if(canal2.getOcioso() == true)
+				 {
+					 CanaisTdsOciosos++;
+				 }
+			 }
 			 
 			 for(Canal canal:(List<Canal>) listaCanais)
 			 {
@@ -381,7 +419,7 @@ public class Controle {
 				 System.out.println("estacao que vai receber o quadro:  " + canal.getEstacao().getId());
 				 //Recupera o tempo de propagacao de cada canal e gera um evento de recepcao na estacao
 				 //Eh necessario saber a estacao para a qual o hub esta enviando em caso. Nao tem mais como recuperar a estacao pelo quadro
-				 if(canal.getOcioso())
+				 if(CanaisTdsOciosos == listaCanais.size())
 				 {
 					 eventoRecebeEstacao.setQuadro(evento.getQuadro());
 					 eventoRecebeEstacao.setEstacao(canal.getEstacao());
@@ -396,6 +434,9 @@ public class Controle {
 					 eventoVo.setUltimoEvento(eventoRecebeEstacao);
 					 eventoVo.setVerificaTransmissao(false);
 				 }else{
+					 /*
+					 //O tx da estacao agora esta ocioso
+					 canal.getEstacao().getTx().setOcioso(true);
 					 System.out.println("o pacote"+evento.getQuadro().getPacote().getSequenciaEnviada()+"foi perdido pois o canal"+canal.getEstacao().getId()+"estava ocupado");
 					 double atrazo = 0.0;
 					 Estacao estacao = canal.getEstacao();
@@ -421,7 +462,8 @@ public class Controle {
 						 transmiteQuadro.setEstacao(canal.getEstacao());
 						 transmiteQuadro.setPacote(evento.getQuadro().getPacote());
 						 transmiteQuadro.setQuadro(evento.getQuadro());
-						 transmiteQuadro.setTipo(TipoEvento.TRANSMITE_QUADRO);
+						 transmiteQuadro.setTipo(TipoEvento.SENTE_MEIO);
+						 //Transmite apos o atrazo de colisao mais o atrazo aleatorio
 						 transmiteQuadro.setTempo(evento.getTempo()+0.0032+eventovoAtrazo.getAtrazo());
 						
 					 }else{
@@ -429,9 +471,11 @@ public class Controle {
 						 System.out.println("quadro"+evento.getQuadro().getId()+"descartado");
 					 }
 					 estacao.setNumColisoes(estacao.getNumColisoes()+1);
+					 */
 				 }
+				 
 			 }
-			
+		
 			 
 		 }else if(evento.getTipo().equals(TipoEvento.RECEBE_PACOTE)){
 			 evento.getEstacao().recebePacote(evento.getPacote(), evento.getTempo(), evento);
