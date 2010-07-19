@@ -265,6 +265,11 @@ public class Controle {
 					
 					evento.getEstacao().getNcm().adicionaMedida(evento.getQuadro().getPacote().getNcm()/estacao.getPmf());
 				}
+				
+//				retorna o ultimo evento executado
+				eventoVo.setUltimoEvento(evento);
+				//o evento eh uma transmissao com sucesso
+				eventoVo.setVerificaTransmissao(true);
 
 			}else{
 				//caso nao seja deve dar colisao
@@ -313,16 +318,17 @@ public class Controle {
 					
 					
 				}
+//				retorna o ultimo evento executado
+				eventoVo.setUltimoEvento(evento);
+				//o evento eh uma transmissao com sucesso
+				eventoVo.setVerificaTransmissao(false);
 			}
 			
 
 			//Agora o canal rx da estacao esta ocioso
 			estacao.getRx().setOcioso(true);
 			
-			//retorna o ultimo evento executado
-			eventoVo.setUltimoEvento(evento);
-			//o evento eh uma transmissao com sucesso
-			eventoVo.setVerificaTransmissao(true);
+			
 			
 		 }else if(evento.getTipo().equals(TipoEvento.TRANSMITE_QUADRO))
 		 {
