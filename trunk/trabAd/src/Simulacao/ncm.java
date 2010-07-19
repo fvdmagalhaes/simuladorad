@@ -50,10 +50,10 @@ public class ncm {
 				int iteracoes = rodada.getNumIteracoes()+1;
 				rodada.setNumIteracoes(iteracoes);
 				
-				Double media = rodada.getMedia();
-				Double novaMedia = (media + numero)/iteracoes;
+				int media = rodada.getMediaInt();
+				int novaMedia = (media + numero)/iteracoes;
 				
-				rodada.setMedia(novaMedia);
+				rodada.setMediaInt(novaMedia);
 				
 				acabou = false;
 			}else if(rodada.getNumIteracoes() == numMaximoIteracoes)
