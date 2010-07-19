@@ -54,7 +54,7 @@ public class Interface extends JFrame
 	  private Container getJContentPane() {
 	  
 		  GridBagConstraints gridRadioCenario = new GridBagConstraints();
-		  gridRadioCenario.fill = GridBagConstraints.VERTICAL;
+		  gridRadioCenario.fill = GridBagConstraints.HORIZONTAL;
 		  gridRadioCenario.gridy = 0;
 		  gridRadioCenario.weightx = 3.0;
 		  gridRadioCenario.anchor = GridBagConstraints.WEST;
