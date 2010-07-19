@@ -215,7 +215,7 @@ public class ControleCenarios {
 				ev1.setEstacao(e1);
 				Evento ultimaTransmissao = new Evento();
 				ultimaTransmissao.setTempo(0.0);
-				//e1.setDistribuicaoChegadapacotes(false);
+				e1.setDistribuicaoChegadapacotes(false);
 				e1.setTaxaDeChegada(80);
 				e1.setPmf(40);
 				Pacote pacote1 = new Pacote();
@@ -228,7 +228,7 @@ public class ControleCenarios {
 				ev2.setTempo(0.0);
 				ev2.setTipo(TipoEvento.RECEBE_PACOTE);
 				ev2.setEstacao(e2);
-				//e2.setDistribuicaoChegadapacotes(false);
+				e2.setDistribuicaoChegadapacotes(false);
 				e2.setTaxaDeChegada(80);
 				e2.setPmf(40);
 				Pacote pacote2 = new Pacote();
