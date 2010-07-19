@@ -31,7 +31,7 @@ public class ControleCenarios {
 	
 	
 	class SimularListener implements ActionListener{
-		@Override
+		
 		public void actionPerformed(ActionEvent arg0) {
 			Tap tap1 = new Tap();
 			tap1.setNumMaximoIteracoes(500);
@@ -198,6 +198,12 @@ public class ControleCenarios {
 			listaCanais.add(rx3);
 			listaCanais.add(rx4);
 			hub.setListaCanais(listaCanais);
+			
+//			comeca como true pois a estacao ainda nao enviou nenhum quadro
+			e1.setRecebeuConfirmacaoUltimoQuadro(true);
+			e2.setRecebeuConfirmacaoUltimoQuadro(true);
+			e3.setRecebeuConfirmacaoUltimoQuadro(true);
+			e4.setRecebeuConfirmacaoUltimoQuadro(true);
 			
 			if(intfc.getRadioSelected() == 1){
 				/*
