@@ -485,7 +485,7 @@ public class ControleCenarios {
 				ev3.setProximoEvento(ev4);
 				ev4.setEventoAnterior(ev3);
 				
-				while(!e1.getTap().getAcabou()){
+				while(!e1.getTap().getAcabou()&& !e2.getTap().getAcabou() && !e3.getTap().getAcabou() && !e4.getTap().getAcabou()){
 					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
