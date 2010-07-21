@@ -109,9 +109,11 @@ public class ncm {
 		}
 		public int getMediaFinal(){
 			int i=1;
-			for(Rodada rodada : rodadas){
-				System.out.println("Media nmc da rodada " + i + ": " + rodada.getMediaInt());
-				i++;
+			if(rodadas != null){
+				for(Rodada rodada : rodadas){
+					System.out.println("Media nmc da rodada " + i + ": " + rodada.getMediaInt());
+					i++;
+				}
 			}
 			return 0;
 		}
