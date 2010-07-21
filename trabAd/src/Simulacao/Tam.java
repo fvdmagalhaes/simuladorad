@@ -107,9 +107,11 @@ public class Tam {
 	
 	public Double getMediaFinal(){
 		int i=1;
-		for(Rodada rodada : rodadas){
-			System.out.println("Media Tam da rodada " + i + ": " + rodada.getMedia());
-			i++;
+		if(rodadas != null){
+			for(Rodada rodada : rodadas){
+				System.out.println("Media Tam da rodada " + i + ": " + rodada.getMedia());
+				i++;
+			}
 		}
 		return null;
 	}
