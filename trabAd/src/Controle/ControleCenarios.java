@@ -402,14 +402,14 @@ public class ControleCenarios {
 					ev1=ev1.getProximoEvento();
 				}
 				
-				System.out.println("Medidas da estacao 2: ");
+				/*System.out.println("Medidas da estacao 2: ");
 				e2.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 3: ");
 				e3.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 4: ");
 				e4.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 1: ");
-				e1.getTap().getMediaFinal();
+				e1.getTap().getMediaFinal();*/
 				
 			}else if(intfc.getRadioSelected() == 4){
 
@@ -495,14 +495,14 @@ public class ControleCenarios {
 					ev1=ev1.getProximoEvento();
 				}
 				
-				System.out.println("Medidas da estacao 2: ");
+				/*System.out.println("Medidas da estacao 2: ");
 				e2.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 3: ");
 				e3.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 4: ");
 				e4.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 1: ");
-				e1.getTap().getMediaFinal();
+				e1.getTap().getMediaFinal();*/
 
 			}
 		}
