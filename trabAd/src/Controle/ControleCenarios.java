@@ -42,63 +42,63 @@ public class ControleCenarios {
 		
 		public void actionPerformed(ActionEvent arg0) {
 			Tap tap1 = new Tap();
-			tap1.setNumMaximoIteracoes(50);
-			tap1.setNumMaximoRodadas(10);
+			tap1.setNumMaximoIteracoes(500);
+			tap1.setNumMaximoRodadas(100);
 			tap1.setAcabou(false);
 			
 			Tap tap2 = new Tap();
-			tap2.setNumMaximoIteracoes(50);
-			tap2.setNumMaximoRodadas(10);
+			tap2.setNumMaximoIteracoes(500);
+			tap2.setNumMaximoRodadas(100);
 			tap2.setAcabou(false);
 			
 			Tap tap3 = new Tap();
-			tap3.setNumMaximoIteracoes(50);
-			tap3.setNumMaximoRodadas(10);
+			tap3.setNumMaximoIteracoes(500);
+			tap3.setNumMaximoRodadas(100);
 			tap3.setAcabou(false);
 			
 			Tap tap4 = new Tap();
-			tap4.setNumMaximoIteracoes(50);
-			tap4.setNumMaximoRodadas(10);
+			tap4.setNumMaximoIteracoes(500);
+			tap4.setNumMaximoRodadas(100);
 			tap4.setAcabou(false);
 			
 			Tam tam1 = new Tam();
-			tam1.setNumMaximoIteracoes(50);
-			tam1.setNumMaximoRodadas(10);
+			tam1.setNumMaximoIteracoes(500);
+			tam1.setNumMaximoRodadas(100);
 			tam1.setAcabou(false);
 			
 			Tam tam2 = new Tam();
-			tam2.setNumMaximoIteracoes(50);
-			tam2.setNumMaximoRodadas(10);
+			tam2.setNumMaximoIteracoes(500);
+			tam2.setNumMaximoRodadas(100);
 			tam2.setAcabou(false);
 			
 			Tam tam3 = new Tam();
-			tam3.setNumMaximoIteracoes(50);
-			tam3.setNumMaximoRodadas(10);
+			tam3.setNumMaximoIteracoes(500);
+			tam3.setNumMaximoRodadas(100);
 			tam3.setAcabou(false);
 			
 			Tam tam4 = new Tam();
-			tam4.setNumMaximoIteracoes(50);
-			tam4.setNumMaximoRodadas(10);
+			tam4.setNumMaximoIteracoes(500);
+			tam4.setNumMaximoRodadas(100);
 			tam4.setAcabou(false);
 			
 			ncm ncm1 = new ncm();
-			ncm1.setNumMaximoIteracoes(100);
-			ncm1.setNumMaximoRodadas(10);
+			ncm1.setNumMaximoIteracoes(1000);
+			ncm1.setNumMaximoRodadas(100);
 			ncm1.setAcabou(false);
 			
 			ncm ncm2 = new ncm();
-			ncm2.setNumMaximoIteracoes(100);
-			ncm2.setNumMaximoRodadas(10);
+			ncm2.setNumMaximoIteracoes(1000);
+			ncm2.setNumMaximoRodadas(100);
 			ncm2.setAcabou(false);
 			
 			ncm ncm3 = new ncm();
-			ncm3.setNumMaximoIteracoes(100);
-			ncm3.setNumMaximoRodadas(10);
+			ncm3.setNumMaximoIteracoes(1000);
+			ncm3.setNumMaximoRodadas(100);
 			ncm3.setAcabou(false);
 			
 			ncm ncm4 = new ncm();
-			ncm4.setNumMaximoIteracoes(100);
-			ncm4.setNumMaximoRodadas(10);
+			ncm4.setNumMaximoIteracoes(1000);
+			ncm4.setNumMaximoRodadas(100);
 			ncm4.setAcabou(false);
 			
 			//instancia as estacoes do sistema
@@ -270,18 +270,35 @@ public class ControleCenarios {
 				e2.getTap().getMediaFinal();
 				
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-				dataset.addValue(e1.getTap().getMediaFinal(),"TAP","Estação1");
-				dataset.addValue(e1.getTam().getMediaFinal(),"TAM","Estação1");
-				dataset.addValue(e1.getNcm().getMediaFinal(),"NCM","Estação1");
-				dataset.addValue(e2.getTap().getMediaFinal(),"TAP","Estação2");
-				dataset.addValue(e2.getTam().getMediaFinal(),"TAM","Estação2");
-				dataset.addValue(e2.getNcm().getMediaFinal(),"NCM","Estação2");
-				dataset.addValue(e3.getTap().getMediaFinal(),"TAP","Estação3");
-				dataset.addValue(e3.getTam().getMediaFinal(),"TAM","Estação3");
-				dataset.addValue(e3.getNcm().getMediaFinal(),"NCM","Estação3");
-				dataset.addValue(e4.getTap().getMediaFinal(),"TAP","Estação4");
-				dataset.addValue(e4.getTam().getMediaFinal(),"TAM","Estação4");
-				dataset.addValue(e4.getNcm().getMediaFinal(),"NCM","Estação4");
+				if(e1.getTap().getMediaFinal()!=null){
+					dataset.addValue(e1.getTap().getMediaFinal(),"TAP","Estação1");
+				}
+				if(e1.getTam().getMediaFinal()!=null){
+					dataset.addValue(e1.getTam().getMediaFinal(),"TAM","Estação1");
+				}
+					dataset.addValue(e1.getNcm().getMediaFinal(),"NCM","Estação1");
+				if(e2.getTap().getMediaFinal()!=null){
+					dataset.addValue(e2.getTap().getMediaFinal(),"TAP","Estação2");
+				}
+				if(e2.getTam().getMediaFinal()!=null){
+					dataset.addValue(e2.getTam().getMediaFinal(),"TAM","Estação2");
+				}
+					dataset.addValue(e2.getNcm().getMediaFinal(),"NCM","Estação2");
+				if(e3.getTap().getMediaFinal()!=null){
+					dataset.addValue(e3.getTap().getMediaFinal(),"TAP","Estação3");
+				}
+				if(e3.getTam().getMediaFinal()!=null){
+					dataset.addValue(e3.getTam().getMediaFinal(),"TAM","Estação3");
+				}
+					dataset.addValue(e3.getNcm().getMediaFinal(),"NCM","Estação3");
+				if(e4.getTap().getMediaFinal()!=null){
+					dataset.addValue(e4.getTap().getMediaFinal(),"TAP","Estação4");
+				}
+				if(e4.getTam().getMediaFinal()!=null){
+					dataset.addValue(e4.getTam().getMediaFinal(),"TAM","Estação4");
+				}
+					dataset.addValue(e4.getNcm().getMediaFinal(),"NCM","Estação4");
+		
 				JFreeChart j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				ChartPanel panel=new ChartPanel(j);
