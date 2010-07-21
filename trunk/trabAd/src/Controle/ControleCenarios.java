@@ -34,23 +34,23 @@ public class ControleCenarios {
 		
 		public void actionPerformed(ActionEvent arg0) {
 			Tap tap1 = new Tap();
-			tap1.setNumMaximoIteracoes(500);
-			tap1.setNumMaximoRodadas(100);
+			tap1.setNumMaximoIteracoes(5);
+			tap1.setNumMaximoRodadas(10);
 			tap1.setAcabou(false);
 			
 			Tap tap2 = new Tap();
-			tap2.setNumMaximoIteracoes(500);
-			tap2.setNumMaximoRodadas(100);
+			tap2.setNumMaximoIteracoes(5);
+			tap2.setNumMaximoRodadas(10);
 			tap2.setAcabou(false);
 			
 			Tap tap3 = new Tap();
-			tap3.setNumMaximoIteracoes(500);
-			tap3.setNumMaximoRodadas(100);
+			tap3.setNumMaximoIteracoes(5);
+			tap3.setNumMaximoRodadas(10);
 			tap3.setAcabou(false);
 			
 			Tap tap4 = new Tap();
-			tap4.setNumMaximoIteracoes(500);
-			tap4.setNumMaximoRodadas(100);
+			tap4.setNumMaximoIteracoes(5);
+			tap4.setNumMaximoRodadas(10);
 			tap4.setAcabou(false);
 			
 			Tam tam1 = new Tam();
@@ -402,14 +402,14 @@ public class ControleCenarios {
 					ev1=ev1.getProximoEvento();
 				}
 				
-				/*System.out.println("Medidas da estacao 2: ");
+				System.out.println("Medidas da estacao 2: ");
 				e2.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 3: ");
 				e3.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 4: ");
 				e4.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 1: ");
-				e1.getTap().getMediaFinal();*/
+				e1.getTap().getMediaFinal();
 				
 			}else if(intfc.getRadioSelected() == 4){
 
@@ -495,14 +495,14 @@ public class ControleCenarios {
 					ev1=ev1.getProximoEvento();
 				}
 				
-				/*System.out.println("Medidas da estacao 2: ");
+				System.out.println("Medidas da estacao 2: ");
 				e2.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 3: ");
 				e3.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 4: ");
 				e4.getTap().getMediaFinal();
 				System.out.println("Medidas da estacao 1: ");
-				e1.getTap().getMediaFinal();*/
+				e1.getTap().getMediaFinal();
 
 			}
 		}
