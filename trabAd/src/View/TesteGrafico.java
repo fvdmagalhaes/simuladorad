@@ -6,32 +6,31 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class TesteGrafico {
 
 	public static void main(String[] args) {
 		
-		/*DefaultXYDataset dataset=new DefaultXYDataset();
-		XYSeries s=new XYSeries("x");
-		s.add(1,1);
-		s.add(1,2);
-		s.add(1,3);
-		dataset.
-		
-		ValueAxis axis1 = new NumberAxis("Eixo X");  
-		ValueAxis axis2 = new NumberAxis("Eixo Y");
-		StandardXYItemRenderer renderer = new StandardXYItemRenderer();  
-		Plot plot=new XYPlot(dataset,axis1,axis2,renderer);
-		JFreeChart j=new JFreeChart(plot);*/
-		DefaultCategoryDataset defaultCategoryDataset = new DefaultCategoryDataset();
-		JFreeChart j=ChartFactory.createBarChart("teste", "X", "Y", defaultCategoryDataset,PlotOrientation.VERTICAL, true, false,false);
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		dataset.addValue(100,"Vermelho","TAM");
+		dataset.addValue(50,"Azul","TAM");
+		dataset.addValue(25,"Verde","TAM");
+		dataset.addValue(30,"Vermelho","TAP");
+		dataset.addValue(90,"Azul","TAP");
+		dataset.addValue(15,"Verde","TAP");
+		dataset.addValue(40,"Vermelho","NCM");
+		dataset.addValue(65,"Azul","NCM");
+		dataset.addValue(90,"Verde","NCM");
+		JFreeChart j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
 		
 		ChartPanel panel=new ChartPanel(j);
 		JFrame f=new JFrame();
-		f.setSize(100, 100);
+		f.setSize(400, 400);
 		f.add(panel);
 		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
 }
