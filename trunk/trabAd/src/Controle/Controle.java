@@ -185,7 +185,7 @@ public class Controle {
 				evento2.setPacote(evento.getPacote());
 				evento2.setQuadro(evento.getQuadro());
 				//ele persiste sentindo o meio até a transmissao acabar. O tempo a ser sentido dinovo eh o tempo do proximo evento
-				evento2.setTempo(evento.getProximoEvento().getTempo());
+				evento2.setTempo(evento.getProximoEvento().getTempo()+1);
 			}
 			
 			//insere o evento2 na lista. precisa passar o ultimo evento executado que é o evento sente o meio que acabamos de executar
@@ -313,15 +313,16 @@ public class Controle {
 				
 					
 					//soma o ncm do pacote
-					 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm()+1);
+					 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm());
 					
 					
 					
+				}else{
+	//				retorna o ultimo evento executado
+					eventoVo.setUltimoEvento(evento);
+					//o evento nao eh uma transmissao com sucesso
+					eventoVo.setVerificaTransmissao(false);
 				}
-//				retorna o ultimo evento executado
-				eventoVo.setUltimoEvento(evento);
-				//o evento eh uma transmissao com sucesso
-				eventoVo.setVerificaTransmissao(false);
 			}
 			
 
