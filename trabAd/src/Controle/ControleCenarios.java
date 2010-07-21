@@ -245,7 +245,7 @@ public class ControleCenarios {
 				ev1.setProximoEvento(ev2);
 				ev2.setEventoAnterior(ev1);
 				
-				while(!e1.getTap().getAcabou()){
+				while(!e1.getTap().getAcabou() && !e2.getTap().getAcabou()){
 					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
@@ -255,7 +255,11 @@ public class ControleCenarios {
 					ev1=ev1.getProximoEvento();
 				}
 				
+				System.out.println("Medidas da estacao 1: ");
 				e1.getTap().getMediaFinal();				
+				
+				System.out.println("Medidas da estacao 2");
+				e2.getTap().getMediaFinal();
 				
 			}else if(intfc.getRadioSelected() == 2){
 				/*
@@ -298,7 +302,7 @@ public class ControleCenarios {
 				ev1.setProximoEvento(ev2);
 				ev2.setEventoAnterior(ev1);
 				
-				while(!e1.getTap().getAcabou()){
+				while(!e1.getTap().getAcabou() && !e2.getTap().getAcabou()){
 					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
@@ -384,7 +388,7 @@ public class ControleCenarios {
 				ev3.setProximoEvento(ev4);
 				ev4.setEventoAnterior(ev3);
 				
-				while(!e1.getTap().getAcabou()){
+				while(!e1.getTap().getAcabou()&& !e2.getTap().getAcabou() && !e3.getTap().getAcabou() && !e4.getTap().getAcabou()){
 					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
@@ -394,6 +398,9 @@ public class ControleCenarios {
 					ev1=ev1.getProximoEvento();
 				}
 				
+				e2.getTap().getMediaFinal();
+				e3.getTap().getMediaFinal();
+				e4.getTap().getMediaFinal();
 				e1.getTap().getMediaFinal();
 				
 			}else if(intfc.getRadioSelected() == 4){
@@ -482,8 +489,6 @@ public class ControleCenarios {
 				
 				e1.getTap().getMediaFinal();
 
-			}else if(intfc.getRadioSelected() == 5){
-				
 			}
 		}
 		
