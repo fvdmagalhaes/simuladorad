@@ -106,9 +106,13 @@ public class Tap {
 	}
 	public Double getMediaFinal(){
 		int i=1;
-		for(Rodada rodada : rodadas){
-			System.out.println("Media Tap da rodada " + i + ": " + rodada.getMedia());
-			i++;
+		if(rodadas != null){
+			for(Rodada rodada : rodadas){
+				if(rodada.getMedia() != null){
+					System.out.println("Media Tap da rodada " + i + ": " + rodada.getMedia());
+				}
+				i++;
+			}
 		}
 		return null;
 	}
