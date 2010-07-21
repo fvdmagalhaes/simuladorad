@@ -33,7 +33,7 @@ public class Interface extends JFrame
 	public JRadioButton Cenario2 = null;
 	public JRadioButton Cenario3 = null;
 	public JRadioButton Cenario4 = null;
-	public JRadioButton Cenario5 = null;
+	
 	
 	public JLabel labelCenario = null;
 	
@@ -77,7 +77,7 @@ public class Interface extends JFrame
 		  Cenario2 = new JRadioButton("2",false);
 		  Cenario3 = new JRadioButton("3",false);
 		  Cenario4 = new JRadioButton("4",false);
-		  Cenario5 = new JRadioButton("5",false);
+		 
 		  
 		  JPanel radioPanel = new JPanel();
 			radioPanel.setLayout(new GridLayout(3, 1));
@@ -85,7 +85,7 @@ public class Interface extends JFrame
 			radioPanel.add(Cenario2);
 			radioPanel.add(Cenario3);
 			radioPanel.add(Cenario4);
-			radioPanel.add(Cenario5);
+			
 			
 			radioPanel.setBorder(BorderFactory.createTitledBorder(
 			           BorderFactory.createEtchedBorder(), "Cenário"));
@@ -110,8 +110,7 @@ public class Interface extends JFrame
 				return 3;
 			else if(Cenario4.isSelected())
 				return 4;
-			else if(Cenario5.isSelected())
-				return 5;
+			
 			else return 6;
 		}
 	  
