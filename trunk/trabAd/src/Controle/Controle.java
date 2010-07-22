@@ -185,7 +185,7 @@ public class Controle {
 				evento2.setPacote(evento.getPacote());
 				evento2.setQuadro(evento.getQuadro());
 				//ele persiste sentindo o meio até a transmissao acabar. O tempo a ser sentido dinovo eh o tempo do proximo evento
-				evento2.setTempo(evento.getProximoEvento().getTempo()+1);
+				evento2.setTempo(evento.getProximoEvento().getTempo());
 			}
 			
 			//insere o evento2 na lista. precisa passar o ultimo evento executado que é o evento sente o meio que acabamos de executar
@@ -212,9 +212,17 @@ public class Controle {
 			//verifica se o quadro recebido eh o ultimo que foi enviado por ela
 			
 			if(estacao.getUltimoQuadroEnviado() != null && estacao.getUltimoQuadroEnviado().equals(evento.getQuadro()) && evento.getPacote().getSequenciaEnviada() == evento.getQuadro().getNumeroSequencia() && evento.getEstacao().equals(evento.getPacote().getEstacao()))
-			{			
+			{
+				estacao.setNumeroQuadrosTransmitidosSucesso(estacao.getNumeroQuadrosTransmitidosSucesso()+1);
 				//quadro enviado com sucesso... agora podemos colher o tap aqui vai gerar o metodo de calcular o tap...
 				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap());
+				//Como o quadro foi enviado com sucesso vamos adicionar o tempo de envio do quadro menos o sentir meio ao tempo ocupado da estacao
+				if(estacao.getTempoOcupada() != null)
+				{
+					estacao.setTempoOcupada(estacao.getTempoOcupada()+evento.getQuadro().getTempoOcupado());
+				}else{
+					estacao.setTempoOcupada(evento.getQuadro().getTempoOcupado());
+				}
 								
 				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
 				
@@ -243,6 +251,7 @@ public class Controle {
 					quadro.setPacote(evento.getPacote());
 					quadro.setTap(evento.getTempo());
 					quadro.setTam(evento.getTempo());
+					quadro.setTempoOcupado(evento.getTempo());
 
 					eventoQ = new Evento();
 					eventoQ.setQuadro(quadro);
@@ -274,9 +283,18 @@ public class Controle {
 			}else{
 				//caso nao seja deve dar colisao
 				
+				
+				
 				//Caso a estacao ja tenha enviado um quadro e ainda nao recebeu sua confirmacao deve dar colisao
 				if(!estacao.getRecebeuConfirmacaoUltimoQuadro())
 				{
+//					Como deu colisao devemos somar ao tempo ocupado da estacao o tempo ateh o quadro colidir. 
+					if(estacao.getTempoOcupada() != null)
+					{
+						estacao.setTempoOcupada(estacao.getTempoOcupada()+evento.getQuadro().getTempoOcupado());
+					}else{
+						estacao.setTempoOcupada(evento.getQuadro().getTempoOcupado());
+					}
 //					Para que o quadro possa ser enviado dinovo
 					estacao.setRecebeuConfirmacaoUltimoQuadro(true);
 					
@@ -288,6 +306,14 @@ public class Controle {
 					 reforcoColisao.setQuadro(estacao.getUltimoQuadroEnviado());
 					 //3,2^10-3ms
 					 reforcoColisao.setTempo(evento.getTempo()+0.0032);
+					 //Devemos adicionar o tempo de reforco ao tempo ocupado da estacao
+					 if(estacao.getTempoOcupada() != null)
+					{
+							
+						 estacao.setTempoOcupada(estacao.getTempoOcupada()+0.0032);
+					}else{
+						estacao.setTempoOcupada(0.0032);
+					}
 					 eventoVo.setUltimoEvento(reforcoColisao);
 					 eventoVo.setVerificaTransmissao(true);
 					 
@@ -299,8 +325,11 @@ public class Controle {
 						 transmiteQuadro.setEstacao(estacao);
 						 transmiteQuadro.setPacote(estacao.getUltimoQuadroEnviado().getPacote());
 						 transmiteQuadro.setQuadro(estacao.getUltimoQuadroEnviado());
+						 
 						 transmiteQuadro.setTipo(TipoEvento.SENTE_MEIO);
 						 transmiteQuadro.setTempo(evento.getTempo()+0.0032+eventovoAtrazo.getAtrazo());
+						 //zera o tempo do transmite quadro pois ja contamos o tempo ateh essa colisao
+						 transmiteQuadro.getQuadro().setTempoOcupado(transmiteQuadro.getTempo());
 //						insere o evento na lista de eventos
 							insereEvento(transmiteQuadro,evento);
 						
@@ -313,7 +342,7 @@ public class Controle {
 				
 					
 					//soma o ncm do pacote
-					 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm());
+					 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm()+1);
 					
 					
 					
@@ -346,6 +375,10 @@ public class Controle {
 				Double tap = evento.getTempo() - evento.getQuadro().getTap();
 				evento.getQuadro().setTap(tap);
 				
+				//calcula o tempo ocupado do pacote ateh o momento. Isto eh, retira o tempo de sentir o meio.
+				Double tempoOcupado = evento.getTempo() - evento.getQuadro().getTempoOcupado();
+				evento.getQuadro().setTempoOcupado(tempoOcupado);
+				
 				//hora de calcular o TAM
 				if(evento.getQuadro().getNumeroSequencia() < estacao.getPmf()){
 					Double tam = evento.getTempo() - evento.getQuadro().getTam();
@@ -375,7 +408,14 @@ public class Controle {
 				 //Apenas insere no eventovo o a ultima transmissao como um evento de reforço de colisao para que isso seja verificado
 				 //no sente o meio. Cria um novo evento de transmissao com o tempo igual ao tempo de atrazo do reforço + tempo aleatorio
 				 
-				 
+				 //Como deu colisao devemos somar ao tempo ocupado da estacao o tempo ateh o quadro colidir. 
+				 Double tempoOcupado = evento.getTempo() - evento.getQuadro().getTempoOcupado();
+				 if(estacao.getTempoOcupada() !=null)
+				 {
+					 estacao.setTempoOcupada(estacao.getTempoOcupada()+tempoOcupado);
+				 }else{
+					 estacao.setTempoOcupada(tempoOcupado);
+				 }
 				 //Se deu colisao soma um ao nmc do pacote
 				 evento.getQuadro().getPacote().setNcm(evento.getQuadro().getPacote().getNcm()+1);
 				 double atrazo = 0.0;
@@ -385,6 +425,13 @@ public class Controle {
 				 reforcoColisao.setQuadro(evento.getQuadro());
 				 //3,2^10-3ms
 				 reforcoColisao.setTempo(evento.getTempo()+0.0032);
+//				Devemos adicionar o tempo de reforco ao tempo ocupado da estacao
+				 if(estacao.getTempoOcupada() != null)
+				 {
+					 estacao.setTempoOcupada(estacao.getTempoOcupada()+0.0032);
+				 }else{
+					 estacao.setTempoOcupada(0.0032);
+				 }
 				 eventoVo.setUltimoEvento(reforcoColisao);
 				 eventoVo.setVerificaTransmissao(true);
 				 
@@ -398,6 +445,7 @@ public class Controle {
 					 transmiteQuadro.setQuadro(evento.getQuadro());
 					 transmiteQuadro.setTipo(TipoEvento.SENTE_MEIO);
 					 transmiteQuadro.setTempo(evento.getTempo()+0.0032+eventovoAtrazo.getAtrazo());
+					 transmiteQuadro.getQuadro().setTempoOcupado(transmiteQuadro.getTempo());
 					 insereEvento(transmiteQuadro,evento);
 					
 				 }else{
