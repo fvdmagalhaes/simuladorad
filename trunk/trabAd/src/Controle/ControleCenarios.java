@@ -1,5 +1,6 @@
 package Controle;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,10 +12,10 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import vo.EventoVo;
-
 import Rede.Canal;
 import Rede.Estacao;
 import Rede.Evento;
@@ -272,10 +273,10 @@ public class ControleCenarios {
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação1");
+					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "estação1","Rodada "+i);
 				}
 				
-				JFreeChart j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				JFreeChart j=ChartFactory.createLineChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				ChartPanel panel=new ChartPanel(j);
 				JFrame f=new JFrame();
@@ -288,10 +289,10 @@ public class ControleCenarios {
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação2");
+					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "estação2","Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -300,7 +301,6 @@ public class ControleCenarios {
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
 				
 				
 			}else if(intfc.getRadioSelected() == 2){
