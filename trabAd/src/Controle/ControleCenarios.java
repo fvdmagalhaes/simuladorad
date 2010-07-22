@@ -51,7 +51,7 @@ public class ControleCenarios {
 
 			tap1.setAcabou(false);
 			
-			Tap tap2 = new Tap();
+			Tap tap2 = new Tap ();
 
 			tap2.setNumMaximoIteracoes(10);
 			tap2.setNumMaximoRodadas(10);
