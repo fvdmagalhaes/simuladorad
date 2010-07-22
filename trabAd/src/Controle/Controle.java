@@ -243,11 +243,15 @@ public class Controle {
 				if(numeroSequencia < estacao.getPmf()){
 					
 					//Vai gerar um novo quadro do pacote entao vamos apenas somar o tam
+					//Sera somado o tempo de envio do quadro. Isto eh, o tempo em que ele eh considerado para a trnamissao ateh a transmissa com sucesso
+					Double tam = evento.getTempo() - evento.getQuadro().getTam();
 					if(evento.getQuadro().getPacote().getTam()!=null)
 					{
-						evento.getQuadro().getPacote().setTam(evento.getQuadro().getPacote().getTam()+evento.getQuadro().getTam());
+						
+						
+						evento.getQuadro().getPacote().setTam(evento.getQuadro().getPacote().getTam()+tam);
 					}else{
-						evento.getQuadro().getPacote().setTam(evento.getQuadro().getTam());
+						evento.getQuadro().getPacote().setTam(tam);
 					}
 					//agora tem que gerar o proximo quadro que vai  ser enviado...
 					Quadro quadro;
@@ -392,8 +396,8 @@ public class Controle {
 				//O tempo ocupado nao conta o tempo de sentir meio. Portanto iniciamos o tempo ocupado agora.
 				evento.getQuadro().setTempoOcupado(evento.getTempo());
 				
-				//hora de calcular o TAM
-				if(evento.getQuadro().getNumeroSequencia() < estacao.getPmf()){
+				//Caso estejamos enviando o ultimo quadro da mensagem o tam do ultimo quadro sera somente o tempo ateh o inicio da sua transmissao com sucesso
+				if(evento.getQuadro().getNumeroSequencia() == estacao.getPmf()){
 					Double tam = evento.getTempo() - evento.getQuadro().getTam();
 					evento.getQuadro().setTam(tam);
 				}
