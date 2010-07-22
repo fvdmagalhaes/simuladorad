@@ -357,10 +357,10 @@ public class ControleCenarios {
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação1");
+					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
 				}
 				
-				JFreeChart j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				JFreeChart j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				ChartPanel panel=new ChartPanel(j);
 				JFrame f=new JFrame();
@@ -373,10 +373,10 @@ public class ControleCenarios {
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação2");
+					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -488,10 +488,10 @@ public class ControleCenarios {
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação1");
+					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
 				}
 				
-				JFreeChart j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				JFreeChart j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				ChartPanel panel=new ChartPanel(j);
 				JFrame f=new JFrame();
@@ -504,10 +504,10 @@ public class ControleCenarios {
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação2");
+					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -520,10 +520,10 @@ public class ControleCenarios {
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTap().getRodadas().size();i++){
-					dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação3");
+					dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -536,10 +536,10 @@ public class ControleCenarios {
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTap().getRodadas().size();i++){
-					dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação4");
+					dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -646,10 +646,10 @@ public class ControleCenarios {
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação1");
+					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
 				}
 				
-				JFreeChart j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				JFreeChart j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				ChartPanel panel=new ChartPanel(j);
 				JFrame f=new JFrame();
@@ -662,10 +662,10 @@ public class ControleCenarios {
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação2");
+					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -678,10 +678,10 @@ public class ControleCenarios {
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTap().getRodadas().size();i++){
-					dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação3");
+					dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -694,10 +694,10 @@ public class ControleCenarios {
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTap().getRodadas().size();i++){
-					dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação4");
+					dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
