@@ -526,22 +526,31 @@ public class ControleCenarios {
 				e2.getNcm().getMediaFinal();
 				System.out.println("Vazão:"+vazao2);
 				
-				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+				
+				DefaultCategoryDataset dataset;
+				ChartPanel panel;
+				JFreeChart j;
+				JFrame f;
+				
+				if(e1.getTap().getRodadas() != null){
+				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
 					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
 				}
 				
-				JFreeChart j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
-				ChartPanel panel=new ChartPanel(j);
-				JFrame f=new JFrame();
+				panel=new ChartPanel(j);
+				f=new JFrame();
 				f.setSize(700, 700);
 				f.add(panel);
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
@@ -557,6 +566,7 @@ public class ControleCenarios {
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
 				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
@@ -803,22 +813,30 @@ public class ControleCenarios {
 				e4.getNcm().getMediaFinal();
 				System.out.println("Vazão:"+vazao4);
 				
-				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+				DefaultCategoryDataset dataset;
+				ChartPanel panel;
+				JFreeChart j;
+				JFrame f;
+				
+				if(e1.getTap().getRodadas() != null){
+				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
 					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
 				}
 				
-				JFreeChart j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
-				ChartPanel panel=new ChartPanel(j);
-				JFrame f=new JFrame();
+				panel=new ChartPanel(j);
+				f=new JFrame();
 				f.setSize(700, 700);
 				f.add(panel);
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
@@ -834,7 +852,9 @@ public class ControleCenarios {
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTap().getRodadas().size();i++){
@@ -850,7 +870,9 @@ public class ControleCenarios {
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTap().getRodadas().size();i++){
@@ -866,6 +888,8 @@ public class ControleCenarios {
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
+				
 				
 				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
@@ -1180,22 +1204,30 @@ public class ControleCenarios {
 				e4.getNcm().getMediaFinal();
 				System.out.println("Vazão:"+vazao4);
 			
-				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+				DefaultCategoryDataset dataset;
+				ChartPanel panel;
+				JFreeChart j;
+				JFrame f;
+				
+				if(e1.getTap().getRodadas() != null){
+				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
 					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
 				}
 				
-				JFreeChart j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
-				ChartPanel panel=new ChartPanel(j);
-				JFrame f=new JFrame();
+				panel=new ChartPanel(j);
+				f=new JFrame();
 				f.setSize(700, 700);
 				f.add(panel);
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
@@ -1211,7 +1243,9 @@ public class ControleCenarios {
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTap().getRodadas().size();i++){
@@ -1227,7 +1261,9 @@ public class ControleCenarios {
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTap().getRodadas().size();i++){
@@ -1243,6 +1279,7 @@ public class ControleCenarios {
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
 				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
