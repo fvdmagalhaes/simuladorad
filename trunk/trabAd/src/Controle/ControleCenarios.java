@@ -42,6 +42,8 @@ public class ControleCenarios {
 	class SimularListener implements ActionListener{
 		
 		public void actionPerformed(ActionEvent arg0) {
+			
+			
 			Tap tap1 = new Tap();
 			tap1.setNumMaximoIteracoes(1000);
 			tap1.setNumMaximoRodadas(100);
@@ -222,7 +224,7 @@ public class ControleCenarios {
 				 * Parâmetros: A1 = A2 = 80 ms, ambos determinísticos; p1 = p2 = 40; estações 3 e 4
 				 * sem tráfego.	
 				 */
-				//envento da estacao 1
+				//evento da estacao 1
 				Evento ev1 = new Evento();
 				EventoVo eventovo = new EventoVo();
 				ev1.setTempo(0.0);
@@ -254,7 +256,7 @@ public class ControleCenarios {
 				ev1.setProximoEvento(ev2);
 				ev2.setEventoAnterior(ev1);
 				
-				while(!e1.getTap().getAcabou() && !e2.getTap().getAcabou()){
+				while(!e1.getTap().getAcabou() && !e2.getTap().getAcabou() && !e1.getTam().getAcabou() && !e2.getTam().getAcabou() && !e1.getNcm().getAcabou() && !e2.getNcm().getAcabou()){
 					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
@@ -263,12 +265,49 @@ public class ControleCenarios {
 					}
 					ev1=ev1.getProximoEvento();
 				}
+				//Busca o ultimo evento da estacao 1
+				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp1.getEstacao().equals(e1))
+				{
+					ultimoEventoTemp1 = ultimoEventoTemp1.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo());
+
+				
+				
+//				Busca o ultimo evento da estacao 2
+				Evento ultimoEventoTemp2 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp2.getEstacao().equals(e2))
+				{
+					ultimoEventoTemp2 = ultimoEventoTemp2.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo());
+				
+				
+//				Calcula a utilizacao para a estacao 1
+				Double utilizacao = e1.getTempoOcupada()/e1.getTempoSimulacao();
+				
+				//Calcula a vazao das estacoes 1 e 2
+				Double vazao1 = e1.getNumeroQuadrosTransmitidosSucesso()/e1.getTempoSimulacao();
+				Double vazao2 = e2.getNumeroQuadrosTransmitidosSucesso()/e2.getTempoSimulacao();
 				
 				System.out.println("Medidas da estacao 1: ");
-				e1.getTap().getMediaFinal();				
+				e1.getTap().getMediaFinal();	
+				e1.getTam().getMediaFinal();
+				e1.getNcm().getMediaFinal();
+				System.out.println("Utilização:"+utilizacao);
+				System.out.println("Vazão:"+vazao1);
 				
 				System.out.println("Medidas da estacao 2");
 				e2.getTap().getMediaFinal();
+				e2.getTam().getMediaFinal();
+				e2.getNcm().getMediaFinal();
+				System.out.println("Vazão:"+vazao2);
+				
 				
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
@@ -344,7 +383,7 @@ public class ControleCenarios {
 				ev1.setProximoEvento(ev2);
 				ev2.setEventoAnterior(ev1);
 				
-				while(!e1.getTap().getAcabou() && !e2.getTap().getAcabou()){
+				while(!e1.getTap().getAcabou() && !e2.getTap().getAcabou() && !e1.getTam().getAcabou() && !e2.getTam().getAcabou() && !e1.getNcm().getAcabou() && !e2.getNcm().getAcabou()){
 					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
@@ -353,6 +392,48 @@ public class ControleCenarios {
 					}
 					ev1=ev1.getProximoEvento();
 				}
+//				Busca o ultimo evento da estacao 1
+				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp1.getEstacao().equals(e1))
+				{
+					ultimoEventoTemp1 = ultimoEventoTemp1.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo());
+
+				
+				
+//				Busca o ultimo evento da estacao 2
+				Evento ultimoEventoTemp2 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp2.getEstacao().equals(e2))
+				{
+					ultimoEventoTemp2 = ultimoEventoTemp2.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo());
+				
+				
+//				Calcula a utilizacao para a estacao 1
+				Double utilizacao = e1.getTempoOcupada()/e1.getTempoSimulacao();
+				
+				//Calcula a vazao das estacoes 1 e 2
+				Double vazao1 = e1.getNumeroQuadrosTransmitidosSucesso()/e1.getTempoSimulacao();
+				Double vazao2 = e2.getNumeroQuadrosTransmitidosSucesso()/e2.getTempoSimulacao();
+				
+				System.out.println("Medidas da estacao 1: ");
+				e1.getTap().getMediaFinal();	
+				e1.getTam().getMediaFinal();
+				e1.getNcm().getMediaFinal();
+				System.out.println("Utilização:"+utilizacao);
+				System.out.println("Vazão:"+vazao1);
+				
+				System.out.println("Medidas da estacao 2");
+				e2.getTap().getMediaFinal();
+				e2.getTam().getMediaFinal();
+				e2.getNcm().getMediaFinal();
+				System.out.println("Vazão:"+vazao2);
 				
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
@@ -466,7 +547,9 @@ public class ControleCenarios {
 				ev3.setProximoEvento(ev4);
 				ev4.setEventoAnterior(ev3);
 				
-				while(!e1.getTap().getAcabou()&& !e2.getTap().getAcabou() && !e3.getTap().getAcabou() && !e4.getTap().getAcabou()){
+				while(!e1.getTap().getAcabou()&& !e2.getTap().getAcabou() && !e3.getTap().getAcabou() && !e4.getTap().getAcabou()
+						&& !e1.getTam().getAcabou()&& !e2.getTam().getAcabou() && !e3.getTam().getAcabou() && !e4.getTam().getAcabou()
+						&& !e1.getNcm().getAcabou()&& !e2.getNcm().getAcabou() && !e3.getNcm().getAcabou() && !e4.getNcm().getAcabou()){
 					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
@@ -475,15 +558,76 @@ public class ControleCenarios {
 					}
 					ev1=ev1.getProximoEvento();
 				}
+//				Busca o ultimo evento da estacao 1
+				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp1.getEstacao().equals(e1))
+				{
+					ultimoEventoTemp1 = ultimoEventoTemp1.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo());
+
+				
+				
+//				Busca o ultimo evento da estacao 2
+				Evento ultimoEventoTemp2 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp2.getEstacao().equals(e2))
+				{
+					ultimoEventoTemp2 = ultimoEventoTemp2.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo());
+				
+//				Busca o ultimo evento da estacao 3
+				Evento ultimoEventoTemp3 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp3.getEstacao().equals(e3))
+				{
+					ultimoEventoTemp3 = ultimoEventoTemp3.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e3.setTempoSimulacao(ultimoEventoTemp3.getTempo());
+				
+				
+//				Calcula a utilizacao para a estacao 1
+				Double utilizacao = e1.getTempoOcupada()/e1.getTempoSimulacao();
+				
+				//Calcula a vazao das estacoes 1,2,3 e 4
+				Double vazao1 = e1.getNumeroQuadrosTransmitidosSucesso()/e1.getTempoSimulacao();
+				Double vazao2 = e2.getNumeroQuadrosTransmitidosSucesso()/e2.getTempoSimulacao();
+				Double vazao3 = e3.getNumeroQuadrosTransmitidosSucesso()/e3.getTempoSimulacao();
+				Double vazao4 = e4.getNumeroQuadrosTransmitidosSucesso()/e4.getTempoSimulacao();
+				
 				
 				System.out.println("Medidas da estacao 1: ");
 				e1.getTap().getMediaFinal();
+				e1.getTam().getMediaFinal();
+				e1.getNcm().getMediaFinal();
+				System.out.println("Utilização:"+utilizacao);
+				System.out.println("Vazão:"+vazao1);
+				
+				
+				
 				System.out.println("Medidas da estacao 2: ");
 				e2.getTap().getMediaFinal();
+				e2.getTam().getMediaFinal();
+				e2.getNcm().getMediaFinal();
+				System.out.println("Vazão:"+vazao2);
+				
+				
 				System.out.println("Medidas da estacao 3: ");
 				e3.getTap().getMediaFinal();
+				e3.getTam().getMediaFinal();
+				e3.getNcm().getMediaFinal();
+				System.out.println("Vazão:"+vazao3);
+				
 				System.out.println("Medidas da estacao 4: ");
 				e4.getTap().getMediaFinal();
+				e4.getTam().getMediaFinal();
+				e4.getNcm().getMediaFinal();
+				System.out.println("Vazão:"+vazao4);
 				
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
@@ -624,7 +768,9 @@ public class ControleCenarios {
 				ev3.setProximoEvento(ev4);
 				ev4.setEventoAnterior(ev3);
 				
-				while(!e1.getTap().getAcabou()&& !e2.getTap().getAcabou() && !e3.getTap().getAcabou() && !e4.getTap().getAcabou()){
+				while(!e1.getTap().getAcabou()&& !e2.getTap().getAcabou() && !e3.getTap().getAcabou() && !e4.getTap().getAcabou()
+						&& !e1.getTam().getAcabou()&& !e2.getTam().getAcabou() && !e3.getTam().getAcabou() && !e4.getTam().getAcabou()
+						&& !e1.getNcm().getAcabou()&& !e2.getNcm().getAcabou() && !e3.getNcm().getAcabou() && !e4.getNcm().getAcabou()){
 					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
@@ -633,16 +779,77 @@ public class ControleCenarios {
 					}
 					ev1=ev1.getProximoEvento();
 				}
+//				Busca o ultimo evento da estacao 1
+				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp1.getEstacao().equals(e1))
+				{
+					ultimoEventoTemp1 = ultimoEventoTemp1.getEventoAnterior();
+				}
 				
-				/*System.out.println("Medidas da estacao 2: ");
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo());
+
+				
+				
+//				Busca o ultimo evento da estacao 2
+				Evento ultimoEventoTemp2 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp2.getEstacao().equals(e2))
+				{
+					ultimoEventoTemp2 = ultimoEventoTemp2.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo());
+				
+//				Busca o ultimo evento da estacao 3
+				Evento ultimoEventoTemp3 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp3.getEstacao().equals(e3))
+				{
+					ultimoEventoTemp3 = ultimoEventoTemp3.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e3.setTempoSimulacao(ultimoEventoTemp3.getTempo());
+				
+				
+//				Calcula a utilizacao para a estacao 1
+				Double utilizacao = e1.getTempoOcupada()/e1.getTempoSimulacao();
+				
+				//Calcula a vazao das estacoes 1,2,3 e 4
+				Double vazao1 = e1.getNumeroQuadrosTransmitidosSucesso()/e1.getTempoSimulacao();
+				Double vazao2 = e2.getNumeroQuadrosTransmitidosSucesso()/e2.getTempoSimulacao();
+				Double vazao3 = e3.getNumeroQuadrosTransmitidosSucesso()/e3.getTempoSimulacao();
+				Double vazao4 = e4.getNumeroQuadrosTransmitidosSucesso()/e4.getTempoSimulacao();
+				
+				
+				System.out.println("Medidas da estacao 1: ");
+				e1.getTap().getMediaFinal();
+				e1.getTam().getMediaFinal();
+				e1.getNcm().getMediaFinal();
+				System.out.println("Utilização:"+utilizacao);
+				System.out.println("Vazão:"+vazao1);
+				
+				
+				
+				System.out.println("Medidas da estacao 2: ");
 				e2.getTap().getMediaFinal();
+				e2.getTam().getMediaFinal();
+				e2.getNcm().getMediaFinal();
+				System.out.println("Vazão:"+vazao2);
+				
+				
 				System.out.println("Medidas da estacao 3: ");
 				e3.getTap().getMediaFinal();
+				e3.getTam().getMediaFinal();
+				e3.getNcm().getMediaFinal();
+				System.out.println("Vazão:"+vazao3);
+				
 				System.out.println("Medidas da estacao 4: ");
 				e4.getTap().getMediaFinal();
-				System.out.println("Medidas da estacao 1: ");
-				e1.getTap().getMediaFinal();*/
-				
+				e4.getTam().getMediaFinal();
+				e4.getNcm().getMediaFinal();
+				System.out.println("Vazão:"+vazao4);
+			
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
