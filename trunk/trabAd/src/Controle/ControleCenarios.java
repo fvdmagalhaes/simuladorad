@@ -43,13 +43,13 @@ public class ControleCenarios {
 		
 		public void actionPerformed(ActionEvent arg0) {
 			Tap tap1 = new Tap();
-			tap1.setNumMaximoIteracoes(50);
-			tap1.setNumMaximoRodadas(10);
+			tap1.setNumMaximoIteracoes(1000);
+			tap1.setNumMaximoRodadas(100);
 			tap1.setAcabou(false);
 			
 			Tap tap2 = new Tap();
-			tap2.setNumMaximoIteracoes(50);
-			tap2.setNumMaximoRodadas(10);
+			tap2.setNumMaximoIteracoes(1000);
+			tap2.setNumMaximoRodadas(100);
 			tap2.setAcabou(false);
 			
 			Tap tap3 = new Tap();
@@ -273,10 +273,10 @@ public class ControleCenarios {
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "estação1","Rodada "+i);
+					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
 				}
 				
-				JFreeChart j=ChartFactory.createLineChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				JFreeChart j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				ChartPanel panel=new ChartPanel(j);
 				JFrame f=new JFrame();
@@ -289,10 +289,10 @@ public class ControleCenarios {
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "estação2","Rodada "+i);
+					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
 				}
 				
-				j=ChartFactory.createLineChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
