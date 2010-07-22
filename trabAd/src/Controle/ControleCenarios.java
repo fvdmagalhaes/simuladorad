@@ -397,7 +397,7 @@ public class ControleCenarios {
 				if(e1.getNcm().getRodadas() != null){
 
 					for(int i=0;i<e1.getNcm().getRodadas().size();i++){
-						dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
+						dataset.addValue(e1.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÃO 1","Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -415,7 +415,7 @@ public class ControleCenarios {
 				if(e2.getNcm().getRodadas() != null){
 
 					for(int i=0;i<e2.getNcm().getRodadas().size();i++){
-						dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
+						dataset.addValue(e2.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÃO 2","Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -607,7 +607,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e1.getNcm().getRodadas().size();i++){
-						dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
+						dataset.addValue(e1.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÃO 1","Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -625,7 +625,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e2.getNcm().getRodadas().size();i++){
-						dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
+						dataset.addValue(e2.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÃO 2","Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -967,7 +967,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e1.getNcm().getRodadas().size();i++){
-						dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
+						dataset.addValue(e1.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÂO 1","Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -985,7 +985,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e2.getNcm().getRodadas().size();i++){
-						dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
+						dataset.addValue(e2.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÂO 2", "Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -1003,7 +1003,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e3.getNcm().getRodadas().size();i++){
-						dataset.addValue(e3.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
+						dataset.addValue(e3.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÂO 3", "Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -1021,7 +1021,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e4.getNcm().getRodadas().size();i++){
-						dataset.addValue(e4.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
+						dataset.addValue(e4.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÂO 4", "Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -1357,7 +1357,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e1.getNcm().getRodadas().size();i++){
-						dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
+						dataset.addValue(e1.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÂO 1","Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -1375,7 +1375,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e2.getNcm().getRodadas().size();i++){
-						dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
+						dataset.addValue(e2.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÂO 2", "Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -1393,7 +1393,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e3.getNcm().getRodadas().size();i++){
-						dataset.addValue(e3.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
+						dataset.addValue(e3.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÂO 3", "Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
@@ -1411,7 +1411,7 @@ public class ControleCenarios {
 					dataset = new DefaultCategoryDataset();
 					
 					for(int i=0;i<e4.getNcm().getRodadas().size();i++){
-						dataset.addValue(e4.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
+						dataset.addValue(e4.getNcm().getRodadas().get(i).getMediaInt(), "ESTAÇÂO 4", "Rodada "+i);
 					}
 					
 					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
