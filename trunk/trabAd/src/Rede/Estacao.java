@@ -14,6 +14,8 @@ public class Estacao {
 	Canal rx;
 	int taxaDeChegada;
 	int numeroColisoes;
+	Double tempoOcupada;
+	Double tempoSimulacao;
 	//numero de quadros em uma mensagem
 	int pmf;
 	//Quadro ultimoQuadroEnviado;
@@ -29,7 +31,21 @@ public class Estacao {
 	Tap tap;
 	Tam tam;
 	ncm ncm;
+	int numeroQuadrosTransmitidosSucesso;
 	//private double p;//parametro para saber se a pmf é geometrica ou deterministica
+	
+	public Double getTempoOcupada() {
+		return tempoOcupada;
+	}
+	public void setTempoOcupada(Double tempoOcupada) {
+		this.tempoOcupada = tempoOcupada;
+	}
+	public Double getTempoSimulacao() {
+		return tempoSimulacao;
+	}
+	public void setTempoSimulacao(Double tempoSimulacao) {
+		this.tempoSimulacao = tempoSimulacao;
+	}
 	
 	public Quadro getUltimoQuadroEnviado(){
 		return ultimoQuadroEnviado;
@@ -114,6 +130,12 @@ public class Estacao {
 		this.pmf = pmf;
 	}
 	
+	public int getNumeroQuadrosTransmitidosSucesso() {
+		return numeroQuadrosTransmitidosSucesso;
+	}
+	public void setNumeroQuadrosTransmitidosSucesso(int numeroQuadrosTransmitidosSucesso) {
+		this.numeroQuadrosTransmitidosSucesso = numeroQuadrosTransmitidosSucesso;
+	}
 	
 	public boolean getRecebeuConfirmacaoUltimoQuadro(){
 		return RecebeuConfirmacaoUltimoQuadro;
@@ -201,6 +223,7 @@ public class Estacao {
 		quadro.setQuadroConfirmado(false);
 		quadro.setTap(tempo);
 		quadro.setTam(tempo);
+		quadro.setTempoOcupado(tempo);
 		//Inicialmente temos 0 colisoes de quadros desse pacote
 		pacote.setNcm(0);
 		//cria um evento de enviar quadro para o hub para cada quadro
