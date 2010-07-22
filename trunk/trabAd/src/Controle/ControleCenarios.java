@@ -272,22 +272,36 @@ public class ControleCenarios {
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia()*100000, "Rodada "+i, "estação1");
-				}
-				
-				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia()*100000, "Rodada "+i, "estação2");
+					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação1");
 				}
 				
 				JFreeChart j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				ChartPanel panel=new ChartPanel(j);
 				JFrame f=new JFrame();
-				f.setSize(400, 400);
+				f.setSize(700, 700);
 				f.add(panel);
-				f.setTitle("Grafico");
+				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				dataset = new DefaultCategoryDataset();
+				
+				for(int i=0;i<e2.getTap().getRodadas().size();i++){
+					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação2");
+				}
+				
+				j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				
+				panel=new ChartPanel(j);
+				f=new JFrame();
+				f.setSize(700, 700);
+				f.add(panel);
+				f.setTitle("Tap");
+				f.setVisible(true);
+				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				
 				
 			}else if(intfc.getRadioSelected() == 2){
 				/*
@@ -339,6 +353,26 @@ public class ControleCenarios {
 					}
 					ev1=ev1.getProximoEvento();
 				}
+				
+				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+				
+				for(int i=0;i<e1.getTap().getRodadas().size();i++){
+					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação1");
+				}
+				
+				for(int i=0;i<e2.getTap().getRodadas().size();i++){
+					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação2");
+				}
+				
+				JFreeChart j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
+				
+				ChartPanel panel=new ChartPanel(j);
+				JFrame f=new JFrame();
+				f.setSize(700, 700);
+				f.add(panel);
+				f.setTitle("Tap");
+				f.setVisible(true);
+				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 				/*System.out.println("Medidas da estacao 1: ");
 				e1.getTap().getMediaFinal();				
