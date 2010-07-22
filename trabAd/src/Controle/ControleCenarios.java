@@ -321,43 +321,43 @@ public class ControleCenarios {
 				JFrame f;
 				
 				if(e1.getTap().getRodadas() != null){
-				 dataset= new DefaultCategoryDataset();
-				
-				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset= new DefaultCategoryDataset();
+					
+					for(int i=0;i<e1.getTap().getRodadas().size();i++){
+						dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getTap().getRodadas().size();i++){
+						dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e1.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
+					dataset = new DefaultCategoryDataset();
 				
 					for(int i=0;i<e1.getTam().getRodadas().size();i++){
 						dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
@@ -533,110 +533,110 @@ public class ControleCenarios {
 				JFrame f;
 				
 				if(e1.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e1.getTap().getRodadas().size();i++){
+						dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getTap().getRodadas().size();i++){
+						dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e1.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				for(int i=0;i<e1.getTam().getRodadas().size();i++){
-					dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					for(int i=0;i<e1.getTam().getRodadas().size();i++){
+						dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getTam().getRodadas().size();i++){
-					dataset.addValue(e2.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getTam().getRodadas().size();i++){
+						dataset.addValue(e2.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e1.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e1.getNcm().getRodadas().size();i++){
-					dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e1.getNcm().getRodadas().size();i++){
+						dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
-					dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getNcm().getRodadas().size();i++){
+						dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				/*System.out.println("Medidas da estacao 1: ");
 				e1.getTap().getMediaFinal();				
@@ -819,220 +819,220 @@ public class ControleCenarios {
 				JFrame f;
 				
 				if(e1.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e1.getTap().getRodadas().size();i++){
+						dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getTap().getRodadas().size();i++){
+						dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e3.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e3.getTap().getRodadas().size();i++){
-					dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e3.getTap().getRodadas().size();i++){
+						dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e4.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e4.getTap().getRodadas().size();i++){
-					dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e4.getTap().getRodadas().size();i++){
+						dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				
 				if(e1.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e1.getTam().getRodadas().size();i++){
-					dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e1.getTam().getRodadas().size();i++){
+						dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getTam().getRodadas().size();i++){
-					dataset.addValue(e2.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getTam().getRodadas().size();i++){
+						dataset.addValue(e2.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e3.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e3.getTam().getRodadas().size();i++){
-					dataset.addValue(e3.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e3.getTam().getRodadas().size();i++){
+						dataset.addValue(e3.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e4.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e4.getTam().getRodadas().size();i++){
-					dataset.addValue(e4.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e4.getTam().getRodadas().size();i++){
+						dataset.addValue(e4.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e1.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e1.getNcm().getRodadas().size();i++){
-					dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e1.getNcm().getRodadas().size();i++){
+						dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
-					dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getNcm().getRodadas().size();i++){
+						dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e3.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e3.getNcm().getRodadas().size();i++){
-					dataset.addValue(e3.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e3.getNcm().getRodadas().size();i++){
+						dataset.addValue(e3.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e4.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e4.getNcm().getRodadas().size();i++){
-					dataset.addValue(e4.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e4.getNcm().getRodadas().size();i++){
+						dataset.addValue(e4.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 			}else if(intfc.getRadioSelected() == 4){
@@ -1210,219 +1210,219 @@ public class ControleCenarios {
 				JFrame f;
 				
 				if(e1.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e1.getTap().getRodadas().size();i++){
+						dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getTap().getRodadas().size();i++){
+						dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e3.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e3.getTap().getRodadas().size();i++){
-					dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e3.getTap().getRodadas().size();i++){
+						dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e4.getTap().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e4.getTap().getRodadas().size();i++){
-					dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tap");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e4.getTap().getRodadas().size();i++){
+						dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tap");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e1.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e1.getTam().getRodadas().size();i++){
-					dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e1.getTam().getRodadas().size();i++){
+						dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getTam().getRodadas().size();i++){
-					dataset.addValue(e2.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getTam().getRodadas().size();i++){
+						dataset.addValue(e2.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e3.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e3.getTam().getRodadas().size();i++){
-					dataset.addValue(e3.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e3.getTam().getRodadas().size();i++){
+						dataset.addValue(e3.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e4.getTam().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e4.getTam().getRodadas().size();i++){
-					dataset.addValue(e4.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Tam");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e4.getTam().getRodadas().size();i++){
+						dataset.addValue(e4.getTam().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Tam");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e1.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e1.getNcm().getRodadas().size();i++){
-					dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e1.getNcm().getRodadas().size();i++){
+						dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 1","Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e2.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
-					dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e2.getNcm().getRodadas().size();i++){
+						dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e3.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e3.getNcm().getRodadas().size();i++){
-					dataset.addValue(e3.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e3.getNcm().getRodadas().size();i++){
+						dataset.addValue(e3.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
 				if(e4.getNcm().getRodadas() != null){
-				dataset = new DefaultCategoryDataset();
-				
-				for(int i=0;i<e4.getNcm().getRodadas().size();i++){
-					dataset.addValue(e4.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
-				}
-				
-				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
-				
-				panel=new ChartPanel(j);
-				f=new JFrame();
-				f.setSize(700, 700);
-				f.add(panel);
-				f.setTitle("Ncm");
-				f.setVisible(true);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dataset = new DefaultCategoryDataset();
+					
+					for(int i=0;i<e4.getNcm().getRodadas().size();i++){
+						dataset.addValue(e4.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
+					}
+					
+					j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+					
+					panel=new ChartPanel(j);
+					f=new JFrame();
+					f.setSize(700, 700);
+					f.add(panel);
+					f.setTitle("Ncm");
+					f.setVisible(true);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 
 			}
