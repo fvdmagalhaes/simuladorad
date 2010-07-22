@@ -12,8 +12,15 @@ public class Quadro {
 	boolean quadroConfirmado;
 	Double tap;
 	Double tam;
+	Double tempoOcupado;
 	
 
+	public Double getTempoOcupado(){
+		return tempoOcupado;
+	}
+	public void setTempoOcupado(Double tempoOcupado){
+		this.tempoOcupado = tempoOcupado;
+	}
 	public Double getTap() {
 		return tap;
 	}
