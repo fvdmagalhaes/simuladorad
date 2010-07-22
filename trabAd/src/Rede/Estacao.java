@@ -223,7 +223,6 @@ public class Estacao {
 		quadro.setQuadroConfirmado(false);
 		quadro.setTap(tempo);
 		quadro.setTam(tempo);
-		quadro.setTempoOcupado(tempo);
 		//Inicialmente temos 0 colisoes de quadros desse pacote
 		pacote.setNcm(0);
 		//cria um evento de enviar quadro para o hub para cada quadro
