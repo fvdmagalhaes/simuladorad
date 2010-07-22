@@ -267,10 +267,10 @@ public class ControleCenarios {
 					{
 						ultimaTransmissao = eventovo.getUltimoEvento();
 					}
-					/*Evento ev=ev1;
+					Evento ev=ev1;
 					ev1=ev1.getProximoEvento();
 					ev1.setEventoAnterior(null);
-					ev=null;*/
+					ev=null;
 				}
 				//Busca o ultimo evento da estacao 1
 				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
@@ -397,7 +397,10 @@ public class ControleCenarios {
 					{
 						ultimaTransmissao = eventovo.getUltimoEvento();
 					}
+					Evento ev=ev1;
 					ev1=ev1.getProximoEvento();
+					ev1.setEventoAnterior(null);
+					ev=null;
 				}
 //				Busca o ultimo evento da estacao 1
 				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
@@ -563,7 +566,10 @@ public class ControleCenarios {
 					{
 						ultimaTransmissao = eventovo.getUltimoEvento();
 					}
+					Evento ev=ev1;
 					ev1=ev1.getProximoEvento();
+					ev1.setEventoAnterior(null);
+					ev=null;
 				}
 //				Busca o ultimo evento da estacao 1
 				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
@@ -794,7 +800,10 @@ public class ControleCenarios {
 					{
 						ultimaTransmissao = eventovo.getUltimoEvento();
 					}
+					Evento ev=ev1;
 					ev1=ev1.getProximoEvento();
+					ev1.setEventoAnterior(null);
+					ev=null;
 				}
 //				Busca o ultimo evento da estacao 1
 				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
