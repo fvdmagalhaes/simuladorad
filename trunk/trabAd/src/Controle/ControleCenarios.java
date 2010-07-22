@@ -46,66 +46,66 @@ public class ControleCenarios {
 			
 			Tap tap1 = new Tap();
 			
-			tap1.setNumMaximoIteracoes(10);
-			tap1.setNumMaximoRodadas(10);
+			tap1.setNumMaximoIteracoes(5);
+			tap1.setNumMaximoRodadas(5);
 
 			tap1.setAcabou(false);
 			
 			Tap tap2 = new Tap ();
 
-			tap2.setNumMaximoIteracoes(10);
-			tap2.setNumMaximoRodadas(10);
+			tap2.setNumMaximoIteracoes(5);
+			tap2.setNumMaximoRodadas(5);
 
 			tap2.setAcabou(false);
 			
 			Tap tap3 = new Tap();
-			tap3.setNumMaximoIteracoes(10);
-			tap3.setNumMaximoRodadas(10);
+			tap3.setNumMaximoIteracoes(5);
+			tap3.setNumMaximoRodadas(5);
 			tap3.setAcabou(false);
 			
 			Tap tap4 = new Tap();
-			tap4.setNumMaximoIteracoes(10);
-			tap4.setNumMaximoRodadas(10);
+			tap4.setNumMaximoIteracoes(5);
+			tap4.setNumMaximoRodadas(5);
 			tap4.setAcabou(false);
 			
 			Tam tam1 = new Tam();
-			tam1.setNumMaximoIteracoes(2);
-			tam1.setNumMaximoRodadas(10);
+			tam1.setNumMaximoIteracoes(5);
+			tam1.setNumMaximoRodadas(5);
 			tam1.setAcabou(false);
 			
 			Tam tam2 = new Tam();
-			tam2.setNumMaximoIteracoes(2);
-			tam2.setNumMaximoRodadas(10);
+			tam2.setNumMaximoIteracoes(5);
+			tam2.setNumMaximoRodadas(5);
 			tam2.setAcabou(false);
 			
 			Tam tam3 = new Tam();
-			tam3.setNumMaximoIteracoes(500);
-			tam3.setNumMaximoRodadas(100);
+			tam3.setNumMaximoIteracoes(5);
+			tam3.setNumMaximoRodadas(5);
 			tam3.setAcabou(false);
 			
 			Tam tam4 = new Tam();
-			tam4.setNumMaximoIteracoes(500);
-			tam4.setNumMaximoRodadas(100);
+			tam4.setNumMaximoIteracoes(5);
+			tam4.setNumMaximoRodadas(5);
 			tam4.setAcabou(false);
 			
 			ncm ncm1 = new ncm();
-			ncm1.setNumMaximoIteracoes(2);
-			ncm1.setNumMaximoRodadas(10);
+			ncm1.setNumMaximoIteracoes(5);
+			ncm1.setNumMaximoRodadas(5);
 			ncm1.setAcabou(false);
 			
 			ncm ncm2 = new ncm();
-			ncm2.setNumMaximoIteracoes(2);
-			ncm2.setNumMaximoRodadas(10);
+			ncm2.setNumMaximoIteracoes(5);
+			ncm2.setNumMaximoRodadas(5);
 			ncm2.setAcabou(false);
 			
 			ncm ncm3 = new ncm();
-			ncm3.setNumMaximoIteracoes(1000);
-			ncm3.setNumMaximoRodadas(100);
+			ncm3.setNumMaximoIteracoes(5);
+			ncm3.setNumMaximoRodadas(5);
 			ncm3.setAcabou(false);
 			
 			ncm ncm4 = new ncm();
-			ncm4.setNumMaximoIteracoes(1000);
-			ncm4.setNumMaximoRodadas(100);
+			ncm4.setNumMaximoIteracoes(5);
+			ncm4.setNumMaximoRodadas(5);
 			ncm4.setAcabou(false);
 			
 			//instancia as estacoes do sistema
@@ -550,8 +550,8 @@ public class ControleCenarios {
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
-				
 				for(int i=0;i<e1.getTam().getRodadas().size();i++){
 					dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
 				}
@@ -565,7 +565,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTam().getRodadas().size();i++){
@@ -581,7 +583,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getNcm().getRodadas().size();i++){
@@ -597,7 +601,9 @@ public class ControleCenarios {
 				f.setTitle("ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
@@ -613,7 +619,7 @@ public class ControleCenarios {
 				f.setTitle("ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
+				}
 				/*System.out.println("Medidas da estacao 1: ");
 				e1.getTap().getMediaFinal();				
 				
@@ -853,6 +859,7 @@ public class ControleCenarios {
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTam().getRodadas().size();i++){
@@ -868,7 +875,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTam().getRodadas().size();i++){
@@ -884,7 +893,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTam().getRodadas().size();i++){
@@ -900,7 +911,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTam().getRodadas().size();i++){
@@ -916,7 +929,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getNcm().getRodadas().size();i++){
@@ -932,7 +947,9 @@ public class ControleCenarios {
 				f.setTitle("Ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
@@ -948,7 +965,9 @@ public class ControleCenarios {
 				f.setTitle("Ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getNcm().getRodadas().size();i++){
@@ -964,7 +983,9 @@ public class ControleCenarios {
 				f.setTitle("Ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getNcm().getRodadas().size();i++){
@@ -980,7 +1001,7 @@ public class ControleCenarios {
 				f.setTitle("Ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
+				}
 				
 			}else if(intfc.getRadioSelected() == 4){
 
@@ -1215,6 +1236,7 @@ public class ControleCenarios {
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTam().getRodadas().size();i++){
@@ -1230,7 +1252,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTam().getRodadas().size();i++){
@@ -1246,7 +1270,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTam().getRodadas().size();i++){
@@ -1262,7 +1288,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTam().getRodadas().size();i++){
@@ -1278,7 +1306,9 @@ public class ControleCenarios {
 				f.setTitle("Tam");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getNcm().getRodadas().size();i++){
@@ -1294,7 +1324,9 @@ public class ControleCenarios {
 				f.setTitle("Ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
@@ -1310,7 +1342,9 @@ public class ControleCenarios {
 				f.setTitle("Ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getNcm().getRodadas().size();i++){
@@ -1326,7 +1360,9 @@ public class ControleCenarios {
 				f.setTitle("Ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getNcm().getRodadas().size();i++){
@@ -1342,7 +1378,7 @@ public class ControleCenarios {
 				f.setTitle("Ncm");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
+				}
 
 			}
 			
