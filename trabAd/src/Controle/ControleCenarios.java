@@ -272,11 +272,11 @@ public class ControleCenarios {
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
-					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação1");
+					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia()*100000, "Rodada "+i, "estação1");
 				}
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
-					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "Rodada "+i, "estação2");
+					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia()*100000, "Rodada "+i, "estação2");
 				}
 				
 				JFreeChart j=ChartFactory.createBarChart("teste", "Rodada", "Valor", dataset,PlotOrientation.VERTICAL, true, false,false);
