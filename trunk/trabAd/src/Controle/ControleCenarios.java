@@ -45,8 +45,6 @@ public class ControleCenarios {
 			Double faseTransiente = 0.0;
 			
 			Tap tap1 = new Tap();
-			tap1.setNumMaximoIteracoes(1000);
-			tap1.setNumMaximoRodadas(50);
 			
 			tap1.setNumMaximoIteracoes(10);
 			tap1.setNumMaximoRodadas(10);
@@ -55,22 +53,19 @@ public class ControleCenarios {
 			
 			Tap tap2 = new Tap();
 
-			tap2.setNumMaximoIteracoes(1000);
-			tap2.setNumMaximoRodadas(50);
-
 			tap2.setNumMaximoIteracoes(10);
 			tap2.setNumMaximoRodadas(10);
 
 			tap2.setAcabou(false);
 			
 			Tap tap3 = new Tap();
-			tap3.setNumMaximoIteracoes(1000);
-			tap3.setNumMaximoRodadas(50);
+			tap3.setNumMaximoIteracoes(10);
+			tap3.setNumMaximoRodadas(10);
 			tap3.setAcabou(false);
 			
 			Tap tap4 = new Tap();
-			tap4.setNumMaximoIteracoes(1000);
-			tap4.setNumMaximoRodadas(50);
+			tap4.setNumMaximoIteracoes(10);
+			tap4.setNumMaximoRodadas(10);
 			tap4.setAcabou(false);
 			
 			Tam tam1 = new Tam();
