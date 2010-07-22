@@ -227,7 +227,7 @@ public class Controle {
 					}
 				}
 //				quadro enviado com sucesso... agora podemos colher o tap aqui vai gerar o metodo de calcular o tap...
-				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap());
+				evento.getEstacao().getTap().adicionaMedida(evento.getQuadro().getTap(), evento.getTempo(),faseTransiente);
 				
 								
 				int numeroSequencia = evento.getQuadro().getNumeroSequencia()+1;
@@ -272,13 +272,13 @@ public class Controle {
 					//caso contrario ja colhemos todos os tams do pacote
 					if(evento.getQuadro().getPacote().getTam()!=null)
 					{
-						evento.getEstacao().getTam().adicionaMedida(evento.getQuadro().getPacote().getTam()+evento.getQuadro().getTam());
+						evento.getEstacao().getTam().adicionaMedida(evento.getQuadro().getPacote().getTam()+evento.getQuadro().getTam(),evento.getTempo(),faseTransiente);
 					}else{
-						evento.getQuadro().getPacote().setTam(evento.getQuadro().getTam());
+						evento.getEstacao().getTam().adicionaMedida(evento.getQuadro().getTam(), evento.getTempo(),faseTransiente);
 					}
 					//Enviamos todo o pacote, portanto vamos adicionar a rodada do numero de colisoes do pacote sobre o numero de quadros no pacote que eh a pmf
 					
-					evento.getEstacao().getNcm().adicionaMedida(evento.getQuadro().getPacote().getNcm()/estacao.getPmf());
+					evento.getEstacao().getNcm().adicionaMedida(evento.getQuadro().getPacote().getNcm()/estacao.getPmf(), evento.getTempo(),faseTransiente);
 				}
 				
 //				retorna o ultimo evento executado
