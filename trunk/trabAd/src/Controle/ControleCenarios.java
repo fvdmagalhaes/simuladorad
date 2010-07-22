@@ -315,23 +315,30 @@ public class ControleCenarios {
 				e2.getNcm().getMediaFinal();
 				System.out.println("Vazão:"+vazao2);
 				
+				DefaultCategoryDataset dataset;
+				ChartPanel panel;
+				JFreeChart j;
+				JFrame f;
 				
-				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+				if(e1.getTap().getRodadas() != null){
+				 dataset= new DefaultCategoryDataset();
 				
 				for(int i=0;i<e1.getTap().getRodadas().size();i++){
 					dataset.addValue(e1.getTap().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
 				}
 				
-				JFreeChart j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
-				ChartPanel panel=new ChartPanel(j);
-				JFrame f=new JFrame();
+				panel=new ChartPanel(j);
+				f=new JFrame();
 				f.setSize(700, 700);
 				f.add(panel);
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
+				if(e1.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
@@ -347,10 +354,11 @@ public class ControleCenarios {
 				f.setTitle("Tap");
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
-				dataset = new DefaultCategoryDataset();
+				}
 				
 				if(e1.getTam().getRodadas() != null){
+				dataset = new DefaultCategoryDataset();
+				
 					for(int i=0;i<e1.getTam().getRodadas().size();i++){
 						dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
 					}
@@ -364,11 +372,11 @@ public class ControleCenarios {
 					f.setTitle("Tam");
 					f.setVisible(true);
 					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					
-					dataset = new DefaultCategoryDataset();
 				}
 				
-				if(e2.getTam().getRodadas() != null){
+				if(e1.getTam().getRodadas() != null){
+					dataset = new DefaultCategoryDataset();
+				
 					for(int i=0;i<e2.getTam().getRodadas().size();i++){
 						dataset.addValue(e2.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
 					}
