@@ -43,15 +43,17 @@ public class ControleCenarios {
 		
 		public void actionPerformed(ActionEvent arg0) {
 			
+			//Guarda a fase transiente
+			Double faseTransiente = 0.0;
 			
 			Tap tap1 = new Tap();
-			tap1.setNumMaximoIteracoes(1000);
-			tap1.setNumMaximoRodadas(100);
+			tap1.setNumMaximoIteracoes(10);
+			tap1.setNumMaximoRodadas(10);
 			tap1.setAcabou(false);
 			
 			Tap tap2 = new Tap();
-			tap2.setNumMaximoIteracoes(1000);
-			tap2.setNumMaximoRodadas(100);
+			tap2.setNumMaximoIteracoes(10);
+			tap2.setNumMaximoRodadas(10);
 			tap2.setAcabou(false);
 			
 			Tap tap3 = new Tap();
@@ -65,13 +67,13 @@ public class ControleCenarios {
 			tap4.setAcabou(false);
 			
 			Tam tam1 = new Tam();
-			tam1.setNumMaximoIteracoes(500);
-			tam1.setNumMaximoRodadas(100);
+			tam1.setNumMaximoIteracoes(2);
+			tam1.setNumMaximoRodadas(10);
 			tam1.setAcabou(false);
 			
 			Tam tam2 = new Tam();
-			tam2.setNumMaximoIteracoes(500);
-			tam2.setNumMaximoRodadas(100);
+			tam2.setNumMaximoIteracoes(2);
+			tam2.setNumMaximoRodadas(10);
 			tam2.setAcabou(false);
 			
 			Tam tam3 = new Tam();
@@ -85,13 +87,13 @@ public class ControleCenarios {
 			tam4.setAcabou(false);
 			
 			ncm ncm1 = new ncm();
-			ncm1.setNumMaximoIteracoes(1000);
-			ncm1.setNumMaximoRodadas(100);
+			ncm1.setNumMaximoIteracoes(2);
+			ncm1.setNumMaximoRodadas(10);
 			ncm1.setAcabou(false);
 			
 			ncm ncm2 = new ncm();
-			ncm2.setNumMaximoIteracoes(1000);
-			ncm2.setNumMaximoRodadas(100);
+			ncm2.setNumMaximoIteracoes(2);
+			ncm2.setNumMaximoRodadas(10);
 			ncm2.setAcabou(false);
 			
 			ncm ncm3 = new ncm();
@@ -257,7 +259,7 @@ public class ControleCenarios {
 				ev2.setEventoAnterior(ev1);
 				
 				while(!e1.getTap().getAcabou() && !e2.getTap().getAcabou() && !e1.getTam().getAcabou() && !e2.getTam().getAcabou() && !e1.getNcm().getAcabou() && !e2.getNcm().getAcabou()){
-					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
+					eventovo = Controle.trataEventos(ev1,ultimaTransmissao, faseTransiente);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
 					{
@@ -272,8 +274,8 @@ public class ControleCenarios {
 					ultimoEventoTemp1 = ultimoEventoTemp1.getEventoAnterior();
 				}
 				
-				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo());
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela menos a fase transiente
+				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo()-faseTransiente);
 
 				
 				
@@ -284,8 +286,8 @@ public class ControleCenarios {
 					ultimoEventoTemp2 = ultimoEventoTemp2.getEventoAnterior();
 				}
 				
-				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo());
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela menos a fase transiente
+				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo()-faseTransiente);
 				
 				
 //				Calcula a utilizacao para a estacao 1
@@ -384,7 +386,7 @@ public class ControleCenarios {
 				ev2.setEventoAnterior(ev1);
 				
 				while(!e1.getTap().getAcabou() && !e2.getTap().getAcabou() && !e1.getTam().getAcabou() && !e2.getTam().getAcabou() && !e1.getNcm().getAcabou() && !e2.getNcm().getAcabou()){
-					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
+					eventovo = Controle.trataEventos(ev1,ultimaTransmissao,faseTransiente);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
 					{
@@ -400,7 +402,7 @@ public class ControleCenarios {
 				}
 				
 				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo());
+				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo()-faseTransiente);
 
 				
 				
@@ -412,7 +414,7 @@ public class ControleCenarios {
 				}
 				
 				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo());
+				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo()-faseTransiente);
 				
 				
 //				Calcula a utilizacao para a estacao 1
@@ -550,7 +552,7 @@ public class ControleCenarios {
 				while(!e1.getTap().getAcabou()&& !e2.getTap().getAcabou() && !e3.getTap().getAcabou() && !e4.getTap().getAcabou()
 						&& !e1.getTam().getAcabou()&& !e2.getTam().getAcabou() && !e3.getTam().getAcabou() && !e4.getTam().getAcabou()
 						&& !e1.getNcm().getAcabou()&& !e2.getNcm().getAcabou() && !e3.getNcm().getAcabou() && !e4.getNcm().getAcabou()){
-					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
+					eventovo = Controle.trataEventos(ev1,ultimaTransmissao,faseTransiente);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
 					{
@@ -566,7 +568,7 @@ public class ControleCenarios {
 				}
 				
 				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo());
+				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo()-faseTransiente);
 
 				
 				
@@ -578,7 +580,7 @@ public class ControleCenarios {
 				}
 				
 				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo());
+				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo()-faseTransiente);
 				
 //				Busca o ultimo evento da estacao 3
 				Evento ultimoEventoTemp3 = eventovo.getUltimoEvento();
@@ -588,7 +590,17 @@ public class ControleCenarios {
 				}
 				
 				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e3.setTempoSimulacao(ultimoEventoTemp3.getTempo());
+				e3.setTempoSimulacao(ultimoEventoTemp3.getTempo()-faseTransiente);
+				
+				//				Busca o ultimo evento da estacao 4
+				Evento ultimoEventoTemp4 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp4.getEstacao().equals(e4))
+				{
+					ultimoEventoTemp4 = ultimoEventoTemp4.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e4.setTempoSimulacao(ultimoEventoTemp4.getTempo()-faseTransiente);
 				
 				
 //				Calcula a utilizacao para a estacao 1
@@ -771,7 +783,7 @@ public class ControleCenarios {
 				while(!e1.getTap().getAcabou()&& !e2.getTap().getAcabou() && !e3.getTap().getAcabou() && !e4.getTap().getAcabou()
 						&& !e1.getTam().getAcabou()&& !e2.getTam().getAcabou() && !e3.getTam().getAcabou() && !e4.getTam().getAcabou()
 						&& !e1.getNcm().getAcabou()&& !e2.getNcm().getAcabou() && !e3.getNcm().getAcabou() && !e4.getNcm().getAcabou()){
-					eventovo = Controle.trataEventos(ev1,ultimaTransmissao);
+					eventovo = Controle.trataEventos(ev1,ultimaTransmissao,faseTransiente);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
 					if(eventovo.getVerificaTransmissao())
 					{
@@ -787,7 +799,7 @@ public class ControleCenarios {
 				}
 				
 				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo());
+				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo()-faseTransiente);
 
 				
 				
@@ -799,7 +811,7 @@ public class ControleCenarios {
 				}
 				
 				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo());
+				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo()-faseTransiente);
 				
 //				Busca o ultimo evento da estacao 3
 				Evento ultimoEventoTemp3 = eventovo.getUltimoEvento();
@@ -809,7 +821,17 @@ public class ControleCenarios {
 				}
 				
 				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
-				e3.setTempoSimulacao(ultimoEventoTemp3.getTempo());
+				e3.setTempoSimulacao(ultimoEventoTemp3.getTempo()-faseTransiente);
+				
+//				Busca o ultimo evento da estacao 4
+				Evento ultimoEventoTemp4 = eventovo.getUltimoEvento();
+				while(!ultimoEventoTemp4.getEstacao().equals(e4))
+				{
+					ultimoEventoTemp4 = ultimoEventoTemp4.getEventoAnterior();
+				}
+				
+				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				e4.setTempoSimulacao(ultimoEventoTemp4.getTempo()-faseTransiente);
 				
 				
 //				Calcula a utilizacao para a estacao 1
