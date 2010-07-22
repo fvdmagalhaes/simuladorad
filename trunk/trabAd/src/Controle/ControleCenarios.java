@@ -541,6 +541,70 @@ public class ControleCenarios {
 				f.setVisible(true);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
+				dataset = new DefaultCategoryDataset();
+				
+				for(int i=0;i<e1.getTam().getRodadas().size();i++){
+					dataset.addValue(e1.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
+				}
+				
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+				
+				panel=new ChartPanel(j);
+				f=new JFrame();
+				f.setSize(700, 700);
+				f.add(panel);
+				f.setTitle("Tam");
+				f.setVisible(true);
+				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				dataset = new DefaultCategoryDataset();
+				
+				for(int i=0;i<e2.getTam().getRodadas().size();i++){
+					dataset.addValue(e2.getTam().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
+				}
+				
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAM", dataset,PlotOrientation.VERTICAL, true, false,false);
+				
+				panel=new ChartPanel(j);
+				f=new JFrame();
+				f.setSize(700, 700);
+				f.add(panel);
+				f.setTitle("Tam");
+				f.setVisible(true);
+				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				dataset = new DefaultCategoryDataset();
+				
+				for(int i=0;i<e1.getNcm().getRodadas().size();i++){
+					dataset.addValue(e1.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 1","Rodada "+i);
+				}
+				
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+				
+				panel=new ChartPanel(j);
+				f=new JFrame();
+				f.setSize(700, 700);
+				f.add(panel);
+				f.setTitle("ncm");
+				f.setVisible(true);
+				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				dataset = new DefaultCategoryDataset();
+				
+				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
+					dataset.addValue(e2.getNcm().getRodadas().get(i).getMedia(), "ESTAÇÃO 2","Rodada "+i);
+				}
+				
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "NCM", dataset,PlotOrientation.VERTICAL, true, false,false);
+				
+				panel=new ChartPanel(j);
+				f=new JFrame();
+				f.setSize(700, 700);
+				f.add(panel);
+				f.setTitle("ncm");
+				f.setVisible(true);
+				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
 				/*System.out.println("Medidas da estacao 1: ");
 				e1.getTap().getMediaFinal();				
 				
