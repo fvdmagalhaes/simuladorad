@@ -338,7 +338,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTap().getRodadas() != null){
+				if(e2.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
@@ -374,7 +374,7 @@ public class ControleCenarios {
 					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTam().getRodadas() != null){
+				if(e2.getTam().getRodadas() != null){
 					dataset = new DefaultCategoryDataset();
 				
 					for(int i=0;i<e2.getTam().getRodadas().size();i++){
@@ -550,7 +550,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTap().getRodadas() != null){
+				if(e2.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
@@ -585,7 +585,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTam().getRodadas() != null){
+				if(e2.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTam().getRodadas().size();i++){
@@ -621,7 +621,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getNcm().getRodadas() != null){
+				if(e2.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
@@ -836,7 +836,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTap().getRodadas() != null){
+				if(e2.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
@@ -854,7 +854,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTap().getRodadas() != null){
+				if(e3.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTap().getRodadas().size();i++){
@@ -872,7 +872,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTap().getRodadas() != null){
+				if(e4.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTap().getRodadas().size();i++){
@@ -909,7 +909,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTam().getRodadas() != null){
+				if(e2.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTam().getRodadas().size();i++){
@@ -927,7 +927,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTam().getRodadas() != null){
+				if(e3.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTam().getRodadas().size();i++){
@@ -945,7 +945,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTam().getRodadas() != null){
+				if(e4.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTam().getRodadas().size();i++){
@@ -981,7 +981,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getNcm().getRodadas() != null){
+				if(e2.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
@@ -999,7 +999,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getNcm().getRodadas() != null){
+				if(e3.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getNcm().getRodadas().size();i++){
@@ -1017,7 +1017,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getNcm().getRodadas() != null){
+				if(e4.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getNcm().getRodadas().size();i++){
@@ -1227,7 +1227,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTap().getRodadas() != null){
+				if(e2.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTap().getRodadas().size();i++){
@@ -1245,7 +1245,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTap().getRodadas() != null){
+				if(e3.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTap().getRodadas().size();i++){
@@ -1263,7 +1263,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTap().getRodadas() != null){
+				if(e4.getTap().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTap().getRodadas().size();i++){
@@ -1299,7 +1299,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTam().getRodadas() != null){
+				if(e2.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getTam().getRodadas().size();i++){
@@ -1317,7 +1317,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTam().getRodadas() != null){
+				if(e3.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getTam().getRodadas().size();i++){
@@ -1335,7 +1335,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getTam().getRodadas() != null){
+				if(e4.getTam().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getTam().getRodadas().size();i++){
@@ -1371,7 +1371,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getNcm().getRodadas() != null){
+				if(e2.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e2.getNcm().getRodadas().size();i++){
@@ -1389,7 +1389,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getNcm().getRodadas() != null){
+				if(e3.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e3.getNcm().getRodadas().size();i++){
@@ -1407,7 +1407,7 @@ public class ControleCenarios {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				if(e1.getNcm().getRodadas() != null){
+				if(e4.getNcm().getRodadas() != null){
 				dataset = new DefaultCategoryDataset();
 				
 				for(int i=0;i<e4.getNcm().getRodadas().size();i++){
