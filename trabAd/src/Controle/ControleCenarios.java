@@ -1,6 +1,5 @@
 package Controle;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import vo.EventoVo;
@@ -47,23 +45,32 @@ public class ControleCenarios {
 			Double faseTransiente = 0.0;
 			
 			Tap tap1 = new Tap();
+			tap1.setNumMaximoIteracoes(1000);
+			tap1.setNumMaximoRodadas(50);
+			
 			tap1.setNumMaximoIteracoes(10);
 			tap1.setNumMaximoRodadas(10);
+
 			tap1.setAcabou(false);
 			
 			Tap tap2 = new Tap();
+
+			tap2.setNumMaximoIteracoes(1000);
+			tap2.setNumMaximoRodadas(50);
+
 			tap2.setNumMaximoIteracoes(10);
 			tap2.setNumMaximoRodadas(10);
+
 			tap2.setAcabou(false);
 			
 			Tap tap3 = new Tap();
-			tap3.setNumMaximoIteracoes(50);
-			tap3.setNumMaximoRodadas(10);
+			tap3.setNumMaximoIteracoes(1000);
+			tap3.setNumMaximoRodadas(50);
 			tap3.setAcabou(false);
 			
 			Tap tap4 = new Tap();
-			tap4.setNumMaximoIteracoes(50);
-			tap4.setNumMaximoRodadas(10);
+			tap4.setNumMaximoIteracoes(1000);
+			tap4.setNumMaximoRodadas(50);
 			tap4.setAcabou(false);
 			
 			Tam tam1 = new Tam();
@@ -265,7 +272,10 @@ public class ControleCenarios {
 					{
 						ultimaTransmissao = eventovo.getUltimoEvento();
 					}
+					/*Evento ev=ev1;
 					ev1=ev1.getProximoEvento();
+					ev1.setEventoAnterior(null);
+					ev=null;*/
 				}
 				//Busca o ultimo evento da estacao 1
 				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
@@ -663,7 +673,7 @@ public class ControleCenarios {
 					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -679,7 +689,7 @@ public class ControleCenarios {
 					dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -695,7 +705,7 @@ public class ControleCenarios {
 					dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -894,7 +904,7 @@ public class ControleCenarios {
 					dataset.addValue(e2.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 2", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -910,7 +920,7 @@ public class ControleCenarios {
 					dataset.addValue(e3.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 3", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
@@ -926,7 +936,7 @@ public class ControleCenarios {
 					dataset.addValue(e4.getTap().getRodadas().get(i).getMedia(), "ESTAÇÂO 4", "Rodada "+i);
 				}
 				
-				j=ChartFactory.createBarChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
+				j=ChartFactory.createLineChart("Gráfico", "Rodada", "TAP", dataset,PlotOrientation.VERTICAL, true, false,false);
 				
 				panel=new ChartPanel(j);
 				f=new JFrame();
