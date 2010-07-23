@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tam {
-	//qtas rodadas teremos pra colher os dados
+	
 	int numMaximoRodadas;
 	
 	int numMaximoIteracoes;
@@ -32,7 +32,7 @@ public class Tam {
 				acabou = false;
 				
 			}else if(rodadas.isEmpty()){
-				//comeco de coleta de dados, comecar a primeira rodada
+				//começo de coleta de dados
 				Rodada novaRodada = new Rodada();
 				novaRodada.setMedia(tempo);
 				novaRodada.setNumIteracoes(1);
@@ -58,7 +58,7 @@ public class Tam {
 			}else if(rodada.getNumIteracoes() == numMaximoIteracoes)
 			{
 				//uma nova rodada tem que começar
-				//mas pra isso é necessario verificar se ja passou o numero maximo de rodadas
+				//É necessario verificar se ja passou o numero maximo de rodadas
 				
 				//quantas rodadas eu ja tenho
 				int numRodada = rodadas.size();
