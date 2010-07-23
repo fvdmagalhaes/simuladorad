@@ -44,68 +44,71 @@ public class ControleCenarios {
 			//Guarda a fase transiente
 			Double faseTransiente = 0.0;
 			
+			//Instancia 4 vezes o Tap, cada um vai medir o tap de uma estação
 			Tap tap1 = new Tap();
 			
-			tap1.setNumMaximoIteracoes(5);
-			tap1.setNumMaximoRodadas(5);
-
+			tap1.setNumMaximoIteracoes(1000);
+			tap1.setNumMaximoRodadas(500);
+			//Variavel que guarda se o numero total de rodadas já foi colhido
 			tap1.setAcabou(false);
 			
 			Tap tap2 = new Tap ();
 
-			tap2.setNumMaximoIteracoes(5);
-			tap2.setNumMaximoRodadas(5);
+			tap2.setNumMaximoIteracoes(100);
+			tap2.setNumMaximoRodadas(300);
 
 			tap2.setAcabou(false);
 			
 			Tap tap3 = new Tap();
-			tap3.setNumMaximoIteracoes(5);
-			tap3.setNumMaximoRodadas(5);
+			tap3.setNumMaximoIteracoes(1000);
+			tap3.setNumMaximoRodadas(300);
 			tap3.setAcabou(false);
 			
 			Tap tap4 = new Tap();
-			tap4.setNumMaximoIteracoes(5);
-			tap4.setNumMaximoRodadas(5);
+			tap4.setNumMaximoIteracoes(1000);
+			tap4.setNumMaximoRodadas(300);
 			tap4.setAcabou(false);
 			
+//			Instancia 4 vezes o Tam, cada um vai medir o Tam de uma estação
 			Tam tam1 = new Tam();
-			tam1.setNumMaximoIteracoes(5);
-			tam1.setNumMaximoRodadas(5);
+			tam1.setNumMaximoIteracoes(1000);
+			tam1.setNumMaximoRodadas(300);
 			tam1.setAcabou(false);
 			
 			Tam tam2 = new Tam();
-			tam2.setNumMaximoIteracoes(5);
-			tam2.setNumMaximoRodadas(5);
+			tam2.setNumMaximoIteracoes(1000);
+			tam2.setNumMaximoRodadas(300);
 			tam2.setAcabou(false);
 			
 			Tam tam3 = new Tam();
-			tam3.setNumMaximoIteracoes(5);
-			tam3.setNumMaximoRodadas(5);
+			tam3.setNumMaximoIteracoes(1000);
+			tam3.setNumMaximoRodadas(300);
 			tam3.setAcabou(false);
 			
 			Tam tam4 = new Tam();
-			tam4.setNumMaximoIteracoes(5);
-			tam4.setNumMaximoRodadas(5);
+			tam4.setNumMaximoIteracoes(1000);
+			tam4.setNumMaximoRodadas(300);
 			tam4.setAcabou(false);
 			
+//			Instancia 4 vezes o Ncm, cada um vai medir o Ncm de uma estação
 			ncm ncm1 = new ncm();
-			ncm1.setNumMaximoIteracoes(5);
-			ncm1.setNumMaximoRodadas(5);
+			ncm1.setNumMaximoIteracoes(1000);
+			ncm1.setNumMaximoRodadas(300);
 			ncm1.setAcabou(false);
 			
 			ncm ncm2 = new ncm();
-			ncm2.setNumMaximoIteracoes(5);
-			ncm2.setNumMaximoRodadas(5);
+			ncm2.setNumMaximoIteracoes(1000);
+			ncm2.setNumMaximoRodadas(300);
 			ncm2.setAcabou(false);
 			
 			ncm ncm3 = new ncm();
-			ncm3.setNumMaximoIteracoes(5);
-			ncm3.setNumMaximoRodadas(5);
+			ncm3.setNumMaximoIteracoes(1000);
+			ncm3.setNumMaximoRodadas(300);
 			ncm3.setAcabou(false);
 			
 			ncm ncm4 = new ncm();
-			ncm4.setNumMaximoIteracoes(5);
-			ncm4.setNumMaximoRodadas(5);
+			ncm4.setNumMaximoIteracoes(1000);
+			ncm4.setNumMaximoRodadas(300);
 			ncm4.setAcabou(false);
 			
 			//instancia as estacoes do sistema
@@ -113,11 +116,14 @@ public class ControleCenarios {
 			Estacao e2 = new Estacao();
 			Estacao e3 = new Estacao();
 			Estacao e4 = new Estacao();
+			
+			//Todas as estações iniciam com 0 colisões
 			e1.setNumColisoes(0);
 			e2.setNumColisoes(0);
 			e3.setNumColisoes(0);
 			e4.setNumColisoes(0);
 			
+			//Associa as medidas com as estações
 			e1.setTap(tap1);
 			e2.setTap(tap2);
 			e3.setTap(tap3);
@@ -133,7 +139,7 @@ public class ControleCenarios {
 			e3.setNcm(ncm3);
 			e4.setNcm(ncm4);
 			
-			//canais
+			//Cria os canais
 			Canal tx1 = new Canal();
 			Canal tx2 = new Canal();
 			Canal tx3 = new Canal();
@@ -143,7 +149,7 @@ public class ControleCenarios {
 			Canal rx3 = new Canal();
 			Canal rx4 = new Canal();
 			
-			//o hub
+			//Cria o hub
 			Hub hub = new Hub();
 				
 			//adiciona as informacoes dos canais
@@ -175,8 +181,11 @@ public class ControleCenarios {
 			
 			//os ids são gerados automaticamente
 			e1.setId(1);
+			//Cada estação é associada ao seu tx e rx
 			e1.setRx(rx1);
 			e1.setTx(tx1);
+			
+			//Os canais tx e rx sao associados a estação
 			rx1.setEstacao(e1);
 			tx1.setEstacao(e1);
 			
@@ -198,7 +207,7 @@ public class ControleCenarios {
 			rx4.setEstacao(e4);
 			tx4.setEstacao(e4);
 			
-			//Seta o hub das estacoes
+			//Associa todas as estações com o hub
 			e1.setHub(hub);
 			e2.setHub(hub);
 			e3.setHub(hub);
@@ -206,8 +215,8 @@ public class ControleCenarios {
 			
 			//Adiciona as informacoes do hub
 			List<Canal> listaCanais = new ArrayList<Canal>();
-			//Guarda apenas os canais de recepcao das estacoes pois na hr de calcular o tempo que demora para enviar para cada estacao vms 
-			//calcular utilizando esses canais
+			
+			//Adiciona na lista de canais do hub os canais rx das estações pois esses são os tx do hub(canal por onde ele vai enviar)
 			listaCanais.add(rx1);
 			listaCanais.add(rx2);
 			listaCanais.add(rx3);
@@ -221,6 +230,9 @@ public class ControleCenarios {
 			e4.setRecebeuConfirmacaoUltimoQuadro(true);
 			
 			if(intfc.getRadioSelected() == 1){
+				//O evento ultima transmissão é criado para posteriormente guardar o ultimo evento executado
+				Evento ultimaTransmissao = new Evento();
+				ultimaTransmissao.setTempo(0.0);
 				/*
 				 * Cenário 1: estação 1 e estação 2 transmitem mensagens de 40 quadros de 1000
 				 * bytes, totalizando 4 Mbps por estação, sincronizadas (mensagens chegam nas duas
@@ -228,20 +240,24 @@ public class ControleCenarios {
 				 * Parâmetros: A1 = A2 = 80 ms, ambos determinísticos; p1 = p2 = 40; estações 3 e 4
 				 * sem tráfego.	
 				 */
+				
 				//evento da estacao 1
 				Evento ev1 = new Evento();
 				EventoVo eventovo = new EventoVo();
+				//Cria um evento receber pacote para que a estação receba seu primeiro pacote
 				ev1.setTempo(0.0);
 				ev1.setTipo(TipoEvento.RECEBE_PACOTE);
 				ev1.setEstacao(e1);
-				Evento ultimaTransmissao = new Evento();
-				ultimaTransmissao.setTempo(0.0);
+				//Seta os parametros da estação
 				e1.setDistribuicaoChegadapacotes(false);
 				e1.setTaxaDeChegada(80);
 				e1.setPmf(40);
+				//Cria o pacote que vai ser enviado
 				Pacote pacote1 = new Pacote();
 				pacote1.setEstacao(e1);
+				//O tamanho do pacote é a pmf(numero de quadros) vezes o tamanho de um quadro
 				pacote1.setTamanho(pacote1.getEstacao().getPmf()*Quadro.TAMANHO);
+				//Associa o pacote com o evento
 				ev1.setPacote(pacote1);
 				
 				//evento da estacao 2
@@ -257,9 +273,11 @@ public class ControleCenarios {
 				pacote2.setTamanho(pacote2.getEstacao().getPmf()*Quadro.TAMANHO);
 				ev2.setPacote(pacote2);
 				
+				//Associa os eventos
 				ev1.setProximoEvento(ev2);
 				ev2.setEventoAnterior(ev1);
 				
+				//Enquanto todas as medidas não forem colhidas continua simulando
 				while(!e1.getTap().getAcabou() && !e2.getTap().getAcabou() && !e1.getTam().getAcabou() && !e2.getTam().getAcabou() && !e1.getNcm().getAcabou() && !e2.getNcm().getAcabou()){
 					eventovo = Controle.trataEventos(ev1,ultimaTransmissao, faseTransiente);
 					//Caso o ultimo evento executado seja uma transmissao com sucesso guarda ele
@@ -267,10 +285,9 @@ public class ControleCenarios {
 					{
 						ultimaTransmissao = eventovo.getUltimoEvento();
 					}
-					//Evento ev=ev1;
+					
 					ev1=ev1.getProximoEvento();
-					/*ev1.setEventoAnterior(null);
-					ev=null;*/
+					
 				}
 				//Busca o ultimo evento da estacao 1
 				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
@@ -295,13 +312,14 @@ public class ControleCenarios {
 				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo()-faseTransiente);
 				
 				
-//				Calcula a utilizacao para a estacao 1
+//				Calcula a utilizacao para a estacao 1. Ou seja, o tempo que a estação estava ocupada sobre o seu tempo total de simulação
 				Double utilizacao = e1.getTempoOcupada()/e1.getTempoSimulacao();
 				
-				//Calcula a vazao das estacoes 1 e 2
+				//Calcula a vazao das estacoes 1 e 2. Ou seja, o numero de quadros transmitidos com sucesso dividido pelo tempo de simulaçao
 				Double vazao1 = e1.getNumeroQuadrosTransmitidosSucesso()/e1.getTempoSimulacao();
 				Double vazao2 = e2.getNumeroQuadrosTransmitidosSucesso()/e2.getTempoSimulacao();
 				
+				//Imprime as estatísticas da estação 1
 				System.out.println("Medidas da estacao 1: ");
 				e1.getTap().getMediaFinal();	
 				e1.getTam().getMediaFinal();
@@ -309,6 +327,7 @@ public class ControleCenarios {
 				System.out.println("Utilização:"+utilizacao);
 				System.out.println("Vazão:"+vazao1);
 				
+				//Imprime as estatísticas da estação 2
 				System.out.println("Medidas da estacao 2");
 				e2.getTap().getMediaFinal();
 				e2.getTam().getMediaFinal();
@@ -478,10 +497,9 @@ public class ControleCenarios {
 					{
 						ultimaTransmissao = eventovo.getUltimoEvento();
 					}
-//					Evento ev=ev1;
+
 					ev1=ev1.getProximoEvento();
-					/*ev1.setEventoAnterior(null);
-					ev=null;*/
+					
 				}
 //				Busca o ultimo evento da estacao 1
 				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
@@ -638,11 +656,7 @@ public class ControleCenarios {
 					f.setVisible(true);
 					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
-				/*System.out.println("Medidas da estacao 1: ");
-				e1.getTap().getMediaFinal();				
 				
-				System.out.println("Medidas da estacao 2");
-				e2.getTap().getMediaFinal();*/
 				
 			}else if(intfc.getRadioSelected() == 3){
 				
@@ -727,10 +741,9 @@ public class ControleCenarios {
 					{
 						ultimaTransmissao = eventovo.getUltimoEvento();
 					}
-//					Evento ev=ev1;
+
 					ev1=ev1.getProximoEvento();
-					/*ev1.setEventoAnterior(null);
-					ev=null;*/
+					
 				}
 //				Busca o ultimo evento da estacao 1
 				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
@@ -739,7 +752,7 @@ public class ControleCenarios {
 					ultimoEventoTemp1 = ultimoEventoTemp1.getEventoAnterior();
 				}
 				
-				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				//O tempo de simulacao da estacao é o tempo do ultimo evento dela
 				e1.setTempoSimulacao(ultimoEventoTemp1.getTempo()-faseTransiente);
 
 				
@@ -751,7 +764,7 @@ public class ControleCenarios {
 					ultimoEventoTemp2 = ultimoEventoTemp2.getEventoAnterior();
 				}
 				
-				//O tempo de simulacao da estacao eh o tempo do ultimo evento dela
+				//O tempo de simulacao da estacao é o tempo do ultimo evento dela
 				e2.setTempoSimulacao(ultimoEventoTemp2.getTempo()-faseTransiente);
 				
 //				Busca o ultimo evento da estacao 3
@@ -1117,11 +1130,9 @@ public class ControleCenarios {
 					if(eventovo.getVerificaTransmissao())
 					{
 						ultimaTransmissao = eventovo.getUltimoEvento();
-					}
-//					Evento ev=ev1;
+					}					
 					ev1=ev1.getProximoEvento();
-					/*ev1.setEventoAnterior(null);
-					ev=null;*/
+					
 				}
 //				Busca o ultimo evento da estacao 1
 				Evento ultimoEventoTemp1 = eventovo.getUltimoEvento();
