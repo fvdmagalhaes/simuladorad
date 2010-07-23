@@ -10,29 +10,36 @@ import Simulacao.ncm;
 
 public class Estacao {
 	int id;
+	//Canais da estação
 	Canal tx;
 	Canal rx;
+	//Taxa de chegada de mensagens na estação
 	int taxaDeChegada;
+	//numero total de colisões da estação na simulação
 	int numeroColisoes;
+	//Periodo que a estação estava com o meio ocupado, isto é, reforço de colisão, colisão ou transmissao com sucesso
 	Double tempoOcupada;
+	//Tempo total de simulaçao da estação
 	Double tempoSimulacao;
-	//numero de quadros em uma mensagem
+	//número de quadro em uma mensagem
 	int pmf;
-	//Quadro ultimoQuadroEnviado;
+	//True caso tenha recebido confirmação do ultimo quadro enviado por ela
 	boolean RecebeuConfirmacaoUltimoQuadro;
 	private static int ultimoId=0;
-	//milisegundos
 	
 	//false = determinística ; true = exponencial
 	boolean distribuicaoChegadaPacotes;
-	private String distribuicaoNumeroQuadrosPacote;
+	//Lista de pacotes da estação
 	private List<Pacote> pacotes;
+	//Guarda o ultimo quadro enviado
 	Quadro ultimoQuadroEnviado;
+	//Medidas
 	Tap tap;
 	Tam tam;
 	ncm ncm;
+	//número de quadros que foram transmitidos com sucesso em toda a simulação
 	int numeroQuadrosTransmitidosSucesso;
-	//private double p;//parametro para saber se a pmf é geometrica ou deterministica
+	
 	
 	public Double getTempoOcupada() {
 		return tempoOcupada;
@@ -79,6 +86,7 @@ public class Estacao {
 	Hub hub;
 	
 	public Estacao(){
+		//Incrementa o id da estação
 		ultimoId++;
 		id=ultimoId;
 		pacotes=new ArrayList<Pacote>(0);
@@ -114,11 +122,11 @@ public class Estacao {
 		return taxaDeChegada;
 	}
 	public void setTaxaDeChegada(int taxaDeChegada) {
-		
+		//Quando for exponencial a taxa de chegada de pacotes é 1/taxa de chegada
 		if(distribuicaoChegadaPacotes){
 			this.taxaDeChegada = 1/taxaDeChegada;
 		}else{
-		
+			//Quando é deterministica é igual a taxa
 			this.taxaDeChegada = taxaDeChegada;
 		}
 	}
@@ -177,30 +185,6 @@ public class Estacao {
 		pacotes.add(pacote);
 	}
 	
-	/*public void enviaPacote (Pacote pacote, Evento ultimoEvento){
-		
-		//Antes de enviar o pacote a estacao sente o meio e "seta" o proximo evento como o evento de enviar
-		if(tx.getOcioso())
-		{
-			//muda o canal de transmissao para ocioso
-			tx.setOcioso(true);
-			//Cria o proximo evento para transmitir o pacote
-			Evento proximoEvento = new Evento();
-			//proximoEvento.setQuadro()
-			//proximoEvento.setTempo()
-			proximoEvento.setTipo(TipoEvento.TRANSMITE_QUADRO);
-			Controle.insereEvento(proximoEvento, ultimoEvento);
-			
-		}else{
-			//espera um tempo e tenta enviar dinovo
-			Evento eventoSenteMeio = new Evento();
-			eventoSenteMeio.setTipo(TipoEvento.SENTE_MEIO);
-			//eventoSenteMeio.setTempo()
-			Controle.insereEvento(eventoSenteMeio, ultimoEvento);
-		}
-		
-	}*/
-	
 //	estacao recebe pacote no tempo x
 	public void recebePacote (Pacote pacote, Double tempo, Evento ultimoEvento){
 		/*
@@ -210,12 +194,13 @@ public class Estacao {
 		 * vai gerando os quadros e enviando
 		 * 
 		 */
-		//Controle controle = new Controle();Comentei porque como ela usa um metodo static achei que não precisasse ser instanciada,mas qualquer coisa descomentem
+		
 		Quadro quadro;
 		Evento evento;
 		
 		//a estacao gera o primeiro quadro da sequencia de quadros. Assim que a estacao confirmar o envio deste quadro, gera o proximo
 		pacote.setSequenciaEnviada(1);
+		
 		
 		quadro= new Quadro();
 		quadro.setNumeroSequencia(1);
@@ -225,10 +210,9 @@ public class Estacao {
 		quadro.setTam(tempo);
 		//Inicialmente temos 0 colisoes de quadros desse pacote
 		pacote.setNcm(0);
-		//cria um evento de enviar quadro para o hub para cada quadro
+		//cria um evento de sentir o meio para tentar enviar o quadro
 		evento = new Evento();
 		evento.setQuadro(quadro);
-		//evento.setTipo(TipoEvento.TRANSMITE_QUADRO);
 		evento.setTipo(TipoEvento.SENTE_MEIO);
 		evento.setTempo(tempo);
 		evento.setPacote(pacote);
