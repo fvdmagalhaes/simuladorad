@@ -85,15 +85,22 @@ public class Controle {
 	{
 		EventoVo eventoVo = new EventoVo();
 		
-		System.out.println("---------------------------------------");
-		if(evento.getTipo()==TipoEvento.RETRANSMITE_QUADRO)
-			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": HUB Retransmite o quadro");
-		else
-			System.out.println("Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo());
+		Saida.saida+="---------------------------------------";
+		Saida.saida+="\n";
+		if(evento.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
+			Saida.saida+="Evento a ser tratado no tempo " + evento.getTempo()+ ": HUB Retransmite o quadro";
+		//	Saida.saida+="\n";
+		}else{
+		//	Saida.saida+="Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo();
+		//	Saida.saida+="\n";
+		}
 		
-		System.out.println("\n");
-		System.out.println("Existem esses eventos para serem tratados:");
-		System.out.println("\n");
+		//Saida.saida+="\n";
+		//Saida.saida+="\n";
+		//Saida.saida+="Existem esses eventos para serem tratados:";
+		//Saida.saida+="\n";
+		//Saida.saida+="\n";
+		//Saida.saida+="\n";
 		
 		Evento ev = evento;
 		
@@ -101,11 +108,13 @@ public class Controle {
 			ev = ev.getProximoEvento();
 			
 			if(ev != null){
-				if(ev.getTipo()==TipoEvento.RETRANSMITE_QUADRO)
-					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": HUB Retransmite o quadro");
-				else
-					System.out.println("Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo());
-
+				if(ev.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
+				//	Saida.saida+="Evento a ser tratado no tempo " + ev.getTempo()+ ": HUB Retransmite o quadro";
+				//	Saida.saida+="\n";
+				}else{
+				//	Saida.saida+="Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo();
+				//	Saida.saida+="\n";
+				}
 			}
 		}
 		
