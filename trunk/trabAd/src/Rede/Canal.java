@@ -2,6 +2,7 @@ package Rede;
 
 
 public class Canal {
+	
 	Boolean ocioso;
 	Double tamanho;
 	Estacao estacao;
@@ -32,12 +33,13 @@ public class Canal {
 		Double propagacao = 5000000000.00;
 		//Double tempo = tamanho / propagacao;
 		//Nova forma de calcular o tempo de transmissao
-		// Ttransmissão + Tpropagação = TAMANHOQUADRO/CANAL + DISTANCIA/VELOCIDADE_PROPAGACAO
-		//rede Ethernet a 10 Mbps, canal
-		//1 megabits = 1 048 576 bits logo 10Mbps = 10 048 576 bps = 10048 bpms
+		
+		//rede Ethernet a 10 Mbps
+		//1 megabits = 1 048 576 bits logo:
 		Double velocidadeCanal = 1048.576;
-		//Quadro quadro = new Quadro();
+		
 		int tamanhoQuadro = Quadro.TAMANHO;
+//		 Ttransmissão + Tpropagação = TAMANHOQUADRO/CANAL + DISTANCIA/VELOCIDADE_PROPAGACAO
 		Double tempo = (tamanhoQuadro / velocidadeCanal) + (tamanho/propagacao);
 		return tempo;
 	}
