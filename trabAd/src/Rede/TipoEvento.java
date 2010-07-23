@@ -1,6 +1,10 @@
 package Rede;
 
 public enum TipoEvento {
+	
+	/**Guarda os tipos de eventos**/
+	
+	
 	//ESTACAO RECEBE PACOTE DE FORA COM UMA TAXA QUALQUER. Acho q esse evento pode ser apagado
 	RECEBE_PACOTE,
 	//ESTACAO SENTE O MEIO PARA ENVIAR O QUADRO
