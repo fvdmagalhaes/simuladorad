@@ -339,7 +339,10 @@ public class Controle {
 						
 					 }else{
 						 //descarta o quadro
-						 System.out.println("quadro"+evento.getQuadro().getId()+"descartado");
+						 Saida.saida="quadro"+evento.getQuadro().getId()+"descartado";
+						 Saida.escreve();
+						 Saida.saida="\n";
+						 Saida.escreve();
 					 }
 					 //A estação colidiu entao vamos adicionar 1 ao seu numero de colisoes
 					 estacao.setNumColisoes(estacao.getNumColisoes()+1);
@@ -406,9 +409,8 @@ public class Controle {
 				 //Seta esse quadro como o ultimo enviado pela estacao
 				 estacao.setUltimoQuadroEnviado(evento.getQuadro());
 			 }else{
-				 System.out.println("O quadro"+evento.getQuadro().getNumeroSequencia()+"da estacao"+estacao.getId()+"foi perdido pois o canal estava ocupado");
-				 
-				 
+				 Saida.saida="O quadro"+evento.getQuadro().getNumeroSequencia()+" da estacao "+estacao.getId()+" foi perdido pois o canal estava ocupado";
+				 Saida.escreve();
 				 //Como deu colisao devemos somar ao tempo ocupado da estacao o tempo ateh o quadro colidir.
 				 if(evento.getQuadro().getTempoOcupado() != null)
 				 {
@@ -463,7 +465,11 @@ public class Controle {
 					
 				 }else{
 					 //descarta o quadro
-					 System.out.println("quadro"+evento.getQuadro().getId()+"descartado");
+					 Saida.saida="quadro"+evento.getQuadro().getId()+"descartado";
+					 Saida.escreve();
+					 Saida.saida="\n";
+					 Saida.escreve();
+					 
 				 }
 				 //Como teve colisão soma 1 ao numero de colisões da estação
 				 estacao.setNumColisoes(estacao.getNumColisoes()+1);
