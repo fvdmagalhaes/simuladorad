@@ -30,6 +30,6 @@ public class main {
 		ControleCenarios controle = new ControleCenarios();
 		controle.intfc();
 	}	
-		//aqui acaba a funcao main
+		
 	
 }
