@@ -6,9 +6,9 @@ public class Pacote {
 	int id;
 	int tamanho;
 	Estacao estacao;
+	//Guarda o numero de quadros já enviados
 	int sequenciaEnviada;
-	//public boolean recebidoPelaEstacao;
-	//em milisegundos
+	//Guarda o ultimo quadro enviado
 	Quadro ultimoQuadroEnviado;
 	Double tam;
 	int ncm;
