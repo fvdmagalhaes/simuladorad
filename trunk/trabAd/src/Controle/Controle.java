@@ -85,22 +85,28 @@ public class Controle {
 	{
 		EventoVo eventoVo = new EventoVo();
 		
-		Saida.saida+="---------------------------------------";
-		Saida.saida+="\n";
+		Saida.saida="---------------------------------------";
+		Saida.escreve();
+		Saida.saida="\n";
+		Saida.escreve();
 		if(evento.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
-			Saida.saida+="Evento a ser tratado no tempo " + evento.getTempo()+ ": HUB Retransmite o quadro";
-		//	Saida.saida+="\n";
+			Saida.saida="Evento a ser tratado no tempo " + evento.getTempo()+ ": HUB Retransmite o quadro";
+			Saida.escreve();
+			Saida.saida="\n";
+			Saida.escreve();
 		}else{
-		//	Saida.saida+="Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo();
-		//	Saida.saida+="\n";
+			Saida.saida="Evento a ser tratado no tempo " + evento.getTempo()+ ": Estacao " + evento.getEstacao().getId() + " " + evento.getTipo();
+			Saida.escreve();
+			Saida.saida="\n";
+			Saida.escreve();
 		}
 		
-		//Saida.saida+="\n";
-		//Saida.saida+="\n";
-		//Saida.saida+="Existem esses eventos para serem tratados:";
-		//Saida.saida+="\n";
-		//Saida.saida+="\n";
-		//Saida.saida+="\n";
+		Saida.saida="\n";Saida.escreve();
+		Saida.saida="\n";Saida.escreve();
+		Saida.saida="Existem esses eventos para serem tratados:";Saida.escreve();
+		Saida.saida="\n";Saida.escreve();
+		Saida.saida="\n";Saida.escreve();
+		Saida.saida="\n";Saida.escreve();
 		
 		Evento ev = evento;
 		
@@ -109,11 +115,15 @@ public class Controle {
 			
 			if(ev != null){
 				if(ev.getTipo()==TipoEvento.RETRANSMITE_QUADRO){
-				//	Saida.saida+="Evento a ser tratado no tempo " + ev.getTempo()+ ": HUB Retransmite o quadro";
-				//	Saida.saida+="\n";
+					Saida.saida="Evento a ser tratado no tempo " + ev.getTempo()+ ": HUB Retransmite o quadro";
+					Saida.escreve();
+					Saida.saida="\n";
+					Saida.escreve();
 				}else{
-				//	Saida.saida+="Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo();
-				//	Saida.saida+="\n";
+					Saida.saida="Evento a ser tratado no tempo " + ev.getTempo()+ ": Estacao " + ev.getEstacao().getId() + " " + ev.getTipo();
+					Saida.escreve();
+					Saida.saida="\n";
+					Saida.escreve();
 				}
 			}
 		}

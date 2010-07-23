@@ -119,4 +119,9 @@ public class Tap {
 		}
 		return null;
 	}
+		
+	public Double getMediaFinalTodasRodadas(){
+		
+		return 0.0;
+	}
 }
