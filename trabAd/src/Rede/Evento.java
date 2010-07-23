@@ -2,9 +2,12 @@ package Rede;
 
 
 public class Evento {
+	//Guarda o tempo em que o evento será executado
 	Double tempo;
+	//Parametros usados para encadear a lista
 	Evento proximoEvento;
 	Evento eventoAnterior;
+	//Tipo do evento
 	TipoEvento tipo;
 	Quadro quadro;
 	Estacao estacao;
