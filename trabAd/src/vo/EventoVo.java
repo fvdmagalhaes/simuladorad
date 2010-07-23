@@ -4,11 +4,15 @@ import Rede.Evento;
 
 public class EventoVo {
 	
-	//true caso a ultima transmissao seja uma transmissao com sucesso ou 
-	//um reforço de colisao
+	/*Esta classe guarda parametros de métodos que precisam retornar mais de um parametro*/
+	
+	//Guarda se a transmissao foi transmissao com sucesso ou reforço de colisao
 	boolean transmissaoSucesso;
+	//Guarda o ultimo evento executado
 	Evento ultimoEvento;
+	//Guarda o atrazo do binaryBackOff
 	double atrazo;
+	//Guarda se o quadro vai ser descartado
 	boolean descartaQuadro;
 	
 	public double getAtrazo() {
