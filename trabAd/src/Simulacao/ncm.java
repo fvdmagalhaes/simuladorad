@@ -7,36 +7,39 @@ public class ncm {
 
 
 
-		//qtas rodadas teremos pra colher os dados
+		//Numero de rodadas pelo qual teremos que colher as medidas
 		int numMaximoRodadas;
 		
+		//Numero de iterações que cada rodada terá
 		int numMaximoIteracoes;
 		
+		//True se já tivermos colhido todas as rodadas
 		Boolean acabou;
 		
 		List<Rodada> rodadas;
 		
 		public void adicionaMedida(int numero,Double tempo, Double faseTransiente){
-			//esse metodo retorna true se continuar simulando
-			//e retorna false se ja pegou todas as simulacoes
-			//aqui vamos adicionar as medidas às rodadas
-			
+			//O metodo verifica se o tempo em que vamos colher a medida é maior ou igual que a fase transiente. Se for menor não colhemos a medida
 			if(tempo >= faseTransiente)
 			{
 			
 				if(rodadas == null){
+					//Caso ainda nao existam rodadas cria uma nova
 					rodadas = new ArrayList<Rodada>();
 					
 					Rodada novaRodada = new Rodada();
+					
+					//Adiciona o numero de colisoes da mensagem
 					novaRodada.setMediaInt(numero);
+					//A rodada só teve 1 iteração até agora
 					novaRodada.setNumIteracoes(1);
-					
+					//Adiciona a rodada na lista
 					rodadas.add(novaRodada);
-					
+					//Ainda não acabou de simular
 					acabou = false;
 					
 				}else if(rodadas.isEmpty()){
-					//comeco de coleta de dados, comecar a primeira rodada
+					//começo de coleta de dados, vamos comecar a primeira rodada
 					Rodada novaRodada = new Rodada();
 					novaRodada.setMediaInt(numero);
 					novaRodada.setNumIteracoes(1);
@@ -46,13 +49,15 @@ public class ncm {
 					acabou = false;
 					
 				}
+				//pega a rodada anterior
 				Rodada rodada = (Rodada) rodadas.get(rodadas.size()-1);
 						
+				
 				if(rodada.getNumIteracoes() < numMaximoIteracoes){
 					//essa rodada ainda pode receber iteracoes
 					int iteracoes = rodada.getNumIteracoes()+1;
 					rodada.setNumIteracoes(iteracoes);
-					
+					//Calcula a nova media da rodada(Média anterior mais o novo numero dividido pelo numero de iterações até o momento)
 					int media = rodada.getMediaInt();
 					int novaMedia = (media + numero)/iteracoes;
 					
@@ -61,8 +66,7 @@ public class ncm {
 					acabou = false;
 				}else if(rodada.getNumIteracoes() == numMaximoIteracoes)
 				{
-					//uma nova rodada tem que começar
-					//mas pra isso é necessario verificar se ja passou o numero maximo de rodadas
+					//Se ainda nao passou o numero maximo de rodadas vamos criar a proximo rodada pois a atual acabou
 					
 					//quantas rodadas eu ja tenho
 					int numRodada = rodadas.size();
@@ -112,6 +116,8 @@ public class ncm {
 			return rodada.getMedia();
 		}
 		public int getMediaFinal(){
+			
+			//Imprime as medidas
 			int i=1;
 			if(rodadas != null){
 				for(Rodada rodada : rodadas){
