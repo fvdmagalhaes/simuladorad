@@ -1,6 +1,7 @@
 package Simulacao;
 
 public class Rodada {
+	/**Guarda os parametros utilizados para calcular as estatisticas. Eles sao usados nas classes Tam, Tap e Ncm**/
 	int numIteracoes;
 	Double media;
 	int mediaInt;
