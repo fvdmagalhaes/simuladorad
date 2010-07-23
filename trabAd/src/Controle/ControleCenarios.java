@@ -2,9 +2,6 @@ package Controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,68 +47,68 @@ public class ControleCenarios {
 			//Instancia 4 vezes o Tap, cada um vai medir o tap de uma estação
 			Tap tap1 = new Tap();
 			
-			tap1.setNumMaximoIteracoes(1000);
-            tap1.setNumMaximoRodadas(500);
+			tap1.setNumMaximoIteracoes(10);
+            tap1.setNumMaximoRodadas(10);
             //Variavel que guarda se o numero total de rodadas já foi colhido
             tap1.setAcabou(false);
             
             Tap tap2 = new Tap ();
 
-            tap2.setNumMaximoIteracoes(100);
-            tap2.setNumMaximoRodadas(300);
+            tap2.setNumMaximoIteracoes(10);
+            tap2.setNumMaximoRodadas(10);
 
             tap2.setAcabou(false);
             
             Tap tap3 = new Tap();
-            tap3.setNumMaximoIteracoes(1000);
-            tap3.setNumMaximoRodadas(300);
+            tap3.setNumMaximoIteracoes(10);
+            tap3.setNumMaximoRodadas(10);
             tap3.setAcabou(false);
             
             Tap tap4 = new Tap();
-            tap4.setNumMaximoIteracoes(1000);
-            tap4.setNumMaximoRodadas(300);
+            tap4.setNumMaximoIteracoes(10);
+            tap4.setNumMaximoRodadas(10);
             tap4.setAcabou(false);
             
 //          Instancia 4 vezes o Tam, cada um vai medir o Tam de uma estação
             Tam tam1 = new Tam();
-            tam1.setNumMaximoIteracoes(1000);
-            tam1.setNumMaximoRodadas(300);
+            tam1.setNumMaximoIteracoes(10);
+            tam1.setNumMaximoRodadas(10);
             tam1.setAcabou(false);
             
             Tam tam2 = new Tam();
-            tam2.setNumMaximoIteracoes(1000);
-            tam2.setNumMaximoRodadas(300);
+            tam2.setNumMaximoIteracoes(10);
+            tam2.setNumMaximoRodadas(10);
             tam2.setAcabou(false);
             
             Tam tam3 = new Tam();
-            tam3.setNumMaximoIteracoes(1000);
-            tam3.setNumMaximoRodadas(300);
+            tam3.setNumMaximoIteracoes(10);
+            tam3.setNumMaximoRodadas(10);
             tam3.setAcabou(false);
             
             Tam tam4 = new Tam();
-            tam4.setNumMaximoIteracoes(1000);
-            tam4.setNumMaximoRodadas(300);
+            tam4.setNumMaximoIteracoes(10);
+            tam4.setNumMaximoRodadas(10);
             tam4.setAcabou(false);
             
 //          Instancia 4 vezes o Ncm, cada um vai medir o Ncm de uma estação
             ncm ncm1 = new ncm();
-            ncm1.setNumMaximoIteracoes(1000);
-            ncm1.setNumMaximoRodadas(300);
+            ncm1.setNumMaximoIteracoes(10);
+            ncm1.setNumMaximoRodadas(10);
             ncm1.setAcabou(false);
             
             ncm ncm2 = new ncm();
-            ncm2.setNumMaximoIteracoes(1000);
-            ncm2.setNumMaximoRodadas(300);
+            ncm2.setNumMaximoIteracoes(10);
+            ncm2.setNumMaximoRodadas(10);
             ncm2.setAcabou(false);
             
             ncm ncm3 = new ncm();
-            ncm3.setNumMaximoIteracoes(1000);
-            ncm3.setNumMaximoRodadas(300);
+            ncm3.setNumMaximoIteracoes(10);
+            ncm3.setNumMaximoRodadas(10);
             ncm3.setAcabou(false);
             
             ncm ncm4 = new ncm();
-            ncm4.setNumMaximoIteracoes(1000);
-            ncm4.setNumMaximoRodadas(300);
+            ncm4.setNumMaximoIteracoes(10);
+            ncm4.setNumMaximoRodadas(10);
             ncm4.setAcabou(false);
 
 			
@@ -452,7 +449,6 @@ public class ControleCenarios {
 					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				
-				Saida.escrever();
 			}else if(intfc.getRadioSelected() == 2){
 				/*
 				 * Cenário 2: estação 1 e estação 2 transmitem mensagens de 40 quadros de 1000
