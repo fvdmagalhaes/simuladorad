@@ -3,6 +3,8 @@ package Simulacao;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controle.Saida;
+
 public class ncm {
 
 
@@ -121,7 +123,8 @@ public class ncm {
 			int i=1;
 			if(rodadas != null){
 				for(Rodada rodada : rodadas){
-					System.out.println("Media nmc da rodada " + i + ": " + rodada.getMediaInt());
+					Saida.saida="Media nmc da rodada " + i + ": " + rodada.getMediaInt()+"\n";
+					Saida.escreve();
 					i++;
 				}
 			}

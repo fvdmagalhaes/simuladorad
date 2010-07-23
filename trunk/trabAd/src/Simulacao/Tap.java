@@ -3,6 +3,8 @@ package Simulacao;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controle.Saida;
+
 public class Tap {
 	
 	int numMaximoRodadas;
@@ -112,7 +114,10 @@ public class Tap {
 		if(rodadas != null){
 			for(Rodada rodada : rodadas){
 				if(rodada.getMedia() != null){
-					System.out.println("Media Tap da rodada " + i + ": " + rodada.getMedia());
+					Saida.saida="Media Tap da rodada " + i + ": " + rodada.getMedia();
+					Saida.escreve();
+					Saida.saida="\n";
+					Saida.escreve();
 				}
 				i++;
 			}

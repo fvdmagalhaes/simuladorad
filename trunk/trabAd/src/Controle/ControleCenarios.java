@@ -321,19 +321,35 @@ public class ControleCenarios {
 				Double vazao2 = e2.getNumeroQuadrosTransmitidosSucesso()/e2.getTempoSimulacao();
 				
 				//Imprime as estatísticas da estação 1
-				System.out.println("Medidas da estacao 1: ");
+				Saida.saida="Medidas da estacao 1: ";
+				Saida.escreve();
+				Saida.saida="\n";
+				Saida.escreve();
 				e1.getTap().getMediaFinal();	
 				e1.getTam().getMediaFinal();
 				e1.getNcm().getMediaFinal();
-				System.out.println("Utilização:"+utilizacao);
-				System.out.println("Vazão:"+vazao1);
+				Saida.saida="Utilização: "+utilizacao;
+				Saida.escreve();
+				Saida.saida="\n";
+				Saida.escreve();
+				Saida.saida="Vazão: "+vazao1;
+				Saida.escreve();
+				Saida.saida="\n";
+				Saida.escreve();
+				
 				
 				//Imprime as estatísticas da estação 2
-				System.out.println("Medidas da estacao 2");
+				Saida.saida="Medidas da estacao 2: ";
+				Saida.escreve();
+				Saida.saida="\n";
+				Saida.escreve();
 				e2.getTap().getMediaFinal();
 				e2.getTam().getMediaFinal();
 				e2.getNcm().getMediaFinal();
-				System.out.println("Vazão:"+vazao2);
+				Saida.saida="Vazão: "+vazao2;
+				Saida.escreve();
+				Saida.saida="\n";
+				Saida.escreve();
 				
 				DefaultCategoryDataset dataset;
 				ChartPanel panel;
@@ -531,18 +547,25 @@ public class ControleCenarios {
 				Double vazao1 = e1.getNumeroQuadrosTransmitidosSucesso()/e1.getTempoSimulacao();
 				Double vazao2 = e2.getNumeroQuadrosTransmitidosSucesso()/e2.getTempoSimulacao();
 				
-				System.out.println("Medidas da estacao 1: ");
+				//Imprime as estatísticas da estação 1
+				Saida.saida="Medidas da estacao 1: "+"/n";
+				Saida.escreve();
 				e1.getTap().getMediaFinal();	
 				e1.getTam().getMediaFinal();
 				e1.getNcm().getMediaFinal();
-				System.out.println("Utilização:"+utilizacao);
-				System.out.println("Vazão:"+vazao1);
+				Saida.saida="Utilização: "+utilizacao+"/n";
+				Saida.escreve();
+				Saida.saida="Vazão: "+vazao1+"/n";
+				Saida.escreve();
 				
-				System.out.println("Medidas da estacao 2");
+				//Imprime as estatísticas da estação 2
+				Saida.saida="Medidas da estacao 2: "+"/n";
+				Saida.escreve();
 				e2.getTap().getMediaFinal();
 				e2.getTam().getMediaFinal();
 				e2.getNcm().getMediaFinal();
-				System.out.println("Vazão:"+vazao2);
+				Saida.saida="Vazão: "+vazao2+"/n";
+				Saida.escreve();
 				
 				
 				DefaultCategoryDataset dataset;
@@ -798,33 +821,41 @@ public class ControleCenarios {
 				Double vazao4 = e4.getNumeroQuadrosTransmitidosSucesso()/e4.getTempoSimulacao();
 				
 				
-				System.out.println("Medidas da estacao 1: ");
+				Saida.saida="Medidas da estacao 1: "+"\n";
+				Saida.escreve();
 				e1.getTap().getMediaFinal();
 				e1.getTam().getMediaFinal();
 				e1.getNcm().getMediaFinal();
-				System.out.println("Utilização:"+utilizacao);
-				System.out.println("Vazão:"+vazao1);
+				Saida.saida="Utilização:"+utilizacao+"\n";
+				Saida.escreve();
+				Saida.saida="Vazão:"+vazao1+"\n";
+				Saida.escreve();
 				
 				
-				
-				System.out.println("Medidas da estacao 2: ");
+				Saida.saida="Medidas da estacao 2: "+"\n";
+				Saida.escreve();
 				e2.getTap().getMediaFinal();
 				e2.getTam().getMediaFinal();
 				e2.getNcm().getMediaFinal();
-				System.out.println("Vazão:"+vazao2);
+				Saida.saida="Vazão:"+vazao2+"\n";
+				Saida.escreve();
 				
 				
-				System.out.println("Medidas da estacao 3: ");
+				Saida.saida="Medidas da estacao 3: "+"\n";
+				Saida.escreve();
 				e3.getTap().getMediaFinal();
 				e3.getTam().getMediaFinal();
 				e3.getNcm().getMediaFinal();
-				System.out.println("Vazão:"+vazao3);
+				Saida.saida="Vazão:"+vazao3+"\n";
+				Saida.escreve();
 				
-				System.out.println("Medidas da estacao 4: ");
+				Saida.saida="Medidas da estacao 4: "+"\n";
+				Saida.escreve();
 				e4.getTap().getMediaFinal();
 				e4.getTam().getMediaFinal();
 				e4.getNcm().getMediaFinal();
-				System.out.println("Vazão:"+vazao4);
+				Saida.saida="Vazão:"+vazao4+"\n";
+				Saida.escreve();
 				
 				DefaultCategoryDataset dataset;
 				ChartPanel panel;
@@ -1187,33 +1218,41 @@ public class ControleCenarios {
 				Double vazao4 = e4.getNumeroQuadrosTransmitidosSucesso()/e4.getTempoSimulacao();
 				
 				
-				System.out.println("Medidas da estacao 1: ");
+				Saida.saida="Medidas da estacao 1: "+"\n";
+				Saida.escreve();
 				e1.getTap().getMediaFinal();
 				e1.getTam().getMediaFinal();
 				e1.getNcm().getMediaFinal();
-				System.out.println("Utilização:"+utilizacao);
-				System.out.println("Vazão:"+vazao1);
+				Saida.saida="Utilização:"+utilizacao+"\n";
+				Saida.escreve();
+				Saida.saida="Vazão:"+vazao1+"\n";
+				Saida.escreve();
 				
 				
-				
-				System.out.println("Medidas da estacao 2: ");
+				Saida.saida="Medidas da estacao 2: "+"\n";
+				Saida.escreve();
 				e2.getTap().getMediaFinal();
 				e2.getTam().getMediaFinal();
 				e2.getNcm().getMediaFinal();
-				System.out.println("Vazão:"+vazao2);
+				Saida.saida="Vazão:"+vazao2+"\n";
+				Saida.escreve();
 				
 				
-				System.out.println("Medidas da estacao 3: ");
+				Saida.saida="Medidas da estacao 3: "+"\n";
+				Saida.escreve();
 				e3.getTap().getMediaFinal();
 				e3.getTam().getMediaFinal();
 				e3.getNcm().getMediaFinal();
-				System.out.println("Vazão:"+vazao3);
+				Saida.saida="Vazão:"+vazao3+"\n";
+				Saida.escreve();
 				
-				System.out.println("Medidas da estacao 4: ");
+				Saida.saida="Medidas da estacao 4: "+"\n";
+				Saida.escreve();
 				e4.getTap().getMediaFinal();
 				e4.getTam().getMediaFinal();
 				e4.getNcm().getMediaFinal();
-				System.out.println("Vazão:"+vazao4);
+				Saida.saida="Vazão:"+vazao4+"\n";
+				Saida.escreve();
 			
 				DefaultCategoryDataset dataset;
 				ChartPanel panel;
